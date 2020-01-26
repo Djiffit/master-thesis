@@ -5,73 +5,64 @@ The following gives some superficial instructions for using this template for a 
 The thesis should have an introduction chapter. Other chapters can be named according to the topic. In the end, some summary chapter is needed; see Chapter~\ref{chapter:conclusions} for an example.
 
 \section{Structure of thesis}
-A lot of cool chapters here :))))))
+Cool stuff etc.
 
 \chapter{Neural networks}
-Yes go through CNN, LSTM, Attention
+Background stuff 
+\section{Fully Connected Networks}
+When needed, when good/bad
 \section{Convolutional Neural Networks}
-CNN VERY COOL THING now if you need some help here I am
+Show some basic CNN things maybe
 \subsection{Neural image processing}
-How it different from classical and why it works
-\subsection{Transfer learning}
-How to transfer learning
-\subsection{ResNet}
-Describe them
-\subsection{EfficientNet}
-Describe them
-\subsection{Image classification}
-Tough problem ::)
-\section{Image embedding}
-pretty amazing
-\section{Recurrent Neural Networks}
-LSTMs extremely cool
-\subsection{Recurrent networks over embeddings}
-How dat works
-\subsection{Video classification}
-Video very cool
+How it different from classical features and how it works
 \section{Attention}
 Attention huh
 \section{Multi-task learning}
-What it do
-\chapter{Related Work}
-How did the others do and me also
-\section{Non-neural}
-Some cool old school pixel approaches
-\section{CNN / Pretrained CNN}
-How did they train their model
-\section{Video}
-How to use video\cite{guerra_weather_2018}
-\chapter{Dataset}
-Describing our data
-\section{Data format}
-\section{Data processing and labeling}
-\section{Semi-supervised learning}
+Describe how a multi-task setting differs
+\section{RNN/LSTM/Transformer text processing/generation}
+Depending on what may be used
 
+\chapter{Tasks}
+What has been done when solving these tasks/history/formal definition
+\section{Image classification}
+Cover some results on similar datasets and their approaches, maybe show that old SIFT/HOG features don't really work vs CNN
+\subsection{Transfer learning}
+\subsection{ResNet}
+\subsection{EfficientNet}
+\section{Object detection}
+Based on what is going to be detected, maybe text?
+\section{Paragraph captioning}
+Assuming we are doing this
+\section{Multi task learning}
+Cover some examples of MTL in Computer Vision
+
+\chapter{Datasets}
+Describing our data
+\section{Data formats}
+Describe what datasets are used for each of the tasks and where they are from etc.
 
 \chapter{Experiments}
 Here are our experiments
 \section{Training process}
-\subsection{Evaluation criteria}
+\subsection{Evaluation criterias}
 eval
-\subsection{Mixed precision training}
-16 bit  masters
 \section{Image classifiers}
-Only use images
+Results of image classsifiers on the datasets maybe compare ResNet vs EfficientNet
 \subsection{Only transfer learned classifier}
 Just a ResNet or something
 \subsection{Image classifier with attention}
 Add attention to image classifier
-\section{Video classification}
-\subsection{LSTM over video}
-just lstm
-\subsection{Attention over video}
-Attention over video here
-
+\subsection{Classifiers combined to a multi-task model}
+How it do
+\section{Object detection}
+Some stuff for object detection
+\section{Multi-task models}
+Create multi-task models for all and try to find some pairs/tuples that actually work together properly
 \chapter{Result analysis}
-Very good models
+Incredible models absolutely.
 
 \chapter{Future work}
-How to make it better
+How to make it better what could be tried 
 
 \chapter{Figures and Tables}
 
@@ -133,6 +124,7 @@ References are listed in a separate .bib-file. In this case it is named \texttt{
     title     = "Knuth: Computers and Typesetting",
     url       = "http://www-cs-faculty.stanford.edu/%7Eknuth/abcde.html"
 }
+1
 \end{verbatim}
 
 In the last reference url field the code \verb+%7E+ will translate into \verb+~+ once clicked in the final pdf.
