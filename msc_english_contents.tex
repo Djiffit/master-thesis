@@ -10,30 +10,28 @@ Cool stuff etc.
 \chapter{Neural networks}
 Background stuff 
 \section{Fully Connected Networks}
-When needed, when good/bad
+When needed example of a transfer learning head?, when good/bad
 \section{Convolutional Neural Networks}
-Show some basic CNN things maybe
+Show some basic CNN things maybe and why needed over fully connected bois :) 
 \subsection{Neural image processing}
-How it different from classical features and how it works
+How it different from classical features and how/why it works
 \section{Attention}
 Attention huh
 \section{Multi-task learning}
-Describe how a multi-task setting differs
+Describe how a multi-task setting differs or maybe in the other chapter only?
 \section{RNN/LSTM/Transformer text processing/generation}
 Depending on what may be used
 
-\chapter{Tasks}
-What has been done when solving these tasks/history/formal definition
-\section{Image classification}
+\chapter{Image classification}
 Image classification is one of the essential modern computer vision problems, where the goal is to create a model that can classify an input image into one of a set of pre-defined classes. Before the popularization of applying large Convolutional Neural Networks for this task, the most successful way of solving the problem was to use some algorithm for finding feature descriptors in a set of images to construct a Visual Bag of Words.  A linear classifier, like a Support Vector Machine, would then do the classification using the Bag of Words representation of an image. These days nearly all approaches are based on using deep CNNs, and working CNNs were deployed already in 1998 on character recognition in the form of LeNet \citep{leNet}.
-\subsection{ImageNet}
+\section{ImageNet}
 ImageNet  \citep{imagenet}  is perhaps the most significant dataset for image classification and especially the ImageNet Challenge \citep{ILSVRC}, which is a challenge for a collection of 1000 classes from the ImageNet dataset for image classification using 1.2 million training and 150 thousand  images of the entire ImageNet dataset. In 2012 the winning model, AlexNet \citep{alexNet}, showed that it was possible to train a deep CNNs efficiently using GPUs. Since 2012 all top-performing models showed some new improvements on how to create the most performant network architecture, for example, VGGNet from the year 2014 and ResNet \citep{resNet} from 2015, both of which have been popular models to use for Transfer Learning since.
 
 Human accuracy on the ImageNet challenge is about 5.1\% \citep{imageNet_summary}, and ResNet achieves a top-5 error rate of 3.57\% \citep{resNet} and newer architectures even lower, but this still does not mean that image classification is a solved problem. The human performance experiment found that many of the human errors are caused by not having expert information in, for example, identifying animal species or not even being aware of the existence of a class \citep{imageNet_summary}. ObjectNet \citep{objectNet} is a dataset designed to  image classifiers with a focus on their generalizability. It contains many classes that also exist in the ImageNet dataset. However, they are in unexpected locations or have an unexpected pose, causing the high accuracy image classifiers trained on ImageNet experience a 40-45\% accuracy drop when evaluating them on the ObjectNet images of classes shared between ImageNet and ObjectNet. This kind of adjustment is relatively easy for a human, and it shows that while the classifiers are good, they are by no means perfect.
-\subsection{Transfer learning}
-Unlike the ImageNet challenge, most real-world tasks do not have such an abundance of data for all possible classes. Still, to achieve the highest accuracies, they require models that are equal in terms of complexity to those that have top accuracies problems on the scale of the ImageNet classification. For this reason, many CNN classifiers, irrespective of the problem, feature one of the ImageNet classifiers or similar as a backbone to solve a part of the problem. Even though some datasets may contain a large number of images per class, using a pre-trained classifier as a basis often produces a better final classifier by applying fine-tuning \citep{betterTransfer}.
+\section{Transfer learning}
+Unlike the ImageNet challenge, most real-world tasks do not have such an abundance of data for all possible classes. Still, to achieve the highest accuracies, they require models that are equal in terms of complexity to those that have top accuracies problems on the scale of the ImageNet classification. For this reason, many CNN classifiers, irrespective of the problem, feature one of the ImageNet classifiers in the model architecture. Even though some datasets may contain a large number of images per class, using a pre-trained classifier as a basis often produces a better final classifier by applying fine-tuning \citep{betterTransfer}.
 
-The idea behind transfer learning is to train on a related task to the end task first. Then the network weights in the model for the actual task are initialized to those of the model we are transferring from, so the training of the original model is a pre-step to the real task. Since training the models on ImageNet scale datasets is not generally feasible due to their large number of parameters and long training time, one of the pre-trained models is picked and then fine-tuned. Fine-tuning a classifier means taking the examples for the final task, and training the network on those, updating the original classifier at the same time. This differs greatly from the traditional learning model where each task is considered to be a separate model that has to be learned from scratch.
+The idea behind transfer learning is to train on a related task to the end task first. Then the network weights in the model for the actual task are initialized to those of the model we are transferring from, so the training of the original model is a pre-step to the real task. Since training the models on ImageNet scale datasets is not generally feasible due to their large number of parameters and long training time, one of the pre-trained models is picked and then fine-tuned. Fine-tuning a classifier means taking the examples for the final task, and training the network on those, updating the original classifier at the same time. The transfer learning approach differs significantly from the traditional learning model, where each task requires a separate model that learns from the given data using random weights. Since image inputs are often very high dimensional, the traditional approach may not work in many cases. The pre-training allows for focusing on data that provides answers to the actual task and not on learning low-level features, which the ImageNet classifiers would already have learned.
 
 \begin{figure}[h!] 
 \centering 
@@ -43,15 +41,17 @@ The idea behind transfer learning is to train on a related task to the end task 
 
 Picking which classifier to use as a base is often problem-dependent. As it is not possible to declare one network structure to be the best at all tasks, picking the best model to start with usually requires the user to compare different architectures and weighing the requirements for the problem at hand. Often though, the larger models will perform better, and there exists a correlation between performing well on ImageNet and being a good transfer learning model \citep{betterTransfer}. Though as can be seen in figure 3.1, better performance often comes at the cost of many more parameters, requiring more memory to train the model. Though just the number of parameters is not the only thing to compare as the throughput of a Resnet50 turns out to be about three times as large as the throughput of an EfficientNet-B4 even though they have a similar amount of parameters \citep{classifierPerformance}.
 
+If there is enough data, it turns out that using a pre-trained network does not provide any benefits in terms of the converged model accuracy, but it is not detrimental to performance either \citep{rethinkTransfer}. When training sufficiently long on a sufficient amount of data, the pre-trained and randomly initialized networks converged to similar accuracies but required significantly different amounts of training resources. Still, this does not mean that pre-training is useless by any means as the saved resources and getting models to converge faster are essential factors for progress, and of course, in many cases, training from scratch will not provide satisfying results.
+
 To formally define transfer learning, let $\mathcal{D}$ be a domain for the features, in this case, images.
-\subsection{ResNet}
-\subsection{EfficientNet}
-\section{Object detection}
-Based on what is going to be detected, maybe text?
-\section{Paragraph captioning}
+\section{ResNet}
+\section{EfficientNet}
+\chapter{Object detection}
+Based on what is going to be detected, maybe text, cars, people?
+\chapter{Paragraph captioning}
 Assuming we are doing this
-\section{Multi task learning}
-Cover some examples of MTL in Computer Vision
+\chapter{Multi task learning}
+Cover some examples of MTL in Computer Vision, differences to Transfer Learning, why it might work, why we might see detrimental results
 
 \chapter{Datasets}
 Describing our data
