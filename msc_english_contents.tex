@@ -1,8 +1,11 @@
 \chapter{Introduction}
-\section{Problem statement and motivation}
-The following gives some superficial instructions for using this template for a Master's thesis. For guidelines on thesis writing you can consult various sources, for example, the Bachelor thesis template.
+Since 2012 computer vision research has been increasingly dominated by approaches using deep Convolutional Neural Networks (CNNs). These CNN based techniques have allowed for achieving significantly better results in computational image and video understanding compared to previous state-of-the-art approaches. Nowadays, there are many interesting avenues of computer vision research, such as image segmentation, object detection, object recognition, image captioning, pose detection, and many more. Since the task of computational image understanding is quite complex, the CNNs used to solve these problems often require dozens, if not hundreds of millions of parameters, in order to achieve sufficiently reliable accuracies. As the number of parameters is high, the networks require large computational resources to find optimal values for all of the variables in all of the hundreds of layers of matrices. Graphics Processing Units (GPUs) or Tensor Processing Units (TPUs) are the tools that people use to train the parameters in the networks since the training operations are highly parallelizable, allowing for the training of networks with hundreds or even thousands of layers. The problem often is that when training, one wants to increase the batch size, but at the same time, the computations must fit in the memory of the processing unit, which can be difficult to increase. Also, as the number of parameters in the model increases, the memory required for training the networks, and the time to produce outputs increases. To combat these problems, we often have to get better or more hardware, which can be expensive or compromise in the size of the model, which may lead to unreliable performance.
 
-The thesis should have an introduction chapter. Other chapters can be named according to the topic. In the end, some summary chapter is needed; see Chapter~\ref{chapter:conclusions} for an example.
+Embedded devices can use these CNN based algorithms to analyze their surroundings in an environment where they can't rely on external predictions from the cloud. One of the most significant issues is that achieving scene understanding requires multiple classifiers to solve various tasks. For example, a camera-based self-driving car has numerous things it is interested in resolving using the video output of its cameras. The tasks could be, for example, finding and classifying other vehicles, traffic signs, road markings, predicting paths of vehicles, pedestrians, and other actors, understanding where it can move and finally producing the output of steering angle and acceleration. All these tasks have to be solved using the limited computing capability onboard the actor, and the inference time for them can't be too long in order to react to everything within a reasonable time frame. Here we have many tasks, and if every task requires its independent network to produce the outputs, and we cut down on the network sizes, the classifiers might be powerful enough to produce safe outputs. On the other hand, if we don't reduce the network sizes, our inference time might be too long for a real-time system. One way to possibly get a good compromise between inference time and model complexity is to use multi-task learning and weight sharing within the model to get a single model with multiple outputs and similar or better performance to individual classifiers.
+
+
+
+\section{Scope of study}
 
 \section{Structure of thesis}
 Cool stuff etc.
@@ -60,11 +63,17 @@ Picking which classifier to use as a base is often problem-dependent. As it is n
 If there is enough data, it turns out that using a pre-trained network does not provide any benefits in terms of the converged model accuracy, but it is not detrimental to performance either \citep{rethinkTransfer}. When training sufficiently long on a sufficient amount of data, the pre-trained and randomly initialized networks converged to similar accuracies but required significantly different amounts of training resources. Still, this does not mean that pre-training is useless by any means as the saved resources and getting models to converge faster are essential factors for progress, and of course, in many cases, training from scratch will not provide satisfying results.
 
 \section{ResNet}
-Residual man 
-\section{EfficientNet}
+ResNet is one of the first effective and very deep Convolutional Neural Network architecture that was presented in 2015 and won the ImageNet challenge. Prior to the publication of ResNet, the most powerful networks were relatively shallow, like VGGNet, which has only 19 layers. One of the big issues relating to deep networks is vanishing gradients, where gradients disappear when they are backpropagated through many layers. ResNets utilize residual connections around bottleneck building blocks, which allow for the networks to contain many more layers than those without them, the largest network presented in the original ResNet paper was 152 layers, totaling for around 8x increase in the number of layers when compared to earlier networks \citep{resNet}.
 
+\begin{figure}[h!] 
+\centering 
+\includegraphics[width=0.8\textwidth]{imgs/resnet-block.png}
+\caption{Resnet building block \citep{resNet}}
+\end{figure}
 
+The ResNet block architecture allows for the blocks to learn the identity function more efficiently by trying to learn the residual function instead of the direct mapping. Normally a mapping is learned between ${x}$ and ${y}$ using a function ${H(x)}$ but by the same token, we can learn a residual transformation, ${F(x) = H(x) - x}$, where ${H}$ is the mapping of two or more network layers. Both of these approaches should approximate the same functions; the difference is in how easy it is for the network to learn. Learning a transformation of ${F(x) = 0}$ would intuitively seem easier for a neural network than learning ${F(x) = x}$. As can be seen from the success of the ResNets, this is what allows for creating very deep networks. If the transformation changes the input size, a matrix ${W}$ is necessary to map the input to the same dimensions, generating the final formula for a residual block ${y = F(x, \{W_i\}) + W_s x}$.
 
+Many variants of ResNet exists, such as wide ResNets \citep{wideResNet}, ResNeXt \citep{resNext} and others. Also the DenseNet \citep{denseNet} is heavily inspired by ResNets. ResNet is still one of the most popular backbones to use when an ImageNet trained backbone is needed for some part of a classifier.
 
 
 \chapter{Object detection}
