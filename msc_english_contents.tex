@@ -3,13 +3,10 @@ Since 2012 computer vision research has been increasingly dominated by approache
 
 Embedded devices can use these CNN based algorithms to analyze their surroundings in an environment where they can't rely on external predictions from the cloud. One of the most significant issues is that achieving scene understanding requires multiple classifiers to solve various tasks. For example, a camera-based self-driving car has numerous things it is interested in resolving using the video output of its cameras. The tasks could be, for example, finding and classifying other vehicles, traffic signs, road markings, predicting paths of vehicles, pedestrians, and other actors, understanding where it can move and finally producing the output of steering angle and acceleration. All these tasks have to be solved using the limited computing capability onboard the actor, and the inference time for them can't be too long in order to react to everything within a reasonable time frame. Here we have many tasks, and if every task requires its independent network to produce the outputs, and we cut down on the network sizes, the classifiers might be powerful enough to produce safe outputs. On the other hand, if we don't reduce the network sizes, our inference time might be too long for a real-time system. One way to possibly get a good compromise between inference time and model complexity is to use multi-task learning and weight sharing within the model to get a single model with multiple outputs and similar or better performance to individual classifiers.
 
-
+Multi-task learning proposes some solutions to these problems but makes the training process more difficult. Still, in some cases, it is something that has to be done to get a good enough inference time and accuracy on the problem at hand. Many modern computer vision models already feature an ImageNet backbone as a part of the classifier, so this is a good part of the network to consider for sharing, but finding which tasks and how much can be shared is a difficult problem to solve.
 
 \section{Scope of study}
-
-\section{Structure of thesis}
-Cool stuff etc.
-
+In this thesis, we will study state-of-the-art solutions to some computer vision problems, like image classification, object detection, and text recognition. Then we will train classifiers that solve these problems using various data sets and try to combine them to produce a single multi-task network using multi-task learning. We will then evaluate how easy and effective it is to share the weights within similar and different tasks.
 \chapter{Neural networks}
 Background stuff 
 \section{Fully Connected Networks}
@@ -22,15 +19,8 @@ How it different from classical features and how/why it works
 Attention huh
 \section{Multi-task learning}
 Describe how a multi-task setting differs or maybe in the other chapter only?
-\section{RNN/LSTM/Transformer text processing/generation}
+\section{RNN}
 Depending on what may be used
-
-
-
-
-
-
-
 
 
 
@@ -63,7 +53,7 @@ Picking which classifier to use as a base is often problem-dependent. As it is n
 If there is enough data, it turns out that using a pre-trained network does not provide any benefits in terms of the converged model accuracy, but it is not detrimental to performance either \citep{rethinkTransfer}. When training sufficiently long on a sufficient amount of data, the pre-trained and randomly initialized networks converged to similar accuracies but required significantly different amounts of training resources. Still, this does not mean that pre-training is useless by any means as the saved resources and getting models to converge faster are essential factors for progress, and of course, in many cases, training from scratch will not provide satisfying results.
 
 \section{ResNet}
-ResNet is one of the first effective and very deep Convolutional Neural Network architecture that was presented in 2015 and won the ImageNet challenge. Prior to the publication of ResNet, the most powerful networks were relatively shallow, like VGGNet, which has only 19 layers. One of the big issues relating to deep networks is vanishing gradients, where gradients disappear when they are backpropagated through many layers. ResNets utilize residual connections around bottleneck building blocks, which allow for the networks to contain many more layers than those without them, the largest network presented in the original ResNet paper was 152 layers, totaling for around 8x increase in the number of layers when compared to earlier networks \citep{resNet}.
+ResNet is one of the first effective and very deep Convolutional Neural Network architecture that was presented in 2015 and won the ImageNet challenge. Prior to the publication of ResNet, the most powerful networks were relatively shallow, like VGGNet, which has only 19 layers. One of the big issues relating to training deep networks is vanishing gradients, where gradients disappear when they are backpropagated through many layers \citep{wideResNet}. ResNets utilize residual connections around bottleneck building blocks, which allow for the networks to contain many more layers than those without them, the largest network presented in the original ResNet paper was 152 layers, totaling for around 8x increase in the number of layers when compared to earlier networks \citep{resNet}.
 
 \begin{figure}[h!] 
 \centering 
@@ -71,9 +61,18 @@ ResNet is one of the first effective and very deep Convolutional Neural Network 
 \caption{Resnet building block \citep{resNet}}
 \end{figure}
 
-The ResNet block architecture allows for the blocks to learn the identity function more efficiently by trying to learn the residual function instead of the direct mapping. Normally a mapping is learned between ${x}$ and ${y}$ using a function ${H(x)}$ but by the same token, we can learn a residual transformation, ${F(x) = H(x) - x}$, where ${H}$ is the mapping of two or more network layers. Both of these approaches should approximate the same functions; the difference is in how easy it is for the network to learn. Learning a transformation of ${F(x) = 0}$ would intuitively seem easier for a neural network than learning ${F(x) = x}$. As can be seen from the success of the ResNets, this is what allows for creating very deep networks. If the transformation changes the input size, a matrix ${W}$ is necessary to map the input to the same dimensions, generating the final formula for a residual block ${y = F(x, \{W_i\}) + W_s x}$.
+The ResNet block architecture allows for the blocks to learn the identity function more efficiently by trying to learn the residual function instead of the direct mapping. Normally a mapping is learned between ${x}$ and ${y}$ using a function ${H(x)}$ but by the same token, we can learn a residual transformation, ${F(x) = H(x) - x}$, where ${H}$ is the mapping of two or more network layers. Both of these approaches should approximate the same functions; the difference is in how easy it is for the network to learn. Learning a transformation of ${F(x) = 0}$ would intuitively seem easier for a neural network than learning ${F(x) = x}$. As can be seen from the success of the ResNets compared to non-residual networks, this is what allows for creating very deep networks. If the transformation changes the input size, a matrix ${W}$ is necessary to map the input to the same dimensions, generating the final formula for a residual block ${y = F(x, \{W_i\}) + W_s x}$.
 
-Many variants of ResNet exists, such as wide ResNets \citep{wideResNet}, ResNeXt \citep{resNext} and others. Also the DenseNet \citep{denseNet} is heavily inspired by ResNets. ResNet is still one of the most popular backbones to use when an ImageNet trained backbone is needed for some part of a classifier.
+Many variants of ResNet exists, such as wide ResNets \citep{wideResNet}, ResNeXt \citep{resNext} and others. Also the DenseNet \citep{denseNet} is heavily inspired by ResNets. ResNet50, ResNet34, ResNet101, and ResNet152 are still some of the most popular models to use when an ImageNet trained backbone is needed for some part of a classifier as they produce good results and do not contain too many parameters compared to some other architectures.
+
+\section{Improving model performance}
+Go through depth, width, resolution, some neural architecture search
+
+\section{EfficientNet}
+EfficientNet models form a family of models ranging from EfficientNet0 to EfficientNet7 that were generated by smartly scaling existing convolutional models to optimize them for efficiency \citep{efficientNet}. The more complex models are created by using compound scaling on the EfficientNet0 model, where the width, depth, and the resolution of the network are scaled using a factor ${\phi}$. The search of ${\phi}$ is an optimization problem, where the goal is to optimize for both accuracy and number of floating-point operations. This search is only done on the base model because the neural architecture search used to find the parameter becomes very expensive as the model size increases \citep{efficientNet}.
+
+The proposed EfficientNet models use mobile inverted bottleneck (MBConv) blocks used in MobileNetV2 \citep{mobileNetv2} in constructing the base model. The MobileNet uses a Depthwise Separable Convolution, where a depthwise convolution and a pointwise convolution are applied in sequence. The depthwise convolution applies ${d_i}$ ${k x k}$ filters to the input, where ${d_i}$ is the input channels and ${k}$ is the kernel size leading to an output channel count ${d_j = d_i}$. A normal convolutional layer would apply multiple filters having ${M}$ channels with the computational cost of ${h_i w_i d_i d_j k^2}$, whereas the depthwise convolution only has a cost of ${h_i w_i d_i (k^2 + d_j)}$, reducing the cost by ${k^2}$. The result of the depthwise convolution then runs through a pointwise convolution, where a 1 x 1 x ${d_j}$ 1d convolution is applied to get the final output as a linear combination of the channels.
+
 
 
 \chapter{Object detection}
@@ -82,7 +81,14 @@ Based on what is going to be detected, maybe text, cars, people?
 Assuming we are doing this
 \chapter{Multi task learning}
 Cover some examples of MTL in Computer Vision, differences to Transfer Learning, why it might work, why we might see detrimental results and why it might be beneficial (results/performance)
-
+\section{Definition}
+\section{Benefits}
+\section{Hard parameter sharing}
+\section{Soft parameter sharing}
+\section{Special multi-task approaches}
+\section{Multi-task learning with little data}
+\section{What and when to share}
+\section{Succesful multi-task learning applications}
 \chapter{Datasets}
 Describing our data
 \section{Data formats}
