@@ -674,40 +674,11 @@
 \label{in}
 \thispagestyle{empty}
 \if@censored 
- {
-    \par
-    {\bf\supervisorslabel}\par
-%TM: parindent only indents the first line -> use \leftskip within {}
-%    {\addtolength{\parindent}{2em} 
-    {\leftskip=2em
-     \@supervisors
-  %  \addtolength{\parindent}{-2em}}
-     \par
-    }
-    
-    \par
-    {\bf\examinerlabel}\par
-    {\leftskip=2em
-     \@examiners
-     \par
-    }
-}
+
 \fi
 
 \vspace{4.0cm}
-    \par
-    {\bf \ytiedot}\par
-    \hfill\par
-    %TM: Using \leftskip here, too. Removed \indent from translation files after \newline
-    {\leftskip=2em
-     \address
-     \par
-    }
-    \hfill\par
-    {\leftskip=2em
-     \eaddress
-     \par
-    }
+
 %TM: 
 \vfill
 
@@ -837,29 +808,6 @@
 \enlargethispage{24pt} %this is just enough for the current box size
 
 %TM +++ 
-\begin{picture}(400,678)(0,0) %pic width is too small to get rid of the overfull hbox warning; just drawing wider; this seems to be no problem for latex page creation, as it only needs to fit the picture as defined, not to care about someone drawing outside the picture.
-
-%Put the content texts there
-\put(5, 634){\makebox(200, 8)[l]{\abst@small \faculty}}
-\put(233, 634){\makebox(200, 8)[l]{\abst@small \getSubject}}  
-
-\put(5,  601){\makebox(100, 8)[l]{\abst@small \@author}}
-\put(5,  564)%
-    {\parbox{450pt}{\abst@small \@title}}
- 
-\put(5,  527)%
-    {\parbox{450pt}{\abst@small \@supervisors}}
- 
-\put(5, 490){\makebox(100, 8)[l]{\abst@small \level}}
-\put(160, 490){\makebox(100, 8)[l]{\abst@small \today}}
-\put(301, 490){\makebox(100, 8)[l]{\abst@small \getPageInfo}}
-
-\put(5, 85) {\makebox(100, 8)[l]{\abst@small \@keywords}}
-\put(5, 55) {\makebox(100, 8)[l]{\abst@small \depositeplace}}
-\put(5, 25) {\makebox(100, 8)[l]{\abst@small \@additionalinformation}}
-\begin{@summary}
- }{
-\end{@summary}
 
 %the bix surrounding box
 \put(0,0){\framebox(462,666){}}

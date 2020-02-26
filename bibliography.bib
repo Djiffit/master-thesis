@@ -561,3 +561,272 @@ note = {arXiv: 1808.05377},
 keywords = {Computer Science - Machine Learning, Statistics - Machine Learning, Computer Science - Neural and Evolutionary Computing},
 file = {Elsken et al. - 2019 - Neural Architecture Search A Survey.pdf:/home/konstaku/Zotero/storage/PL4EYKBN/Elsken et al. - 2019 - Neural Architecture Search A Survey.pdf:application/pdf}
 }
+
+
+
+
+
+
+
+
+@incollection{mutualLearning,
+address = {Cham},
+title = {Mutual {Learning} to {Adapt} for {Joint} {Human} {Parsing} and {Pose} {Estimation}},
+volume = {11209},
+isbn = {978-3-030-01227-4 978-3-030-01228-1},
+url = {http://link.springer.com/10.1007/978-3-030-01228-1_31},
+abstract = {This paper presents a novel Mutual Learning to Adapt model (MuLA) for joint human parsing and pose estimation. It eﬀectively exploits mutual beneﬁts from both tasks and simultaneously boosts their performance. Diﬀerent from existing post-processing or multi-task learning based methods, MuLA predicts dynamic task-speciﬁc model parameters via recurrently leveraging guidance information from its parallel tasks. Thus MuLA can fast adapt parsing and pose models to provide more powerful representations by incorporating information from their counterparts, giving more robust and accurate results. MuLA is implemented with convolutional neural networks and end-to-end trainable. Comprehensive experiments on benchmarks LIP and extended PASCALPerson-Part demonstrate the eﬀectiveness of the proposed MuLA model with superior performance to well established baselines.},
+language = {en},
+urldate = {2020-02-26},
+booktitle = {Computer {Vision} – {ECCV} 2018},
+publisher = {Springer International Publishing},
+author = {Nie, Xuecheng and Feng, Jiashi and Yan, Shuicheng},
+editor = {Ferrari, Vittorio and Hebert, Martial and Sminchisescu, Cristian and Weiss, Yair},
+year = {2018},
+doi = {10.1007/978-3-030-01228-1_31},
+pages = {519--534},
+file = {Nie et al. - 2018 - Mutual Learning to Adapt for Joint Human Parsing a.pdf:/home/konstaku/Zotero/storage/8QYIV5FG/Nie et al. - 2018 - Mutual Learning to Adapt for Joint Human Parsing a.pdf:application/pdf}
+}
+
+
+
+@inproceedings{multiLearningUncertainty,
+address = {Salt Lake City, UT, USA},
+title = {Multi-task {Learning} {Using} {Uncertainty} to {Weigh} {Losses} for {Scene} {Geometry} and {Semantics}},
+isbn = {978-1-5386-6420-9},
+url = {https://ieeexplore.ieee.org/document/8578879/},
+doi = {10.1109/CVPR.2018.00781},
+abstract = {Numerous deep learning applications beneﬁt from multitask learning with multiple regression and classiﬁcation objectives. In this paper we make the observation that the performance of such systems is strongly dependent on the relative weighting between each task’s loss. Tuning these weights by hand is a difﬁcult and expensive process, making multi-task learning prohibitive in practice. We propose a principled approach to multi-task deep learning which weighs multiple loss functions by considering the homoscedastic uncertainty of each task. This allows us to simultaneously learn various quantities with different units or scales in both classiﬁcation and regression settings. We demonstrate our model learning per-pixel depth regression, semantic and instance segmentation from a monocular input image. Perhaps surprisingly, we show our model can learn multi-task weightings and outperform separate models trained individually on each task.},
+language = {en},
+urldate = {2020-01-15},
+booktitle = {2018 {IEEE}/{CVF} {Conference} on {Computer} {Vision} and {Pattern} {Recognition}},
+publisher = {IEEE},
+author = {Cipolla, Roberto and Gal, Yarin and Kendall, Alex},
+month = jun,
+year = {2018},
+pages = {7482--7491},
+file = {Cipolla et al. - 2018 - Multi-task Learning Using Uncertainty to Weigh Los.pdf:/home/konstaku/Zotero/storage/JUFEPU8D/Cipolla et al. - 2018 - Multi-task Learning Using Uncertainty to Weigh Los.pdf:application/pdf}
+}
+
+@article{visualPerson,
+title = {Visual {Person} {Understanding} through {Multi}-{Task} and {Multi}-{Dataset} {Learning}},
+url = {http://arxiv.org/abs/1906.03019},
+abstract = {We address the problem of learning a single model for person re-identiﬁcation, attribute classiﬁcation, body part segmentation, and pose estimation. With predictions for these tasks we gain a more holistic understanding of persons, which is valuable for many applications. This is a classical multi-task learning problem. However, no dataset exists that these tasks could be jointly learned from. Hence several datasets need to be combined during training, which in other contexts has often led to reduced performance in the past. We extensively evaluate how the different task and datasets inﬂuence each other and how diﬀerent degrees of parameter sharing between the tasks aﬀect performance. Our ﬁnal model matches or outperforms its single-task counterparts without creating signiﬁcant computational overhead, rendering it highly interesting for resource-constrained scenarios such as mobile robotics.},
+language = {en},
+urldate = {2020-01-29},
+journal = {arXiv:1906.03019 [cs]},
+author = {Pfeiffer, Kilian and Hermans, Alexander and Sárándi, István and Weber, Mark and Leibe, Bastian},
+month = jun,
+year = {2019},
+note = {arXiv: 1906.03019},
+keywords = {Computer Science - Machine Learning, Computer Science - Computer Vision and Pattern Recognition},
+file = {Pfeiffer et al. - 2019 - Visual Person Understanding through Multi-Task and.pdf:/home/konstaku/Zotero/storage/XASEFZE4/Pfeiffer et al. - 2019 - Visual Person Understanding through Multi-Task and.pdf:application/pdf}
+}
+
+@article{multiDepth,
+title = {{MultiDepth}: {Single}-{Image} {Depth} {Estimation} via {Multi}-{Task} {Regression} and {Classification}},
+shorttitle = {{MultiDepth}},
+url = {http://arxiv.org/abs/1907.11111},
+abstract = {We introduce MultiDepth, a novel training strategy and convolutional neural network (CNN) architecture that allows approaching single-image depth estimation (SIDE) as a multi-task problem. SIDE is an important part of road scene understanding. It, thus, plays a vital role in advanced driver assistance systems and autonomous vehicles. Best results for the SIDE task so far have been achieved using deep CNNs. However, optimization of regression problems, such as estimating depth, is still a challenging task. For the related tasks of image classification and semantic segmentation, numerous CNN-based methods with robust training behavior have been proposed. Hence, in order to overcome the notorious instability and slow convergence of depth value regression during training, MultiDepth makes use of depth interval classification as an auxiliary task. The auxiliary task can be disabled at test-time to predict continuous depth values using the main regression branch more efficiently. We applied MultiDepth to road scenes and present results on the KITTI depth prediction dataset. In experiments, we were able to show that end-to-end multi-task learning with both, regression and classification, is able to considerably improve training and yield more accurate results.},
+language = {en},
+urldate = {2020-01-29},
+journal = {arXiv:1907.11111 [cs]},
+author = {Liebel, Lukas and Körner, Marco},
+month = jul,
+year = {2019},
+note = {arXiv: 1907.11111},
+keywords = {Computer Science - Computer Vision and Pattern Recognition},
+file = {Liebel and Körner - 2019 - MultiDepth Single-Image Depth Estimation via Mult.pdf:/home/konstaku/Zotero/storage/PWEGEBIU/Liebel and Körner - 2019 - MultiDepth Single-Image Depth Estimation via Mult.pdf:application/pdf}
+}
+
+@article{taskonomy,
+title = {Taskonomy: {Disentangling} {Task} {Transfer} {Learning}},
+abstract = {Do visual tasks have a relationship, or are they unrelated? For instance, could having surface normals simplify estimating the depth of an image? Intuition answers these questions positively, implying existence of a structure among visual tasks. Knowing this structure has notable values; it is the concept underlying transfer learning and provides a principled way for identifying redundancies across tasks, in order to, for instance, seamlessly reuse supervision among related tasks or solve many tasks in one system without piling up the complexity.},
+language = {en},
+author = {Zamir, Amir R and Sax, Alexander and Shen, William and Guibas, Leonidas and Malik, Jitendra and Savarese, Silvio},
+pages = {12},
+file = {Zamir et al. - Taskonomy Disentangling Task Transfer Learning.pdf:/home/konstaku/Zotero/storage/6T3QZWMI/Zamir et al. - Taskonomy Disentangling Task Transfer Learning.pdf:application/pdf}
+}
+
+@inproceedings{multiTaskAttention,
+address = {Long Beach, CA, USA},
+title = {End-{To}-{End} {Multi}-{Task} {Learning} {With} {Attention}},
+isbn = {978-1-72813-293-8},
+url = {https://ieeexplore.ieee.org/document/8954221/},
+doi = {10.1109/CVPR.2019.00197},
+abstract = {We propose a novel multi-task learning architecture, which allows learning of task-speciﬁc feature-level attention. Our design, the Multi-Task Attention Network (MTAN), consists of a single shared network containing a global feature pool, together with a soft-attention module for each task. These modules allow for learning of taskspeciﬁc features from the global features, whilst simultaneously allowing for features to be shared across different tasks. The architecture can be trained end-to-end and can be built upon any feed-forward neural network, is simple to implement, and is parameter efﬁcient. We evaluate our approach on a variety of datasets, across both image-toimage predictions and image classiﬁcation tasks. We show that our architecture is state-of-the-art in multi-task learning compared to existing methods, and is also less sensitive to various weighting schemes in the multi-task loss function. Code is available at https://github.com/ lorenmt/mtan.},
+language = {en},
+urldate = {2020-01-15},
+booktitle = {2019 {IEEE}/{CVF} {Conference} on {Computer} {Vision} and {Pattern} {Recognition} ({CVPR})},
+publisher = {IEEE},
+author = {Liu, Shikun and Johns, Edward and Davison, Andrew J.},
+month = jun,
+year = {2019},
+pages = {1871--1880},
+file = {Liu et al. - 2019 - End-To-End Multi-Task Learning With Attention.pdf:/home/konstaku/Zotero/storage/6Z9IWAEJ/Liu et al. - 2019 - End-To-End Multi-Task Learning With Attention.pdf:application/pdf}
+}
+
+@article{crossStitch,
+title = {Cross-stitch {Networks} for {Multi}-task {Learning}},
+url = {http://arxiv.org/abs/1604.03539},
+abstract = {Multi-task learning in Convolutional Networks has displayed remarkable success in the ﬁeld of recognition. This success can be largely attributed to learning shared representations from multiple supervisory tasks. However, existing multi-task approaches rely on enumerating multiple network architectures speciﬁc to the tasks at hand, that do not generalize. In this paper, we propose a principled approach to learn shared representations in ConvNets using multitask learning. Speciﬁcally, we propose a new sharing unit: “cross-stitch” unit. These units combine the activations from multiple networks and can be trained end-to-end. A network with cross-stitch units can learn an optimal combination of shared and task-speciﬁc representations. Our proposed method generalizes across multiple tasks and shows dramatically improved performance over baseline methods for categories with few training examples.},
+language = {en},
+urldate = {2020-02-26},
+journal = {arXiv:1604.03539 [cs]},
+author = {Misra, Ishan and Shrivastava, Abhinav and Gupta, Abhinav and Hebert, Martial},
+month = apr,
+year = {2016},
+note = {arXiv: 1604.03539},
+keywords = {Computer Science - Computer Vision and Pattern Recognition, Computer Science - Machine Learning},
+file = {Misra et al. - 2016 - Cross-stitch Networks for Multi-task Learning.pdf:/home/konstaku/Zotero/storage/LFRIHM5A/Misra et al. - 2016 - Cross-stitch Networks for Multi-task Learning.pdf:application/pdf}
+}
+
+
+@article{learningToMultitask,
+	title = {Learning to {Multitask}},
+	abstract = {Multitask learning has shown promising performance in many applications and many multitask models have been proposed. In order to identify an effective multitask model for a given multitask problem, we propose a learning framework called Learning to MultiTask (L2MT). To achieve the goal, L2MT exploits historical multitask experience which is organized as a training set consisting of several tuples, each of which contains a multitask problem with multiple tasks, a multitask model, and the relative test error. Based on such training set, L2MT ﬁrst uses a proposed layerwise graph neural network to learn task embeddings for all the tasks in a multitask problem and then learns an estimation function to estimate the relative test error based on task embeddings and the representation of the multitask model based on a uniﬁed formulation. Given a new multitask problem, the estimation function is used to identify a suitable multitask model. Experiments on benchmark datasets show the effectiveness of the proposed L2MT framework.},
+	language = {en},
+	author = {Zhang, Yu and Wei, Ying and Yang, Qiang},
+	pages = {12},
+	file = {Zhang et al. - Learning to Multitask.pdf:/home/konstaku/Zotero/storage/CSZ75VG5/Zhang et al. - Learning to Multitask.pdf:application/pdf}
+}
+
+@inproceedings{usingUncertaintyToWeighLosses,
+address = {Salt Lake City, UT, USA},
+title = {Multi-task {Learning} {Using} {Uncertainty} to {Weigh} {Losses} for {Scene} {Geometry} and {Semantics}},
+isbn = {978-1-5386-6420-9},
+url = {https://ieeexplore.ieee.org/document/8578879/},
+doi = {10.1109/CVPR.2018.00781},
+abstract = {Numerous deep learning applications beneﬁt from multitask learning with multiple regression and classiﬁcation objectives. In this paper we make the observation that the performance of such systems is strongly dependent on the relative weighting between each task’s loss. Tuning these weights by hand is a difﬁcult and expensive process, making multi-task learning prohibitive in practice. We propose a principled approach to multi-task deep learning which weighs multiple loss functions by considering the homoscedastic uncertainty of each task. This allows us to simultaneously learn various quantities with different units or scales in both classiﬁcation and regression settings. We demonstrate our model learning per-pixel depth regression, semantic and instance segmentation from a monocular input image. Perhaps surprisingly, we show our model can learn multi-task weightings and outperform separate models trained individually on each task.},
+language = {en},
+urldate = {2020-01-15},
+booktitle = {2018 {IEEE}/{CVF} {Conference} on {Computer} {Vision} and {Pattern} {Recognition}},
+publisher = {IEEE},
+author = {Cipolla, Roberto and Gal, Yarin and Kendall, Alex},
+month = jun,
+year = {2018},
+pages = {7482--7491},
+file = {Cipolla et al. - 2018 - Multi-task Learning Using Uncertainty to Weigh Los.pdf:/home/konstaku/Zotero/storage/JUFEPU8D/Cipolla et al. - 2018 - Multi-task Learning Using Uncertainty to Weigh Los.pdf:application/pdf}
+}
+
+@article{lossWeighting,
+	title = {A {Comparison} of {Loss} {Weighting} {Strategies} for {Multi} task {Learning} in {Deep} {Neural} {Networks}},
+	volume = {7},
+	issn = {2169-3536},
+	doi = {10.1109/ACCESS.2019.2943604},
+	abstract = {With the success of deep learning in a wide variety of areas, many deep multi-task learning (MTL) models have been proposed claiming improvements in performance obtained by sharing the learned structure across several related tasks. However, the dynamics of multi-task learning in deep neural networks is still not well understood at either the theoretical or experimental level. In particular, the usefulness of different task pairs is not known a priori. Practically, this means that properly combining the losses of different tasks becomes a critical issue in multi-task learning, as different methods may yield different results. In this paper, we benchmarked different multi-task learning approaches using shared trunk with task specific branches architecture across three different MTL datasets. For the first dataset, i.e. Multi-MNIST (Modified National Institute of Standards and Technology database), we thoroughly tested several weighting strategies, including simply adding task-specific cost functions together, dynamic weight average (DWA) and uncertainty weighting methods each with various amounts of training data per-task. We find that multi-task learning typically does not improve performance for a user-defined combination of tasks. Further experiments evaluated on diverse tasks and network architectures on various datasets suggested that multi-task learning requires careful selection of both task pairs and weighting strategies to equal or exceed the performance of single task learning.},
+	journal = {IEEE Access},
+	author = {Gong, Ting and Lee, Tyler and Stephenson, Cory and Renduchintala, Venkata and Padhy, Suchismita and Ndirango, Anthony and Keskin, Gokce and Elibol, Oguz H.},
+	year = {2019},
+	keywords = {Data models, Task analysis, Training, Deep learning, deep multitask learning models, deep neural networks, dynamic weight average, Dynamic weighting average, Estimation, learning (artificial intelligence), loss weighting strategies, multi-MNIST, multi-objective optimization, multi-task learning, neural nets, task pairs, task specific branches architecture, task-specific cost functions, Training data, Uncertainty, uncertainty weighting},
+	pages = {141627--141632},
+	file = {IEEE Xplore Abstract Record:/home/konstaku/Zotero/storage/XGGZ8FTG/8848395.html:text/html;IEEE Xplore Full Text PDF:/home/konstaku/Zotero/storage/R9J46AED/Gong et al. - 2019 - A Comparison of Loss Weighting Strategies for Mult.pdf:application/pdf}
+}
+
+@article{surveyOnMultiTask,
+title = {A {Survey} on {Multi}-{Task} {Learning}},
+url = {http://arxiv.org/abs/1707.08114},
+abstract = {Multi-Task Learning (MTL) is a learning paradigm in machine learning and its aim is to leverage useful information contained in multiple related tasks to help improve the generalization performance of all the tasks. In this paper, we give a survey for MTL. First, we classify different MTL algorithms into several categories, including feature learning approach, low-rank approach, task clustering approach, task relation learning approach, and decomposition approach, and then discuss the characteristics of each approach. In order to improve the performance of learning tasks further, MTL can be combined with other learning paradigms including semi-supervised learning, active learning, unsupervised learning, reinforcement learning, multi-view learning and graphical models. When the number of tasks is large or the data dimensionality is high, batch MTL models are difﬁcult to handle this situation and online, parallel and distributed MTL models as well as dimensionality reduction and feature hashing are reviewed to reveal their computational and storage advantages. Many real-world applications use MTL to boost their performance and we review representative works.},
+language = {en},
+urldate = {2020-02-26},
+journal = {arXiv:1707.08114 [cs]},
+author = {Zhang, Yu and Yang, Qiang},
+month = jul,
+year = {2018},
+note = {arXiv: 1707.08114},
+keywords = {Computer Science - Artificial Intelligence, Computer Science - Machine Learning},
+file = {Zhang and Yang - 2018 - A Survey on Multi-Task Learning.pdf:/home/konstaku/Zotero/storage/ZZDVVBMV/Zhang and Yang - 2018 - A Survey on Multi-Task Learning.pdf:application/pdf}
+}
+
+@article{origMultitask,
+	title = {Multitask {Learning}},
+	abstract = {Multitask Learning is an approach to inductive transfer that improves generalization by using the domain information contained in the training signals of related tasks as an inductive bias. It does this by learning tasks in parallel while using a shared representation; what is learned for each task can help other tasks be learned better. This paper reviews prior work on MTL, presents new evidence that MTL in backprop nets discovers task relatedness without the need of supervisory signals, and presents new results for MTL with k-nearest neighbor and kernel regression. In this paper we demonstrate multitask learning in three domains. We explain how multitask learning works, and show that there are many opportunities for multitask learning in real domains. We present an algorithm and results for multitask learning with case-based methods like k-nearest neighbor and kernel regression, and sketch an algorithm for multitask learning in decision trees. Because multitask learning works, can be applied to many different kinds of domains, and can be used with different learning algorithms, we conjecture there will be many opportunities for its use on real-world problems.},
+	language = {en},
+	author = {Caruana, Rich},
+	year= {1997},
+	pages = {35},
+	file = {Caruana - Multitask Learning.pdf:/home/konstaku/Zotero/storage/5IZMB2MK/Caruana - Multitask Learning.pdf:application/pdf}
+}
+
+
+@article{whichTasks,
+title = {Which {Tasks} {Should} {Be} {Learned} {Together} in {Multi}-task {Learning}?},
+url = {http://arxiv.org/abs/1905.07553},
+abstract = {Many computer vision applications require solving multiple tasks in real-time. A neural network can be trained to solve multiple tasks simultaneously using ‘multi-task learning’. This saves computation at inference time as only a single network needs to be evaluated. Unfortunately, this often leads to inferior overall performance as task objectives compete, which consequently poses the question: which tasks should and should not be learned together in one network when employing multi-task learning? We systematically study task cooperation and competition and propose a framework for assigning tasks to a few neural networks such that cooperating tasks are computed by the same neural network, while competing tasks are computed by different networks. Our framework offers a time-accuracy trade-off and can produce better accuracy using less inference time than not only a single large multi-task neural network but also many single-task networks.},
+language = {en},
+urldate = {2020-01-11},
+journal = {arXiv:1905.07553 [cs]},
+author = {Standley, Trevor and Zamir, Amir R. and Chen, Dawn and Guibas, Leonidas and Malik, Jitendra and Savarese, Silvio},
+month = may,
+year = {2019},
+note = {arXiv: 1905.07553},
+keywords = {Computer Science - Computer Vision and Pattern Recognition},
+file = {Standley et al. - 2019 - Which Tasks Should Be Learned Together in Multi-ta.pdf:/home/konstaku/Zotero/storage/8CCVP79Y/Standley et al. - 2019 - Which Tasks Should Be Learned Together in Multi-ta.pdf:application/pdf}
+}
+
+
+@inproceedings{selfDriving,
+address = {Budapest, Hungary},
+title = {Hierarchical {Multi}-{Task} {Learning} for {Healthy} {Drink} {Classification}},
+isbn = {978-1-72811-985-4},
+url = {https://ieeexplore.ieee.org/document/8851796/},
+doi = {10.1109/IJCNN.2019.8851796},
+abstract = {Recent advances in deep convolutional neural networks have enabled convenient diet tracking exploiting photos captured with smartphone cameras. However, most of the current diet tracking apps focus on recognizing solid foods while omitting drinks despite their negative impacts on our health when consumed without moderation. After an extensive analysis of drink images, we found that such an absence is due to the following challenges that conventional convolutional neural networks trained under the single-task learning framework cannot easily handle. First, drinks are amorphous. Second, visual cues of the drinks are often occluded and distorted by their container properties. Third, ingredients are inconspicuous because they often blend into the drink. In this work, we present a healthy drink classiﬁer trained under a hierarchical multi-task learning framework composed of a shared residual network with hierarchically shared convolutional layers between similar tasks and task-speciﬁc fully-connected layers. The proposed structure includes two main tasks, namely sugar level classiﬁcation and alcoholic drink recognition, and six auxiliary tasks, such as classiﬁcation and recognition of drink name, drink type, branding logo, container transparency, container shape, and container material. We also curated a drink dataset, Drink101, composed of 101 different drinks including 11,445 images overall. Our experimental results demonstrate improved classiﬁcation precision compared to single-task learning and baseline multi-task learning approaches.},
+language = {en},
+urldate = {2020-01-29},
+booktitle = {2019 {International} {Joint} {Conference} on {Neural} {Networks} ({IJCNN})},
+publisher = {IEEE},
+author = {Park, Homin and Bharadhwaj, Homanga and Lim, Brian Y.},
+month = jul,
+year = {2019},
+pages = {1--8},
+file = {Park et al. - 2019 - Hierarchical Multi-Task Learning for Healthy Drink.pdf:/home/konstaku/Zotero/storage/P49PC6F6/Park et al. - 2019 - Hierarchical Multi-Task Learning for Healthy Drink.pdf:application/pdf}
+}
+
+@article{healthyDrink,
+title = {End-to-end {Multi}-{Modal} {Multi}-{Task} {Vehicle} {Control} for {Self}-{Driving} {Cars} with {Visual} {Perception}},
+url = {http://arxiv.org/abs/1801.06734},
+abstract = {Convolutional Neural Networks (CNN) have been successfully applied to autonomous driving tasks, many in an endto-end manner. Previous end-to-end steering control methods take an image or an image sequence as the input and directly predict the steering angle with CNN. Although single task learning on steering angles has reported good performances, the steering angle alone is not sufﬁcient for vehicle control. In this work, we propose a multi-task learning framework to predict the steering angle and speed control simultaneously in an end-to-end manner. Since it is nontrivial to predict accurate speed values with only visual inputs, we ﬁrst propose a network to predict discrete speed commands and steering angles with image sequences. Moreover, we propose a multi-modal multi-task network to predict speed values and steering angles by taking previous feedback speeds and visual recordings as inputs. Experiments are conducted on the public Udacity dataset and a newly collected SAIC dataset. Results show that the proposed model predicts steering angles and speed values accurately. Furthermore, we improve the failure data synthesis methods to solve the problem of error accumulation in real road tests.},
+language = {en},
+urldate = {2020-01-29},
+journal = {arXiv:1801.06734 [cs]},
+author = {Yang, Zhengyuan and Zhang, Yixuan and Yu, Jerry and Cai, Junjie and Luo, Jiebo},
+month = feb,
+year = {2018},
+note = {arXiv: 1801.06734},
+keywords = {Computer Science - Computer Vision and Pattern Recognition},
+file = {Yang et al. - 2018 - End-to-end Multi-Modal Multi-Task Vehicle Control .pdf:/home/konstaku/Zotero/storage/HXUKUTXA/Yang et al. - 2018 - End-to-end Multi-Modal Multi-Task Vehicle Control .pdf:application/pdf}
+}
+
+@article{whatAndWhereToTransfer,
+title = {Learning {What} and {Where} to {Transfer}},
+url = {http://arxiv.org/abs/1905.05901},
+abstract = {As the application of deep learning has expanded to real-world problems with insufﬁcient volume of training data, transfer learning recently has gained much attention as means of improving the performance in such small-data regime. However, when existing methods are applied between heterogeneous architectures and tasks, it becomes more important to manage their detailed conﬁgurations and often requires exhaustive tuning on them for the desired performance. To address the issue, we propose a novel transfer learning approach based on meta-learning that can automatically learn what knowledge to transfer from the source network to where in the target network. Given source and target networks, we propose an efﬁcient training scheme to learn meta-networks that decide (a) which pairs of layers between the source and target networks should be matched for knowledge transfer and (b) which features and how much knowledge from each feature should be transferred. We validate our meta-transfer approach against recent transfer learning methods on various datasets and network architectures, on which our automated scheme signiﬁcantly outperforms the prior baselines that ﬁnd “what and where to transfer” in a hand-crafted manner.},
+language = {en},
+urldate = {2019-12-09},
+journal = {arXiv:1905.05901 [cs, stat]},
+author = {Jang, Yunhun and Lee, Hankook and Hwang, Sung Ju and Shin, Jinwoo},
+month = may,
+year = {2019},
+note = {arXiv: 1905.05901},
+keywords = {Computer Science - Machine Learning, Statistics - Machine Learning},
+file = {Jang et al. - 2019 - Learning What and Where to Transfer.pdf:/home/konstaku/Zotero/storage/264ZRMT9/Jang et al. - 2019 - Learning What and Where to Transfer.pdf:application/pdf}
+}
+
+@inproceedings{transferringMidLevelRepresentations,
+address = {Columbus, OH, USA},
+title = {Learning and {Transferring} {Mid}-level {Image} {Representations} {Using} {Convolutional} {Neural} {Networks}},
+isbn = {978-1-4799-5118-5},
+url = {http://ieeexplore.ieee.org/lpdocs/epic03/wrapper.htm?arnumber=6909618},
+doi = {10.1109/CVPR.2014.222},
+abstract = {Convolutional neural networks (CNN) have recently shown outstanding image classiﬁcation performance in the largescale visual recognition challenge (ILSVRC2012). The success of CNNs is attributed to their ability to learn rich midlevel image representations as opposed to hand-designed low-level features used in other image classiﬁcation methods. Learning CNNs, however, amounts to estimating millions of parameters and requires a very large number of annotated image samples. This property currently prevents application of CNNs to problems with limited training data. In this work we show how image representations learned with CNNs on large-scale annotated datasets can be efﬁciently transferred to other visual recognition tasks with limited amount of training data. We design a method to reuse layers trained on the ImageNet dataset to compute mid-level image representation for images in the PASCAL VOC dataset. We show that despite differences in image statistics and tasks in the two datasets, the transferred representation leads to signiﬁcantly improved results for object and action classiﬁcation, outperforming the current state of the art on Pascal VOC 2007 and 2012 datasets. We also show promising results for object and action localization.},
+language = {en},
+urldate = {2020-01-29},
+booktitle = {2014 {IEEE} {Conference} on {Computer} {Vision} and {Pattern} {Recognition}},
+publisher = {IEEE},
+author = {Oquab, Maxime and Bottou, Leon and Laptev, Ivan and Sivic, Josef},
+month = jun,
+year = {2014},
+pages = {1717--1724},
+file = {Oquab et al. - 2014 - Learning and Transferring Mid-level Image Represen.pdf:/home/konstaku/Zotero/storage/3WWZQLSF/Oquab et al. - 2014 - Learning and Transferring Mid-level Image Represen.pdf:application/pdf}
+}

@@ -1,10 +1,17 @@
-\chapter{Multi task learning}
-Cover some examples of MTL in Computer Vision, differences to Transfer Learning, why it might work, why we might see detrimental results and why it might be beneficial (results/performance)
+\chapter{Multi-task learning}
+Maybe drop some sections if it becomes too long.
 \section{Definition}
+Formally define multi-task learning similar to Transfer Learning using the original multi-task paper \citep{origMultitask}, and a newer view on the domain \citep{surveyOnMultiTask}.
 \section{Benefits}
-\section{Hard parameter sharing}
+Inference time, regularization, smaller models etc. Weighing different tasks and getting information from the loss functions \citep{lossWeighting} \citep{usingUncertaintyToWeighLosses}
 \section{Soft parameter sharing}
-\section{Special multi-task approaches}
+Define soft parameter sharing between tasks, show an example from \citep{mutualLearning}.
+\section{Hard parameter sharing}
+Show how multiple heads can be combined to produce outputs for various tasks using different heads, show results from sharing all/some layers. \citep{visualPerson} \citep{selfDriving} \citep{healthyDrink}
+\section{Special multi-task learning techniques}
+Show how an attention layer can be added to augment the performance in various tasks in a multi-task setting \citep{multiTaskAttention}. Also cross-stich networks \citep{crossStitch}.
 \section{Multi-task learning with little data}
+Why it can be beneficial with little data \citep{surveyOnMultiTask} Show some results where it is beneficial on little data.
 \section{What and when to share}
-\section{Succesful multi-task learning applications}
+Some ways to decide when multi-task learning might be a good idea and how to evaluate which tasks might be good to learn in a multi-task setting \citep{taskonomy} \citep{whichTasks}.
+Show how this problem can be similar to deciding whether Transfer Learning is a good idea \citep{whatAndWhereToTransfer} \citep{transferringMidLevelRepresentations}
