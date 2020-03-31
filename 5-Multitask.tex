@@ -8,7 +8,7 @@ On the other hand, if Multi-task learning is applied to problems that don't trai
 Multi-task learning is quite similar to Transfer learning.
 However, the main difference lies in the fact that the goal is to generalize to solve and improve performance in all tasks using some shared representation.
 In contrast, Transfer learning aims to optimize a single new task, ignoring the performance on the original entirely.
-Often the shared layers are initialized using some ImageNet model, and Transfer learning as the ImageNet backbone is an architectural feature shared in many models.
+Often the shared layers are initialized using some ImageNet model and Transfer learning as the ImageNet backbone is an architectural feature shared in many models.
 
 The formal definition for Multi-task learning follows the definition given in \citep{surveyOnMultiTask}.
 A learning problem consists of ${m}$ related learning tasks ${\{T_i\}_{i=1}^m}$ that are trained together.
@@ -22,15 +22,35 @@ The sensitivity of the tasks is an essential parameter to get right as choosing 
 
 Once the loss function is specified, the actual training is quite similar to training a Single-task model.
 The one new thing to consider in a Multi-task setting is the sampling ratio of the different tasks as some tasks can be easier to learn or contain significantly more or less data compared to other tasks.
-Like in normal training, the models are trained one batch at a time.
+Like in regular training, the models are trained one batch at a time.
 In a Multi-task setting, we have datasets for each of the tasks from which we can pick at a time.
 Now, we can define an epoch in the training process as several batches with an expected value of $\sum_i{ \dfrac{|X_i| \alpha_i}{B_i}}$ batches over $i$ tasks, where $|X_i|$ is the training size, $B_i$ is the batch size, and $\alpha_i$ is the scaling factor for each task.
 Iterating through all batches can be done in a round-robin fashion,  going through all batches of each data set at a time or randomly sampling the sets with probabilities respective to their magnitude and scaling factor.
 
+\section{Latent image representations}
+For a Multi-task model, the optimal situation is such, where all classifiers would use a single shared latent representation of the image to predict all attributes.
+This representation is an Image Embedding, that would capture all valuable information of the image for our tasks.
+The embedding could be the vector represented by the final layer of an ImageNet classifier flattened to some n-dimensional vector that then solves all the tasks instead of just a single task.
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{imgs/sharedBackbone.png}
+    \caption{Example of partly and completely shared backbones. Figure from \citep{visualPerson}.\label{fig:params}}
+\end{figure}
+However, such universal image representation can be challenging or impossible to learn, and instead, only a part of the network is shared between the tasks.
+Here, this shared structure is called the backbone of the Multi-task classifier.
+Often the backbone is in the form of some ImageNet classifier architecture, and it can be the entire classifier or some layers up to some arbitrary limit.
+As the amount of layers shared is picked for each task separately, some tasks can share the entire classifier as a backbone, and others might only share some amount of layer that produces desirable results.
+
+Besides just deciding the network branching, each task requires an independent head that outputs prediction for that task.
+These task heads are similar to those used in transfer learning, where only a single task is solved using the ImageNet backbone.
+Especially in a Multi-task setting, these heads can be more than just a single linear layer calculating the softmax over all classes.
+A single head can contain several linear layers, dropout layers, batch normalization layers, or it could be a Recurrent Neural Network creating a caption for the image embedding, depending on the task at hand.
+In Figure 3.1, we can see an example of the flexibility of the sharing as the model can use a completely shared backbone or a branching backbone, which has a unique head for each task, solving the person re-identification and classification tasks.
+
 \section{Benefits}
 Depending on how Multi-task learning is applied, it can provide a multitude of benefits to the model.
 Many of these benefits stem from the fact that the model gets to see more data, and the various tasks can make it easier to find useful features.
-Different kinds of data sets have different kinds of noise, learning multiple tasks makes it easier to distinguish which features are good and bad, some features may be difficult to learn on a dataset, but can be useful and borrowed from another and learning multiple tasks forces the model to not overfit on one of them \citep{ruderOverview}.
+Different kinds of data sets have different kinds of noise, learning multiple tasks makes it easier to distinguish which features are beneficial and detrimental some features may be difficult to learn on a dataset but can be useful and borrowed from another and learning multiple tasks forces the model to not overfit on one of them \citep{ruderOverview}.
 
 These benefits come up when the tasks are compatible and allow the model to learn more general features, generally leading to better performance on the distinct tasks.
 When the needed features between tasks are conflicting, the model performance tends to go down \citep{uberNet}.
@@ -45,12 +65,31 @@ As many classifiers are dependent on an embedding of an image to produce results
 For example \citep{multiPoseNet} uses a shared backbone to detect people in an image and to detect keypoints on their body and then finally to do a semantic segmentation of the image while also improving performance on most of the tasks.
 
 Finally, a model using Multi-task learning can take advantage of the different losses to produce a more optimal loss weighing strategy compared to constant weighting.
-Picking the weights in the total loss function is very important as with poor weights, the optimization can be difficult or even impossible \citep{lossWeighting}.
+Picking the weights in the total loss function is very important as with invalid weights, the optimization can be difficult or even impossible \citep{lossWeighting}.
 The weights become even more critical if the losses for various tasks are different, for example, one task might use mean squared error as a loss function and another cross-entropy, and the resulting loss values might differ by orders of magnitude.
 The total loss function can be modified by adding an uncertainty weighting to each of the tasks by considering the uncertainty of the prediction \citep{usingUncertaintyToWeighLosses}.
 Depending on the task, the benefit compared to an unweighted loss can be significant \citep{usingUncertaintyToWeighLosses} or, in some cases, only small \citep{lossWeighting}.
 
 \section{Hard parameter sharing}
+A hard parameter sharing setting is one where the same convolutional weights in the intermediate layers solve multiple tasks, like in Figure 3.1.
+Hard parameter sharing is the primary way of reducing total model size and inference time when solving multiple tasks simultaneously.
+While sharing the weights can provide many benefits to the end model, as seen in the previous chapter, it comes at the cost of an increased number of tunable parameters when training the models.
+As we have previously seen, Multi-task models introduce many new constant factors to the training process beyond the normal hyperparameters for learning rate, dropout rate, and others.
+These include the hyperparameters for weighing the loss functions and determining the task sampling ratios, but also the expensive to evaluate which tasks should share representations and how much.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=1\textwidth]{imgs/multipleShares.png}
+    \caption{Many ways of sharing between tasks. Figure from \citep{healthyDrink}.\label{fig:params}}
+\end{figure}
+
+In Figure 3.2, there are multiple ways of configuring a Multi-task network in terms of what to share.
+The results for the different configurations were quite varied.
+However, even the worst Multi-task Model A did better on every task when compared to the single-task models, and accuracy improvement from the single-task case to the best multi-task Model F was roughly 20\% \citep{healthyDrink}.
+These results are quite validating for the presumed benefits of Multi-task models.
+Since these results show that it is possible to share the majority of the network parameters and, at the same time, increase the performance, even with the most greedy share-all model.
+Though, at the same time, it shows that multiple compute-expensive experiments have to done to find the most optimal sharing structure for the backbone network.
+
 Show how multiple heads can be combined to produce outputs for various tasks using different heads, show results from sharing all/some layers. \citep{visualPerson} \citep{selfDriving} \citep{healthyDrink}
 
 \section{Soft parameter sharing}
@@ -61,16 +100,22 @@ Show how multiple heads can be combined to produce outputs for various tasks usi
     \caption{Cross-stitch architecture. Figure from \citep{crossStitch}.\label{fig:params}}
 \end{figure}
 
-Soft parameter sharing is quite similar to learning each task on their own since each task has separate weights. Soft parameter sharing happens by picking some layers, where some metric constrains the parameters to be similar, like ${l_2}$ distance \citep{ruderOverview}.
+Soft parameter sharing is quite similar to learning each task on its own since each task has separate weights.
+Soft parameter sharing happens by picking some layers, where some metrics constrain the parameters to be similar, like ${l_2}$ distance \citep{ruderOverview}.
 
-The sharing functionality can be more complicated than just basic regularization. For example, the Cross-stitch units \citep{crossStitch} are a particular type of soft sharing, where the stitch units combine tasks A and B using a linear combination of the activations, visualized in Figure 3.1. The benefit here is that the user does not need to specify how much should be shared between the tasks, but it is rather learned in the cross-stitch unit. If nothing needs to be shared, then the network can learn to assign the weight for the other task to zero.
+The sharing functionality can be more complicated than just basic regularization.
+For example, the Cross-stitch units \citep{crossStitch} are a particular type of soft sharing, where the stitch units combine tasks A and B using a linear combination of the activations, visualized in Figure 3.2.
+The benefit here is that the user does not need to specify how much should be shared between the tasks, but it is instead learned in the cross-stitch unit.
+If nothing needs to be shared, then the network can learn to assign the weight for the other task to zero.
 
 This kind of sharing does not scale very well as the number of tasks increases since calculating the relation between various tasks is quadratic.
 Since the joining logic requires extra parameters, it means there is even more to learn than just learning all the tasks separately.
 As soft sharing does not provide many of the benefits that are gained by hard sharing the parameters, it is not as popular, but still used in various cases.
+Learning the soft connections between layers does not reduce the parameters in the model.
+However, it is useful in adding some extra information between the tasks to gain extra performance by utilizing the latent representations between them in various ways.
 
 \section{Special multi-task learning techniques}
-Show how an attention layer can be added to augment the performance in various tasks in a multi-task setting \citep{multiTaskAttention}, specifically when the tasks are correlated \citep{multiTaskWeather} \citep{weatherNet}. Maybe some others as well.
+Show how an attention layer can be added to augment the performance in various tasks in a multi-task setting \citep{multiTaskAttention}, especially when the tasks are correlated \citep{multiTaskWeather} \citep{weatherNet}. Maybe some others as well.
 
 \section{What and when to share}
 What makes or breaks a Multi-task model is the decision on what should be shared, but determining what and how much should be shared is exponentially more expensive as the number of tasks grows.
@@ -78,7 +123,7 @@ As experimentation is expensive, a good starting point is to try to find similar
 However, there is no guarantee that even all the tasks within a single family of problems are beneficial for joint training, so some experimentation has to be done.
 The desired result in a Multi-task setting would be to share all the parameters between all the tasks, but as can be seen in \citep{uberNet}, that approach often significantly reduces performance.
 If sharing an entire network does not produce good results, it can be a good idea only to share some part of it as the lower level features tend to be more general \citep{transferringMidLevelRepresentations}.
-By sharing only a part of the network, it may be possible to strike a good balance between performance and model complexity.
+By sharing only a part of the network, it may be possible to strike the right balance between performance and model complexity.
 
 \begin{figure}[h!]
     \centering
