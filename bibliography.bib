@@ -570,11 +570,6 @@ file = {Elsken et al. - 2019 - Neural Architecture Search A Survey.pdf:/home/kon
 
 
 
-
-
-
-
-
 @incollection{mutualLearning,
 address = {Cham},
 title = {Mutual {Learning} to {Adapt} for {Joint} {Human} {Parsing} and {Pose} {Estimation}},
@@ -941,7 +936,6 @@ file = {Kocabas et al. - 2018 - MultiPoseNet Fast Multi-Person Pose Estimation U
 
 
 
-
 @article{attention,
 title = {Attention {Is} {All} {You} {Need}},
 url = {http://arxiv.org/abs/1706.03762},
@@ -971,4 +965,108 @@ year = {2019},
 note = {arXiv: 1904.10709},
 keywords = {Computer Science - Computer Vision and Pattern Recognition, Computer Science - Artificial Intelligence},
 file = {Zhao et al. - 2019 - A CNN-RNN Architecture for Multi-Label Weather Rec.pdf:/home/konstaku/Zotero/storage/39R5XSWH/Zhao et al. - 2019 - A CNN-RNN Architecture for Multi-Label Weather Rec.pdf:application/pdf}
+@misc{nvidiaRTX,
+title = {Introducing {NVIDIA} {GeForce} {RTX} 2070 {Graphics} {Card}},
+url = {https://www.nvidia.com/fi-fi/geforce/graphics-cards/rtx-2070/},
+abstract = {Nauti reaaliaikaisesta säteenseurannasta, tekoälystä ja jopa kuusinkertaisesta suorituskyvystä edellisen sukupolven näytönohjaimiin verrattuna.{\textless}br/{\textgreater}},
+language = {fi-fi},
+urldate = {2020-03-25},
+journal = {NVIDIA},
+note = {Library Catalog: www.nvidia.com},
+file = {Snapshot:/home/konstaku/Zotero/storage/TRZXWNM3/rtx-2070.html:text/html}
+}
+
+@article{pytorch,
+title = {{PyTorch}: {An} {Imperative} {Style}, {High}-{Performance} {Deep} {Learning} {Library}},
+shorttitle = {{PyTorch}},
+url = {http://arxiv.org/abs/1912.01703},
+abstract = {Deep learning frameworks have often focused on either usability or speed, but not both. PyTorch is a machine learning library that shows that these two goals are in fact compatible: it provides an imperative and Pythonic programming style that supports code as a model, makes debugging easy and is consistent with other popular scientiﬁc computing libraries, while remaining efﬁcient and supporting hardware accelerators such as GPUs.},
+language = {en},
+urldate = {2020-03-25},
+journal = {arXiv:1912.01703 [cs, stat]},
+author = {Paszke, Adam and Gross, Sam and Massa, Francisco and Lerer, Adam and Bradbury, James and Chanan, Gregory and Killeen, Trevor and Lin, Zeming and Gimelshein, Natalia and Antiga, Luca and Desmaison, Alban and Köpf, Andreas and Yang, Edward and DeVito, Zach and Raison, Martin and Tejani, Alykhan and Chilamkurthy, Sasank and Steiner, Benoit and Fang, Lu and Bai, Junjie and Chintala, Soumith},
+month = dec,
+year = {2019},
+note = {arXiv: 1912.01703},
+keywords = {Computer Science - Machine Learning, Computer Science - Mathematical Software, Statistics - Machine Learning},
+file = {Paszke et al. - 2019 - PyTorch An Imperative Style, High-Performance Dee.pdf:/home/konstaku/Zotero/storage/MJZR638D/Paszke et al. - 2019 - PyTorch An Imperative Style, High-Performance Dee.pdf:application/pdf}
+}
+
+@misc{Apex,
+	title = {{NVIDIA}/apex},
+	copyright = {BSD-3-Clause},
+	url = {https://github.com/NVIDIA/apex},
+	abstract = {A PyTorch Extension:  Tools for easy mixed precision and distributed training in Pytorch},
+	urldate = {2020-03-25},
+	publisher = {NVIDIA Corporation},
+	month = mar,
+	year = {2020},
+	note = {original-date: 2018-04-23T16:28:52Z}
+}
+
+@article{mixedTraining,
+title = {Mixed {Precision} {Training}},
+url = {http://arxiv.org/abs/1710.03740},
+abstract = {Increasing the size of a neural network typically improves accuracy but also increases the memory and compute requirements for training the model. We introduce methodology for training deep neural networks using half-precision ﬂoating point numbers, without losing model accuracy or having to modify hyperparameters. This nearly halves memory requirements and, on recent GPUs, speeds up arithmetic. Weights, activations, and gradients are stored in IEEE halfprecision format. Since this format has a narrower range than single-precision we propose three techniques for preventing the loss of critical information. Firstly, we recommend maintaining a single-precision copy of weights that accumulates the gradients after each optimizer step (this copy is rounded to half-precision for the forward- and back-propagation). Secondly, we propose loss-scaling to preserve gradient values with small magnitudes. Thirdly, we use half-precision arithmetic that accumulates into single-precision outputs, which are converted to halfprecision before storing to memory. We demonstrate that the proposed methodology works across a wide variety of tasks and modern large scale (exceeding 100 million parameters) model architectures, trained on large datasets.},
+language = {en},
+urldate = {2020-03-25},
+journal = {arXiv:1710.03740 [cs, stat]},
+author = {Micikevicius, Paulius and Narang, Sharan and Alben, Jonah and Diamos, Gregory and Elsen, Erich and Garcia, David and Ginsburg, Boris and Houston, Michael and Kuchaiev, Oleksii and Venkatesh, Ganesh and Wu, Hao},
+month = feb,
+year = {2018},
+note = {arXiv: 1710.03740},
+keywords = {Computer Science - Machine Learning, Statistics - Machine Learning, Computer Science - Artificial Intelligence},
+file = {Micikevicius et al. - 2018 - Mixed Precision Training.pdf:/home/konstaku/Zotero/storage/7U2RPXCE/Micikevicius et al. - 2018 - Mixed Precision Training.pdf:application/pdf}
+}
+
+
+@misc{docker,
+	title = {Empowering {App} {Development} for {Developers} {\textbar} {Docker}},
+	url = {https://www.docker.com/},
+	abstract = {Learn how Docker helps developers bring their ideas to life by conquering the complexity of app development.},
+	language = {en},
+	urldate = {2020-03-25},
+	note = {Library Catalog: www.docker.com},
+	file = {Snapshot:/home/konstaku/Zotero/storage/66KSUDIL/www.docker.com.html:text/html}
+}
+@ONLINE {beansdata,
+	author="Makerere AI Lab",
+	title="Bean disease dataset",
+	month="January",
+	year="2020",
+	url="https://github.com/AI-Lab-Makerere/ibean/"
+}
+
+@ONLINE {tfflowers,
+	author = "The TensorFlow Team",
+	title = "Flowers",
+	month = "jan",
+	year = "2019",
+	url = "http://download.tensorflow.org/example_images/flower_photos.tgz" }
+
+@article{citrusdata,
+	title={A citrus fruits and leaves dataset for detection and classification of
+			citrus diseases through machine learning},
+	author={Rauf, Hafiz Tayyab and Saleem, Basharat Ali and Lali, M Ikram Ullah
+			and Khan, Muhammad Attique and Sharif, Muhammad and Bukhari, Syed Ahmad Chan},
+	journal={Data in brief},
+	volume={26},
+	pages={104340},
+	year={2019},
+	publisher={Elsevier}
+}
+
+@article{cycliclr,
+	title = {Cyclical {Learning} {Rates} for {Training} {Neural} {Networks}},
+	url = {http://arxiv.org/abs/1506.01186},
+	abstract = {It is known that the learning rate is the most important hyper-parameter to tune for training deep neural networks. This paper describes a new method for setting the learning rate, named cyclical learning rates, which practically eliminates the need to experimentally ﬁnd the best values and schedule for the global learning rates. Instead of monotonically decreasing the learning rate, this method lets the learning rate cyclically vary between reasonable boundary values. Training with cyclical learning rates instead of ﬁxed values achieves improved classiﬁcation accuracy without a need to tune and often in fewer iterations. This paper also describes a simple way to estimate “reasonable bounds” – linearly increasing the learning rate of the network for a few epochs. In addition, cyclical learning rates are demonstrated on the CIFAR-10 and CIFAR-100 datasets with ResNets, Stochastic Depth networks, and DenseNets, and the ImageNet dataset with the AlexNet and GoogLeNet architectures. These are practical tools for everyone who trains neural networks.},
+	language = {en},
+	urldate = {2020-03-25},
+	journal = {arXiv:1506.01186 [cs]},
+	author = {Smith, Leslie N.},
+	month = apr,
+	year = {2017},
+	note = {arXiv: 1506.01186},
+	keywords = {Computer Science - Machine Learning, Computer Science - Computer Vision and Pattern Recognition, Computer Science - Neural and Evolutionary Computing},
+	file = {Smith - 2017 - Cyclical Learning Rates for Training Neural Networ.pdf:/home/konstaku/Zotero/storage/I4FER6E2/Smith - 2017 - Cyclical Learning Rates for Training Neural Networ.pdf:application/pdf}
 }
