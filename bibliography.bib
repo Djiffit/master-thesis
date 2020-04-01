@@ -1021,16 +1021,47 @@ file = {Micikevicius et al. - 2018 - Mixed Precision Training.pdf:/home/konstaku
 }
 
 @article{cycliclr,
-	title = {Cyclical {Learning} {Rates} for {Training} {Neural} {Networks}},
-	url = {http://arxiv.org/abs/1506.01186},
-	abstract = {It is known that the learning rate is the most important hyper-parameter to tune for training deep neural networks. This paper describes a new method for setting the learning rate, named cyclical learning rates, which practically eliminates the need to experimentally ﬁnd the best values and schedule for the global learning rates. Instead of monotonically decreasing the learning rate, this method lets the learning rate cyclically vary between reasonable boundary values. Training with cyclical learning rates instead of ﬁxed values achieves improved classiﬁcation accuracy without a need to tune and often in fewer iterations. This paper also describes a simple way to estimate “reasonable bounds” – linearly increasing the learning rate of the network for a few epochs. In addition, cyclical learning rates are demonstrated on the CIFAR-10 and CIFAR-100 datasets with ResNets, Stochastic Depth networks, and DenseNets, and the ImageNet dataset with the AlexNet and GoogLeNet architectures. These are practical tools for everyone who trains neural networks.},
-	language = {en},
-	urldate = {2020-03-25},
-	journal = {arXiv:1506.01186 [cs]},
-	author = {Smith, Leslie N.},
-	month = apr,
-	year = {2017},
-	note = {arXiv: 1506.01186},
-	keywords = {Computer Science - Machine Learning, Computer Science - Computer Vision and Pattern Recognition, Computer Science - Neural and Evolutionary Computing},
-	file = {Smith - 2017 - Cyclical Learning Rates for Training Neural Networ.pdf:/home/konstaku/Zotero/storage/I4FER6E2/Smith - 2017 - Cyclical Learning Rates for Training Neural Networ.pdf:application/pdf}
+title = {Cyclical {Learning} {Rates} for {Training} {Neural} {Networks}},
+url = {http://arxiv.org/abs/1506.01186},
+abstract = {It is known that the learning rate is the most important hyper-parameter to tune for training deep neural networks. This paper describes a new method for setting the learning rate, named cyclical learning rates, which practically eliminates the need to experimentally ﬁnd the best values and schedule for the global learning rates. Instead of monotonically decreasing the learning rate, this method lets the learning rate cyclically vary between reasonable boundary values. Training with cyclical learning rates instead of ﬁxed values achieves improved classiﬁcation accuracy without a need to tune and often in fewer iterations. This paper also describes a simple way to estimate “reasonable bounds” – linearly increasing the learning rate of the network for a few epochs. In addition, cyclical learning rates are demonstrated on the CIFAR-10 and CIFAR-100 datasets with ResNets, Stochastic Depth networks, and DenseNets, and the ImageNet dataset with the AlexNet and GoogLeNet architectures. These are practical tools for everyone who trains neural networks.},
+language = {en},
+urldate = {2020-03-25},
+journal = {arXiv:1506.01186 [cs]},
+author = {Smith, Leslie N.},
+month = apr,
+year = {2017},
+note = {arXiv: 1506.01186},
+keywords = {Computer Science - Machine Learning, Computer Science - Computer Vision and Pattern Recognition, Computer Science - Neural and Evolutionary Computing},
+file = {Smith - 2017 - Cyclical Learning Rates for Training Neural Networ.pdf:/home/konstaku/Zotero/storage/I4FER6E2/Smith - 2017 - Cyclical Learning Rates for Training Neural Networ.pdf:application/pdf}
+}
+
+@article{attention,
+title = {Attention {Is} {All} {You} {Need}},
+url = {http://arxiv.org/abs/1706.03762},
+abstract = {The dominant sequence transduction models are based on complex recurrent or convolutional neural networks that include an encoder and a decoder. The best performing models also connect the encoder and decoder through an attention mechanism. We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely. Experiments on two machine translation tasks show these models to be superior in quality while being more parallelizable and requiring signiﬁcantly less time to train. Our model achieves 28.4 BLEU on the WMT 2014 Englishto-German translation task, improving over the existing best results, including ensembles, by over 2 BLEU. On the WMT 2014 English-to-French translation task, our model establishes a new single-model state-of-the-art BLEU score of 41.8 after training for 3.5 days on eight GPUs, a small fraction of the training costs of the best models from the literature. We show that the Transformer generalizes well to other tasks by applying it successfully to English constituency parsing both with large and limited training data.},
+language = {en},
+urldate = {2020-03-31},
+journal = {arXiv:1706.03762 [cs]},
+author = {Vaswani, Ashish and Shazeer, Noam and Parmar, Niki and Uszkoreit, Jakob and Jones, Llion and Gomez, Aidan N. and Kaiser, Lukasz and Polosukhin, Illia},
+month = dec,
+year = {2017},
+note = {arXiv: 1706.03762},
+keywords = {Computer Science - Machine Learning, Computer Science - Computation and Language},
+file = {Vaswani et al. - 2017 - Attention Is All You Need.pdf:/home/konstaku/Zotero/storage/PBH7RGMN/Vaswani et al. - 2017 - Attention Is All You Need.pdf:application/pdf}
+}
+
+@article{cnn-rnn,
+
+title = {A {CNN}-{RNN} {Architecture} for {Multi}-{Label} {Weather} {Recognition}},
+url = {http://arxiv.org/abs/1904.10709},
+abstract = {Weather Recognition plays an important role in our daily lives and many computer vision applications. However, recognizing the weather conditions from a single image remains challenging and has not been studied thoroughly. Generally, most previous works treat weather recognition as a single-label classiﬁcation task, namely, determining whether an image belongs to a speciﬁc weather class or not. This treatment is not always appropriate, since more than one weather conditions may appear simultaneously in a single image. To address this problem, we make the ﬁrst attempt to view weather recognition as a multi-label classiﬁcation task, i.e., assigning an image more than one labels according to the displayed weather conditions. Speciﬁcally, a CNN-RNN based multi-label classiﬁcation approach is proposed in this paper. The convolutional neural network (CNN) is extended with a channel-wise attention model to extract the most correlated visual features. The Recurrent Neural Network (RNN) further processes the features and excavates the dependencies among weather classes. Finally, the weather labels are predicted step by step. Besides, we construct two datasets for the weather recognition task and explore the relationships among different weather conditions. Experimental results demonstrate the superiority and effectiveness of the proposed approach. The new constructed datasets will be available at https: //github.com/wzgwzg/Multi-Label-Weather-Recognition.},
+language = {en},
+urldate = {2019-12-03},
+journal = {arXiv:1904.10709 [cs]},
+author = {Zhao, Bin and Li, Xuelong and Lu, Xiaoqiang and Wang, Zhigang},
+month = apr,
+year = {2019},
+note = {arXiv: 1904.10709},
+keywords = {Computer Science - Computer Vision and Pattern Recognition, Computer Science - Artificial Intelligence},
+file = {Zhao et al. - 2019 - A CNN-RNN Architecture for Multi-Label Weather Rec.pdf:/home/konstaku/Zotero/storage/39R5XSWH/Zhao et al. - 2019 - A CNN-RNN Architecture for Multi-Label Weather Rec.pdf:application/pdf}
 }
