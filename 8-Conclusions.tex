@@ -1,0 +1,18 @@
+\chapter{Conclusions}
+Here we have presented multi-task learning as a generalization of transfer learning.
+In a multi-task setting, the goal is to solve multiple tasks using some shared representation, and it differs from transfer learning in that all tasks are optimized continuously, rather than just serving as a starting point.
+While doing transfer learning is an excellent way of obtaining good results even on little data, by using multi-task training, we can utilize the shared representations required for multiple tasks to allow the model to generalize better.
+This happens because the model is required to use the same capacity to solve multiple problems that may require different features, some of which can also be useful in other tasks.
+At the same time, utilizing shared representations means that there are fewer parameters that the model needs to learn, leading to smaller models and shorter inference times.
+
+Multi-task problem setting modifies the training process and introduces some new parameters that can be tuned when training models.
+Task-specific sampling ratio during the data sampling process and giving task-specific loss weights were the two new factors that need to be tuned when different tasks are combined.
+These weights need to be tuned appropriately for the model to be able to find the features that work for all tasks.
+Also, the loss weights and sampling ratios can be used to decide which tasks are more important or difficult to solve and make the model focus on them.
+Beyond just tuning parameters, multi-task models may need some architectural fine-tuning in deciding which tasks should have shared representations and just how much should be shared.
+
+We saw multiple examples where multi-task learning played an important part in getting models that are efficient and performant.
+Both soft and hard parameter sharing for multi-task learning were covered, with some specialized architectures taking advantage of the fact that multiple tasks are solved at the same time.
+Finally, we found that multiple tasks can serve as auxiliary targets for training to aid the model in finding important features.
+In the end, we concluded that the success of multi-task learning some tasks can't be pre-determined currently, and some expensive experimentation is needed to arrive at a good multi-task architecture.
+Thus, multi-task learning can be considered as a trade-off of training time complexity for inference-time benefits in accuracy and speed.
