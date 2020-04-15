@@ -3,7 +3,8 @@ As we have covered, the effect of a Multi-Task problem setting is challenging to
 Here we will take various datasets for object recognition, object detection, and pose estimation and see what the effects of training them in a Multi-Task setting are.
 The metrics we are mainly interested in are the reduction in model size, inference time, and model accuracy on the different tasks compared to the single-task counterparts.
 We will also attempt to find out how much more difficult the training process and tuning various hyperparameters are when compared to the single-task problem.
-The main focus will be on trying out the EfficientNet architecture as a backbone, but we will compare it to an equivalent ResNet model in some cases.
+The experiments will focus on utilizing the previously presented EfficientNet and ResNet in various multi-task experiments to see how they compare.
+The actual models will be EfficientNet-B3 and ResNet-101 since they require a roughly equivalent amount of memory to train.
 
 \section{Training setup}
 All the experiments use the same computer, and the model training is done using an Nvidia GeForce RTX 2070 GPU that has 8 GB of GDDR6 VRAM \citep{nvidiaRTX}.
@@ -21,16 +22,31 @@ For weight optimizer, we will use SGD with a cyclic learning rate scheduler \cit
 
 \section{Mixed precision training}
 
-\section{Multiple object classification tasks}
+\section{Basic multiple object classification tasks}
 As we have previously covered, fine-tuning an ImageNet classifier often produces good results.
-Here we will take a pre-trained EfficientNet backbone and learn multiple object classification tasks using the shared image embedding.
+Here we will take a pre-trained ImageNet backbone and learn multiple object classification tasks using the shared image embedding.
 First, we will use two datasets that both contain images of healthy and unhealthy plants.
 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{imgs/citrus_beans_examples.png}
+    \caption{Example images from the citrus and ibean data sets.
+        The images in the top row are from ibean and the bottom row is from the citrus data set.}
+\end{figure}
+
 The ibean dataset \citep{beansdata} contains 1296 images classified into three classes; Healthy, Angular Leaf Spot, and Bean Rust.
-The citrus leaves dataset \citep{citrusdata}, on the other hand, contains 594 examples of citrus fruits and leaves with four different classes; Black Spot, Canker, Greening, and Healthy.
-Both of these datasets have a relatively small amount of images available for training, and training on only one of them could easily lead the model to overfit or not generalize well.
+The data set provides a split for the images that will be the split that is used for the experiments.
+The citrus leaves dataset \citep{citrusdata}, on the other hand, contains 759 examples of citrus fruits and leaves with six different classes; Black Spot, Canker, Greening, Scab, Melanose, and Healthy.
+This set is quite tricky as it contains 609 images of leaves and only 150 images of actual citrus fruits, and some of the classes have very few images.
+Some examples from the data sets are in Figure 7.1.
+For the training split, the data will be split in 65/10/25 ratio for the training, validation, and test sets, respectively.
+Both of these datasets have a relatively small amount of images available for training, so it should serve as a good basis for trying to train multi-task classifiers and give a glimpse into the adjustments that need to be made when training multi-task classifiers.
+The goal for this experiment is to get familiar with the basics of how to create the multi-task models, and how to do the actual changes to the training loop in the Pytorch code to accommodate for the multi-task training.
+
 When the two closely related datasets are used to train the model, we could expect the model to generalize better on both of them, as hopefully similar features would benefit both tasks.
-This model is depicted in figure 7.1.
+But as the tasks are quite simple, the benefits can be relatively small as the likely accuracy for the single-task models should be quite high.
+In the case of the citrus data set, learning to classify the citrus fruits could prove quite difficult, and for that, the bean leaves likely won't be of much help.
+This model is depicted in figure 7.2.
 
 \begin{figure}[h!]
     \centering
@@ -40,6 +56,48 @@ This model is depicted in figure 7.1.
 
 To further extend the generalizability, we will try to add a third somewhat similar classification task using the TensorFlow flowers dataset \citep{tfflowers}, which contains five different types of flowers.
 The assumption here would be that flowers could require similar features as the previous leaf classification tasks, thus when increasing the training data with a closely related task, we could increase the generalizability even further.
+
+Multi-task and single-task models were created and evaluated for both EfficientNet and ResNet backbones.
+For the single-task performance, in this case, the ResNet model did slightly better on both of the tasks achieving 96\% test accuracy on the beans dataset and 88\% test accuracy on the citrus dataset, and the EfficientNet model achieved 94\% and 84\% test accuracies on the tasks.
+In terms of training, the most significant parameter is the sampling ratio of the two tasks.
+
+The sampling was done with a random number to pick which data loader would be used for the current batch.
+If the sampling is done by going through each of the datasets entirely one at a time, the model ends up at a point where only one of the tasks has good accuracy.
+If the ratio is left as proportional to the data set size, the multi-task model ends up only learning to classify the ibean data set, and the accuracy for the citrus data will stay low.
+After some experimentation, the suitable probabilities for achieving good results with the EfficientNet multi-task classifier were 0.66 for the citrus and 0.33 for the ibean data.
+Interestingly, the same ratio does not directly transfer to the ResNet model.
+When using the same ratio as with the EfficientNet, the model still seems to converge only on a good result for the ibean data set.
+For the final results with the ResNet classifier, the probability for the citrus dataset needed to be raised to 0.73.
+
+\begin{table}[]
+    \centering
+    \begin{tabular}{lcc}
+        \multicolumn{1}{l}{\textbf{}}           & \multicolumn{1}{l}{\textbf{ibeans}} & \multicolumn{1}{l}{\textbf{citrus}} \\ \cline{2-3}
+        \textbf{Single-task models}             & \multicolumn{1}{l}{}                & \multicolumn{1}{l}{}                \\ \hline
+        \multicolumn{1}{l}{EfficientNet ibeans} & \multicolumn{1}{c}{94\%}            & \multicolumn{1}{c}{-}               \\ \hline
+        \multicolumn{1}{l}{EfficientNet citrus} & \multicolumn{1}{c}{-}               & \multicolumn{1}{c}{84\%}            \\ \hline
+        \multicolumn{1}{l}{ResNet ibeans}       & \multicolumn{1}{c}{96\%}            & \multicolumn{1}{c}{-}               \\ \hline
+        \multicolumn{1}{l}{ResNet citrus}       & \multicolumn{1}{c}{-}               & \multicolumn{1}{c}{86\%}            \\ \hline
+        \textbf{Multi-task models}              & \multicolumn{1}{l}{}                & \multicolumn{1}{l}{}                \\ \hline
+        \multicolumn{1}{l}{EfficientNet}        & \multicolumn{1}{c}{94\%}            & \multicolumn{1}{c}{88\%}            \\ \hline
+        \multicolumn{1}{l}{ResNet}              & \multicolumn{1}{c}{96\%}            & \multicolumn{1}{c}{89\%}            \\ \hline
+    \end{tabular}
+    \caption{Accuracies on the data sets for both single-task and multi-task models with ResNet and EfficientNet.}
+\end{table}
+
+Training both tasks in a multi-task setting, we found that the accuracy on the citrus data set was increased, and ibean accuracy stayed the same.
+Specifically, the accuracy for the EfficientNet classifier went up to 88\% and for ResNet up to 89\%.
+The final model evaluated on the test set was the model with the highest average validation accuracy over the two tasks when trained for 25 epochs.
+All the results are displayed in table 7.1.
+The results show that even though these tasks were relatively simple and the accuracies for the single-task models were high, there was a benefit to be gained from multi-task training.
+Here we mainly focused on getting good results on a fully shared backbone, and more experiments could be done by having fewer parameters shared between the tasks.
+As an introduction to multi-task learning, the experiments show that picking the correct sampling ratio is extremely important for achieving desired results.
+In that way, the sampling ratio seems quite unlike learning rate in that picking too small learning rate may lead to slow convergence but will most likely produce results in the end.
+With the sampling ratio, it seems that the correct value needs to be found by experimentation, as a too low ratio for the citrus data gives accuracies that can be as low as 60\%.
+
+
+
+
 
 \section{Different tasks using shared representation}
 Here we will create similar models to \citep{visualPerson}, but using EfficientNet, and then we will add a shared object detector to detect the people.
