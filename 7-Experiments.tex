@@ -31,7 +31,7 @@ First, we will use two datasets that both contain images of healthy and unhealth
     \centering
     \includegraphics[width=0.8\textwidth]{imgs/citrus_beans_examples.png}
     \caption{Example images from the citrus and ibean data sets.
-        The images in the top row are from ibean and the bottom row is from the citrus data set.}
+        The images in the top row are from ibean, and the bottom row is from the citrus data set.}
 \end{figure}
 
 The ibean dataset \citep{beansdata} contains 1296 images classified into three classes; Healthy, Angular Leaf Spot, and Bean Rust.
@@ -54,7 +54,7 @@ This model is depicted in figure 7.2.
     \caption{Network architecture for two image classification tasks.}
 \end{figure}
 
-To further extend the generalizability, we will try to add a third somewhat similar classification task using the TensorFlow flowers dataset \citep{tfflowers}, which contains five different types of flowers.
+To further extend the generalizability, we will try to add a third somewhat similar classification task using the Oxford flowers dataset \citep{flowers102}, which contains five different types of flowers.
 The assumption here would be that flowers could require similar features as the previous leaf classification tasks, thus when increasing the training data with a closely related task, we could increase the generalizability even further.
 
 Multi-task and single-task models were created and evaluated for both EfficientNet and ResNet backbones.
@@ -71,16 +71,21 @@ For the final results with the ResNet classifier, the probability for the citrus
 
 \begin{table}[]
     \centering
-    \begin{tabular}{lcc}
-        \multicolumn{1}{l}{\textbf{}}           & \multicolumn{1}{l}{\textbf{ibeans}} & \multicolumn{1}{l}{\textbf{citrus}} \\ \cline{2-3}
-        \textbf{Single-task models}             & \multicolumn{1}{l}{}                & \multicolumn{1}{l}{}                \\ \hline
-        \multicolumn{1}{l}{EfficientNet ibeans} & \multicolumn{1}{c}{94\%}            & \multicolumn{1}{c}{-}               \\ \hline
-        \multicolumn{1}{l}{EfficientNet citrus} & \multicolumn{1}{c}{-}               & \multicolumn{1}{c}{84\%}            \\ \hline
-        \multicolumn{1}{l}{ResNet ibeans}       & \multicolumn{1}{c}{96\%}            & \multicolumn{1}{c}{-}               \\ \hline
-        \multicolumn{1}{l}{ResNet citrus}       & \multicolumn{1}{c}{-}               & \multicolumn{1}{c}{86\%}            \\ \hline
-        \textbf{Multi-task models}              & \multicolumn{1}{l}{}                & \multicolumn{1}{l}{}                \\ \hline
-        \multicolumn{1}{l}{EfficientNet}        & \multicolumn{1}{c}{94\%}            & \multicolumn{1}{c}{88\%}            \\ \hline
-        \multicolumn{1}{l}{ResNet}              & \multicolumn{1}{c}{96\%}            & \multicolumn{1}{c}{89\%}            \\ \hline
+    \begin{tabular}{lccl}
+        \multicolumn{1}{l}{\textbf{}}    & \multicolumn{1}{l}{\textbf{ibeans}} & \multicolumn{1}{l}{\textbf{citrus}} & \multicolumn{1}{l}{\textbf{flowers}} \\ \cline{2-4}
+        \textbf{Single-task models}      & \multicolumn{1}{l}{}                & \multicolumn{1}{l}{}                & \multicolumn{1}{c}{-}                \\ \hline
+        \multicolumn{1}{l}{EfficientNet} & \multicolumn{1}{c}{94\%}            & \multicolumn{1}{c}{-}               & \multicolumn{1}{c}{-}                \\ \hline
+        \multicolumn{1}{l}{EfficientNet} & \multicolumn{1}{c}{-}               & \multicolumn{1}{c}{84\%}            & \multicolumn{1}{c}{-}                \\ \hline
+        \multicolumn{1}{l}{EfficientNet} & \multicolumn{1}{c}{-}               & \multicolumn{1}{c}{-}               & \multicolumn{1}{c}{97\%}             \\ \hline
+        \multicolumn{1}{l}{ResNet}       & \multicolumn{1}{c}{96\%}            & \multicolumn{1}{c}{-}               & \multicolumn{1}{c}{-}                \\ \hline
+        \multicolumn{1}{l}{ResNet}       & \multicolumn{1}{c}{-}               & \multicolumn{1}{c}{86\%}            & \multicolumn{1}{c}{-}                \\ \hline
+        \multicolumn{1}{l}{ResNet}       & \multicolumn{1}{c}{-}               & \multicolumn{1}{c}{-}               & \multicolumn{1}{c}{97\%}             \\ \hline
+        \textbf{Multi-task models}       & \multicolumn{1}{l}{}                & \multicolumn{1}{l}{}                & \multicolumn{1}{c}{-}                \\ \hline
+        \multicolumn{1}{l}{EfficientNet} & \multicolumn{1}{c}{94\%}            & \multicolumn{1}{c}{88\%}            & \multicolumn{1}{c}{-}                \\ \hline
+        \multicolumn{1}{l}{ResNet}       & \multicolumn{1}{c}{96\%}            & \multicolumn{1}{c}{89\%}            & \multicolumn{1}{c}{-}                \\ \hline
+        \multicolumn{1}{l}{ResNet}       & \multicolumn{1}{c}{96\%}            & \multicolumn{1}{c}{91\%}            & \multicolumn{1}{c}{97\%}             \\ \hline
+        \multicolumn{1}{l}{ResNet}       & \multicolumn{1}{c}{96\%}            & \multicolumn{1}{c}{-}               & \multicolumn{1}{c}{97\%}             \\ \hline
+        \multicolumn{1}{l}{ResNet}       & \multicolumn{1}{c}{-}               & \multicolumn{1}{c}{85\%}            & \multicolumn{1}{c}{95\%}             \\ \hline
     \end{tabular}
     \caption{Accuracies on the data sets for both single-task and multi-task models with ResNet and EfficientNet.}
 \end{table}
@@ -95,9 +100,37 @@ As an introduction to multi-task learning, the experiments show that picking the
 In that way, the sampling ratio seems quite unlike learning rate in that picking too small learning rate may lead to slow convergence but will most likely produce results in the end.
 With the sampling ratio, it seems that the correct value needs to be found by experimentation, as a too low ratio for the citrus data gives accuracies that can be as low as 60\%.
 
+Based on the results from the multi-task results on two tasks, I tried to add the third flower recognition task.
+The flower recognition task has about 10 000 images and 102 classes, whereas the other two tasks have significantly less data and fewer classes.
+On the two task experiment, it seemed that the sampling ratio should be relative to the task difficulty.
+Here it would seem that the 102 class flower recognition should be much more difficult than the other two tasks, and I tried using sampling ratios in the range of about 0.5 to 0.7 for the flower task.
+The best result achieved with these ratios was multiple percentage points below the single-task performance on all tasks.
+However, when the flower task ratio was 0.1, it was possible to surpass the single-task results on all the tasks.
+This training approach took significantly longer to converge to results.
+The original sampling ratios converged in about five epochs to the best model, and the low flower ratio took about 50 epochs.
+I started the training using the sampling ratio of 0.1 and decided to increase it up to 0.2 by the end of the training process.
 
+When the training the model using the lower flower sampling ratio, it quickly converges close to the single-task performance on the two smaller tasks and slowly learns the flower task.
+It is hard to say exactly why such low sampling ratios seemed to work.
+Perhaps it has something to do with the difficulty of overfitting on a single task in a multi-task setting even though the small training set is seen so many times.
+So the features for the smaller data sets are not just memorizing the pixels of the training set, but rather the features that generalize well.
+Since the model already has good features for the smaller tasks and it is forced to find only a relatively minor shift in the parameters to learn the flower classification.
+And seeing as the other tasks are improved as well, it shows that some of the features of the flower data are useful in the easier tasks.
 
+From the three task models, the final model was picked as the one having the best average validation accuracy on all the tasks.
+The final model wasn't just this model directly, though.
+To get the final model, I froze all the shared weights and then did fine-tuning similar to what one might do when training a transfer learning classifier.
+Having the model train on all the tasks using the frozen representations seemed to be useful.
+The fine-tuning may be a good idea since, while training, the shared features are constantly shifting, and when one task is trained, it shifts the weights according to its gradients.
+The other tasks won't have adjusted to the new, slightly shifted shared weights, which can lead to incorrect classifications.
+When the shared weights are frozen, each of the task heads gets to learn the exact mapping from the shared representation to the outputs without them shifting during training.
 
+All in all, these experiments validated the assumptions made about the multi-task training quite well.
+Still, finding the sampling ratio is very laborious and not very intuitive.
+This is why the results for the citrus and flower pair is a bit lower, since I spent less time finding the optimal ratios and mainly verified that it works as expected.
+Perhaps it could be automated to get somewhat decent indications of what should be tried.
+The problem, in the end, is that even if some kind of grid search could be applied, it would take very long to predict the final metrics of the models, and as seen in the discrepancy of the flower ratios, it could take many epochs to get the final results.
+Perhaps some kind of dynamic sampling ratio, where the task lowest relative to the expected accuracy is sampled more, could be beneficial.
 
 \section{Different tasks using shared representation}
 Here we will create similar models to \citep{visualPerson}, but using EfficientNet, and then we will add a shared object detector to detect the people.
