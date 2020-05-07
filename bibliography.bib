@@ -1044,8 +1044,8 @@ file = {Micikevicius et al. - 2018 - Mixed Precision Training.pdf:/home/konstaku
 	title = "Flowers",
 	month = "jan",
 	year = "2019",
-	url = "http://download.tensorflow.org/example_images/flower_photos.tgz" 
-	}
+	url = "http://download.tensorflow.org/example_images/flower_photos.tgz"
+}
 
 @article{citrusdata,
 	title={A citrus fruits and leaves dataset for detection and classification of
@@ -1106,9 +1106,167 @@ file = {Zhao et al. - 2019 - A CNN-RNN Architecture for Multi-Label Weather Rec.
 }
 
 @InProceedings{flowers102,
-  author       = "Maria-Elena Nilsback and Andrew Zisserman",
-  title        = "Automated Flower Classification over a Large Number of Classes",
-  booktitle    = "Indian Conference on Computer Vision, Graphics and Image Processing",
-  month        = "Dec",
-  year         = "2008",
+	author       = "Maria-Elena Nilsback and Andrew Zisserman",
+	title        = "Automated Flower Classification over a Large Number of Classes",
+	booktitle    = "Indian Conference on Computer Vision, Graphics and Image Processing",
+	month        = "Dec",
+	year         = "2008",
+}
+
+@article{self_attention_multi_task_object,
+title = {{SpotNet}: {Self}-{Attention} {Multi}-{Task} {Network} for {Object} {Detection}},
+shorttitle = {{SpotNet}},
+url = {http://arxiv.org/abs/2002.05540},
+abstract = {Humans are very good at directing their visual attention toward relevant areas when they search for different types of objects. For instance, when we search for cars, we will look at the streets, not at the top of buildings. The motivation of this paper is to train a network to do the same via a multi-task learning approach. To train visual attention, we produce foreground/background segmentation labels in a semi-supervised way, using background subtraction or optical ﬂow. Using these labels, we train an object detection model to produce foreground/background segmentation maps as well as bounding boxes while sharing most model parameters. We use those segmentation maps inside the network as a self-attention mechanism to weight the feature map used to produce the bounding boxes, decreasing the signal of non-relevant areas. We show that by using this method, we obtain a signiﬁcant mAP improvement on two trafﬁc surveillance datasets, with state-of-the-art results on both UA-DETRAC and UAVDT.},
+language = {en},
+urldate = {2020-05-06},
+journal = {arXiv:2002.05540 [cs]},
+author = {Perreault, Hughes and Bilodeau, Guillaume-Alexandre and Saunier, Nicolas and Héritier, Maguelonne},
+month = feb,
+year = {2020},
+note = {arXiv: 2002.05540},
+keywords = {Computer Science - Computer Vision and Pattern Recognition},
+file = {Perreault et al. - 2020 - SpotNet Self-Attention Multi-Task Network for Obj.pdf:/home/konstaku/Zotero/storage/6HYTMKUK/Perreault et al. - 2020 - SpotNet Self-Attention Multi-Task Network for Obj.pdf:application/pdf}
+}
+
+@inproceedings{self_supervised_object_detection,
+address = {Long Beach, CA, USA},
+title = {Multi-{Task} {Self}-{Supervised} {Object} {Detection} via {Recycling} of {Bounding} {Box} {Annotations}},
+isbn = {978-1-72813-293-8},
+url = {https://ieeexplore.ieee.org/document/8954013/},
+doi = {10.1109/CVPR.2019.00512},
+abstract = {In spite of recent enormous success of deep convolutional networks in object detection, they require a large amount of bounding box annotations, which are often timeconsuming and error-prone to obtain. To make better use of given limited labels, we propose a novel object detection approach that takes advantage of both multi-task learning (MTL) and self-supervised learning (SSL). We propose a set of auxiliary tasks that help improve the accuracy of object detection. They create their own labels by recycling the bounding box labels (i.e. annotations of the main task) in an SSL manner, and are jointly trained with the object detection model in an MTL way. Our approach is integrable with any region proposal based detection models. We empirically validate that our approach effectively improves detection performance on various architectures and datasets. We test two state-of-the-art region proposal object detectors, including Faster R-CNN [39] and R-FCN [10], with three CNN backbones of ResNet-101 [22], InceptionResNet-v2 [45], and MobileNet [23] on two benchmark datasets of PASCAL VOC [14] and COCO [30].},
+language = {en},
+urldate = {2020-05-06},
+booktitle = {2019 {IEEE}/{CVF} {Conference} on {Computer} {Vision} and {Pattern} {Recognition} ({CVPR})},
+publisher = {IEEE},
+author = {Lee, Wonhee and Na, Joonil and Kim, Gunhee},
+month = jun,
+year = {2019},
+pages = {4979--4988},
+file = {Lee et al. - 2019 - Multi-Task Self-Supervised Object Detection via Re.pdf:/home/konstaku/Zotero/storage/LZ3IF86I/Lee et al. - 2019 - Multi-Task Self-Supervised Object Detection via Re.pdf:application/pdf}
+}
+
+@incollection{clothing_attributes_data,
+address = {Berlin, Heidelberg},
+title = {Describing {Clothing} by {Semantic} {Attributes}},
+volume = {7574},
+isbn = {978-3-642-33711-6 978-3-642-33712-3},
+url = {http://link.springer.com/10.1007/978-3-642-33712-3_44},
+abstract = {Describing clothing appearance with semantic attributes is an appealing technique for many important applications. In this paper, we propose a fully automated system that is capable of generating a list of nameable attributes for clothes on human body in unconstrained images. We extract low-level features in a pose-adaptive manner, and combine complementary features for learning attribute classiﬁers. Mutual dependencies between the attributes are then explored by a Conditional Random Field to further improve the predictions from independent classiﬁers. We validate the performance of our system on a challenging clothing attribute dataset, and introduce a novel application of dressing style analysis that utilizes the semantic attributes produced by our system.},
+language = {en},
+urldate = {2020-05-06},
+booktitle = {Computer {Vision} – {ECCV} 2012},
+publisher = {Springer Berlin Heidelberg},
+author = {Chen, Huizhong and Gallagher, Andrew and Girod, Bernd},
+editor = {Hutchison, David and Kanade, Takeo and Kittler, Josef and Kleinberg, Jon M. and Mattern, Friedemann and Mitchell, John C. and Naor, Moni and Nierstrasz, Oscar and Pandu Rangan, C. and Steffen, Bernhard and Sudan, Madhu and Terzopoulos, Demetri and Tygar, Doug and Vardi, Moshe Y. and Weikum, Gerhard and Fitzgibbon, Andrew and Lazebnik, Svetlana and Perona, Pietro and Sato, Yoichi and Schmid, Cordelia},
+year = {2012},
+doi = {10.1007/978-3-642-33712-3_44},
+note = {Series Title: Lecture Notes in Computer Science},
+pages = {609--623},
+file = {Chen et al. - 2012 - Describing Clothing by Semantic Attributes.pdf:/home/konstaku/Zotero/storage/6W5AP33A/Chen et al. - 2012 - Describing Clothing by Semantic Attributes.pdf:application/pdf}
+}
+
+@article{multi_task_attributes,
+title = {Multi-task {CNN} {Model} for {Attribute} {Prediction}},
+volume = {17},
+issn = {1520-9210, 1941-0077},
+url = {http://arxiv.org/abs/1601.00400},
+doi = {10.1109/TMM.2015.2477680},
+abstract = {This paper proposes a joint multi-task learning algorithm to better predict attributes in images using deep convolutional neural networks (CNN). We consider learning binary semantic attributes through a multi-task CNN model, where each CNN will predict one binary attribute. The multitask learning allows CNN models to simultaneously share visual knowledge among different attribute categories. Each CNN will generate attribute-speciﬁc feature representations, and then we apply multi-task learning on the features to predict their attributes. In our multi-task framework, we propose a method to decompose the overall model’s parameters into a latent task matrix and combination matrix. Furthermore, under-sampled classiﬁers can leverage shared statistics from other classiﬁers to improve their performance. Natural grouping of attributes is applied such that attributes in the same group are encouraged to share more knowledge. Meanwhile, attributes in different groups will generally compete with each other, and consequently share less knowledge. We show the effectiveness of our method on two popular attribute datasets.},
+language = {en},
+number = {11},
+urldate = {2020-05-06},
+journal = {IEEE Transactions on Multimedia},
+author = {Abdulnabi, Abrar H. and Wang, Gang and Lu, Jiwen and Jia, Kui},
+month = nov,
+year = {2015},
+note = {arXiv: 1601.00400},
+keywords = {Computer Science - Computer Vision and Pattern Recognition},
+pages = {1949--1959},
+file = {Abdulnabi et al. - 2015 - Multi-task CNN Model for Attribute Prediction.pdf:/home/konstaku/Zotero/storage/8QMCVZW5/Abdulnabi et al. - 2015 - Multi-task CNN Model for Attribute Prediction.pdf:application/pdf}
+}
+
+@article{cross_dataset_training,
+title = {Cross-dataset {Training} for {Class} {Increasing} {Object} {Detection}},
+url = {http://arxiv.org/abs/2001.04621},
+abstract = {We present a conceptually simple, ﬂexible and general framework for cross-dataset training in object detection. Given two or more already labeled datasets that target for different object classes, cross-dataset training aims to detect the union of the different classes, so that we do not have to label all the classes for all the datasets. By crossdataset training, existing datasets can be utilized to detect the merged object classes with a single model. Further more, in industrial applications, the object classes usually increase on demand. So when adding new classes, it is quite time-consuming if we label the new classes on all the existing datasets. While using cross-dataset training, we only need to label the new classes on the new dataset. We experiment on PASCAL VOC, COCO, WIDER FACE and WIDER Pedestrian with both solo and cross-dataset settings. Results show that our cross-dataset pipeline can achieve similar impressive performance simultaneously on these datasets compared with training independently.},
+language = {en},
+urldate = {2020-05-06},
+journal = {arXiv:2001.04621 [cs]},
+author = {Yao, Yongqiang and Wang, Yan and Guo, Yu and Lin, Jiaojiao and Qin, Hongwei and Yan, Junjie},
+month = jan,
+year = {2020},
+note = {arXiv: 2001.04621},
+keywords = {Computer Science - Computer Vision and Pattern Recognition},
+file = {Yao et al. - 2020 - Cross-dataset Training for Class Increasing Object.pdf:/home/konstaku/Zotero/storage/V6YRDQ9B/Yao et al. - 2020 - Cross-dataset Training for Class Increasing Object.pdf:application/pdf}
+}
+
+@inproceedings{viola-jones,
+address = {Kauai, HI, USA},
+title = {Rapid object detection using a boosted cascade of simple features},
+volume = {1},
+isbn = {978-0-7695-1272-3},
+url = {http://ieeexplore.ieee.org/document/990517/},
+doi = {10.1109/CVPR.2001.990517},
+abstract = {This paper describes a machine learning approach for visual object detection which is capable of processing images extremely rapidly and achieving high detection rates. This work is distinguished by three key contributions. The ﬁrst is the introduction of a new image representation called the “Integral Image” which allows the features used by our detector to be computed very quickly. The second is a learning algorithm, based on AdaBoost, which selects a small number of critical visual features from a larger set and yields extremely efﬁcient classiﬁers[6]. The third contribution is a method for combining increasingly more complex classiﬁers in a “cascade” which allows background regions of the image to be quickly discarded while spending more computation on promising object-like regions. The cascade can be viewed as an object speciﬁc focus-of-attention mechanism which unlike previous approaches provides statistical guarantees that discarded regions are unlikely to contain the object of interest. In the domain of face detection the system yields detection rates comparable to the best previous systems. Used in real-time applications, the detector runs at 15 frames per second without resorting to image differencing or skin color detection.},
+language = {en},
+urldate = {2020-05-06},
+booktitle = {Proceedings of the 2001 {IEEE} {Computer} {Society} {Conference} on {Computer} {Vision} and {Pattern} {Recognition}. {CVPR} 2001},
+publisher = {IEEE Comput. Soc},
+author = {Viola, P. and Jones, M.},
+year = {2001},
+pages = {I--511--I--518},
+file = {Viola and Jones - 2001 - Rapid object detection using a boosted cascade of .pdf:/home/konstaku/Zotero/storage/TYMPXNBF/Viola and Jones - 2001 - Rapid object detection using a boosted cascade of .pdf:application/pdf}
+}
+
+@inproceedings{hogs,
+	address = {San Diego, CA, USA},
+	title = {Histograms of {Oriented} {Gradients} for {Human} {Detection}},
+	volume = {1},
+	isbn = {978-0-7695-2372-9},
+	url = {http://ieeexplore.ieee.org/document/1467360/},
+	doi = {10.1109/CVPR.2005.177},
+	abstract = {We study the question of feature sets for robust visual object recognition, adopting linear SVM based human detection as a test case. After reviewing existing edge and gradient based descriptors, we show experimentally that grids of Histograms of Oriented Gradient (HOG) descriptors signiﬁcantly outperform existing feature sets for human detection. We study the inﬂuence of each stage of the computation on performance, concluding that ﬁne-scale gradients, ﬁne orientation binning, relatively coarse spatial binning, and high-quality local contrast normalization in overlapping descriptor blocks are all important for good results. The new approach gives near-perfect separation on the original MIT pedestrian database, so we introduce a more challenging dataset containing over 1800 annotated human images with a large range of pose variations and backgrounds.},
+	language = {en},
+	urldate = {2020-05-06},
+	booktitle = {2005 {IEEE} {Computer} {Society} {Conference} on {Computer} {Vision} and {Pattern} {Recognition} ({CVPR}'05)},
+	publisher = {IEEE},
+	author = {Dalal, N. and Triggs, B.},
+	year = {2005},
+	pages = {886--893},
+	file = {Dalal and Triggs - 2005 - Histograms of Oriented Gradients for Human Detecti.pdf:/home/konstaku/Zotero/storage/HKE72EBQ/Dalal and Triggs - 2005 - Histograms of Oriented Gradients for Human Detecti.pdf:application/pdf}
+}
+
+
+@article{faster-rcnn,
+title = {Faster {R}-{CNN}: {Towards} {Real}-{Time} {Object} {Detection} with {Region} {Proposal} {Networks}},
+shorttitle = {Faster {R}-{CNN}},
+url = {http://arxiv.org/abs/1506.01497},
+abstract = {State-of-the-art object detection networks depend on region proposal algorithms to hypothesize object locations. Advances like SPPnet [1] and Fast R-CNN [2] have reduced the running time of these detection networks, exposing region proposal computation as a bottleneck. In this work, we introduce a Region Proposal Network (RPN) that shares full-image convolutional features with the detection network, thus enabling nearly cost-free region proposals. An RPN is a fully convolutional network that simultaneously predicts object bounds and objectness scores at each position. The RPN is trained end-to-end to generate high-quality region proposals, which are used by Fast R-CNN for detection. We further merge RPN and Fast R-CNN into a single network by sharing their convolutional features—using the recently popular terminology of neural networks with “attention” mechanisms, the RPN component tells the uniﬁed network where to look. For the very deep VGG-16 model [3], our detection system has a frame rate of 5fps (including all steps) on a GPU, while achieving state-of-the-art object detection accuracy on PASCAL VOC 2007, 2012, and MS COCO datasets with only 300 proposals per image. In ILSVRC and COCO 2015 competitions, Faster R-CNN and RPN are the foundations of the 1st-place winning entries in several tracks. Code has been made publicly available.},
+language = {en},
+urldate = {2020-05-06},
+journal = {arXiv:1506.01497 [cs]},
+author = {Ren, Shaoqing and He, Kaiming and Girshick, Ross and Sun, Jian},
+month = jan,
+year = {2016},
+note = {arXiv: 1506.01497},
+keywords = {Computer Science - Computer Vision and Pattern Recognition},
+file = {Ren et al. - 2016 - Faster R-CNN Towards Real-Time Object Detection w.pdf:/home/konstaku/Zotero/storage/LXB5TZGG/Ren et al. - 2016 - Faster R-CNN Towards Real-Time Object Detection w.pdf:application/pdf}
+}
+
+@article{yolov4,
+title = {{YOLOv4}: {Optimal} {Speed} and {Accuracy} of {Object} {Detection}},
+shorttitle = {{YOLOv4}},
+url = {http://arxiv.org/abs/2004.10934},
+abstract = {There are a huge number of features which are said to improve Convolutional Neural Network (CNN) accuracy. Practical testing of combinations of such features on large datasets, and theoretical justiﬁcation of the result, is required. Some features operate on certain models exclusively and for certain problems exclusively, or only for small-scale datasets; while some features, such as batch-normalization and residual-connections, are applicable to the majority of models, tasks, and datasets. We assume that such universal features include Weighted-Residual-Connections (WRC), Cross-Stage-Partial-connections (CSP), Cross mini-Batch Normalization (CmBN), Self-adversarial-training (SAT) and Mish-activation. We use new features: WRC, CSP, CmBN, SAT, Mish activation, Mosaic data augmentation, CmBN, DropBlock regularization, and CIoU loss, and combine some of them to achieve state-of-the-art results: 43.5\% AP (65.7\% AP50) for the MS COCO dataset at a realtime speed of ∼65 FPS on Tesla V100. Source code is at https://github.com/AlexeyAB/darknet.},
+language = {en},
+urldate = {2020-05-06},
+journal = {arXiv:2004.10934 [cs, eess]},
+author = {Bochkovskiy, Alexey and Wang, Chien-Yao and Liao, Hong-Yuan Mark},
+month = apr,
+year = {2020},
+note = {arXiv: 2004.10934},
+keywords = {Computer Science - Computer Vision and Pattern Recognition, Electrical Engineering and Systems Science - Image and Video Processing},
+file = {Bochkovskiy et al. - 2020 - YOLOv4 Optimal Speed and Accuracy of Object Detec.pdf:/home/konstaku/Zotero/storage/YFN9D2A4/Bochkovskiy et al. - 2020 - YOLOv4 Optimal Speed and Accuracy of Object Detec.pdf:application/pdf}
 }

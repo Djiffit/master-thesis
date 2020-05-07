@@ -1,2 +1,11 @@
 \chapter{Object detection}
-Based on what is going to be detected, maybe text, cars, people?
+Object detection is another prevalent task in the domain of computer vision.
+An object detection task is one where the goal is to localize one or many different classes of objects using bounding boxes.
+Before current deep learning-based techniques, a popular way to solve the problem was to use handcrafted features like in image classification and to use a sliding window over the image for localizing objects.
+These previous techniques include, for example, the Viola-Jones detector \citep{viola-jones}, which uses a sliding window and AdaBoost for features, and another popular method was using histograms of oriented gradients \citep{hogs} to find where the boundaries of objects exist.
+These days there exist various ways of using the feature maps of neural networks for learning the filters to get much better results.
+The various architectures can be split into two approaches, one-stage detectors, and two-stage detectors.
+The two-stage detectors require region proposals, based on which the object detection is done.
+An often-used family of these kinds of methods is the R-CNN classifiers, for example, the faster R-CNN \citep{faster-rcnn}.
+In the one-stage detectors, features from various layers of the classifier are used to get the predictions.
+For example, the YOLOv4 \citep{yolov4} is the 4th iteration of the single-stage YOLO family of detectors that are very popular due to the good balance between fast speed and good accuracy.
