@@ -1,8 +1,10 @@
+
 \chapter{Experiments}
 As we have covered, the effect of a Multi-Task problem setting is challenging to quantify theoretically without experiments.
-Here we will take various datasets for object recognition, object detection, and pose estimation and see what the effects of training them in a Multi-Task setting are.
+Here we will take various datasets for object recognition, object detection, and pose estimation and see what the effects of training them in a multi-task setting are.
 The metrics we are mainly interested in are the reduction in model size, inference time, and model accuracy on the different tasks compared to the single-task counterparts.
-We will also attempt to find out how much more difficult the training process and tuning various hyperparameters are when compared to the single-task problem.
+We will also address the difficulty of the multi-task training process when compared to the single-task problem.
+These issues will include trying different sharing architectures and searching for the new hyperparameters that provide the best possible results.
 The experiments will focus on utilizing the previously presented EfficientNet and ResNet in various multi-task experiments to see how they compare.
 The actual models will be EfficientNet-B3 and ResNet-101 since they require a roughly equivalent amount of memory to train.
 
@@ -19,6 +21,50 @@ For the Multi-task training process, we will sample the data sets for each task 
 The loss function for every task has the same weight multiplier of one.
 The batch size for each task will be maximized to fit within the memory requirement, giving a batch size of 32.
 For weight optimizer, we will use SGD with a cyclic learning rate scheduler \citep{cycliclr}.
+
+\section{Training loop}
+
+
+The base training loop for a multi-task training problem is relatively similar to that of a single-task model.
+Algorithm 1 shows the alterations that are needed for the training loop.
+The main difference is that instead of a single data loader, batch size, and loss function, there needs to be one of each for each task that is trained.
+Besides these, some values for the sampling ratios and possibly some values for loss weights are needed.
+The loss weights can be omitted if there is no need to diverge from having a constant 1 factor for each of the losses.
+One completely new part of the loop is the sampling of the task according to the ratios provided.
+All the parts of the standard training loop can be chosen from the provided lists of parameters, and the training is as in a single-task model.
+
+\begin{figure}[ht]
+    \centering
+    \begin{minipage}{.95\linewidth}
+        \begin{algorithm}[H]
+            \caption{Basic multi-task training loop}
+            \KwIn{Epochs $e$, Data loaders $data\_loaders$, Sample probabilities $\alpha$, Batch sizes $B$, Training sets $X$, Model $model$, Loss functions $loss\_funcs$, Loss weights $w$}
+            $batches \leftarrow \sum_i{ \dfrac{|X_i| \alpha_i}{B_i}}$
+
+            \For{$epoch \in \{1,\dots,e\}$} {
+                \For{$i \in \{1,\dots,batches\}$}
+                {
+
+                    {task\_id $\leftarrow$ sample($\alpha$)}
+
+                        {(x, y) $\leftarrow$ next(data\_loaders[task\_id])}
+
+                        {y\_hat $\leftarrow$ {model(x, task\_id)}}
+
+                        {loss $\leftarrow$ loss\_funcs[task\_id](y, y\_hat) $\times$ $w[task\_id]$}
+
+                        {loss.backward()}
+                }
+            }
+        \end{algorithm}
+    \end{minipage}
+\end{figure}
+
+
+The provided algorithm assumes that at a time, we are interested only in the labels of a single task per image.
+If there is a need to train multiple tasks from a single input, then the minor adjustment that is needed is to sum the losses of multiple tasks that are backpropagated.
+Otherwise, the training loop remains the same, even if multiple tasks are optimized from a single batch.
+
 
 \section{Mixed precision training}
 
@@ -40,6 +86,7 @@ The citrus leaves dataset \citep{citrusdata}, on the other hand, contains 759 ex
 This set is quite tricky as it contains 609 images of leaves and only 150 images of actual citrus fruits, and some of the classes have very few images.
 Some examples from the data sets are in Figure 7.1.
 For the training split, the data will be split in 65/10/25 ratio for the training, validation, and test sets, respectively.
+The goal of this kind of split is to have some relatively reliable test results by having proportionally larger than regular test set since there is so little data.
 Both of these datasets have a relatively small amount of images available for training, so it should serve as a good basis for trying to train multi-task classifiers and give a glimpse into the adjustments that need to be made when training multi-task classifiers.
 The goal for this experiment is to get familiar with the basics of how to create the multi-task models, and how to do the actual changes to the training loop in the Pytorch code to accommodate for the multi-task training.
 
@@ -54,7 +101,7 @@ This model is depicted in figure 7.2.
     \caption{Network architecture for two image classification tasks.}
 \end{figure}
 
-To further extend the generalizability, we will try to add a third somewhat similar classification task using the Oxford flowers dataset \citep{flowers102}, which contains 102 different flower species.
+To further extend the generalizability, we will try to add a third somewhat similar classification task using the TensorFlow flowers dataset \citep{tfflowers}, which contains five different types of flowers.
 The assumption here would be that flowers could require similar features as the previous leaf classification tasks, thus when increasing the training data with a closely related task, we could increase the generalizability even further.
 
 Multi-task and single-task models were created and evaluated for both EfficientNet and ResNet backbones.
@@ -66,8 +113,8 @@ If the sampling is done by going through each of the datasets entirely one at a 
 If the ratio is left as proportional to the data set size, the multi-task model ends up only learning to classify the ibean data set, and the accuracy for the citrus data will stay low.
 After some experimentation, the suitable probabilities for achieving good results with the EfficientNet multi-task classifier were 0.66 for the citrus and 0.33 for the ibean data.
 Interestingly, the same ratio does not directly transfer to the ResNet model.
-When using the same ratio as with the EfficientNet, the model still seems to converge only on a good result for the ibean data set.
-For the final results with the ResNet classifier, the probability for the citrus dataset needed to be raised to 0.73.
+When we used the same ratio as with the EfficientNet, the model still seems to converge only on a good result for the ibean data set.
+For the final results with the ResNet classifier, the sampling probability for the citrus dataset needed to be raised, and the value we ended up getting the best results with was 0.73.
 
 \begin{table}[]
     \centering
@@ -100,10 +147,10 @@ As an introduction to multi-task learning, the experiments show that picking the
 In that way, the sampling ratio seems quite unlike learning rate in that picking too small learning rate may lead to slow convergence but will most likely produce results in the end.
 With the sampling ratio, it seems that the correct value needs to be found by experimentation, as a too low ratio for the citrus data gives accuracies that can be as low as 60\%.
 
-Based on the results from the multi-task results on two tasks, I tried to add the third flower recognition task.
+Based on the results from the multi-task results on two tasks, we tried to add the third flower recognition task.
 The flower recognition task has about 10 000 images and 102 classes, whereas the other two tasks have significantly less data and fewer classes.
 On the two task experiment, it seemed that the sampling ratio should be relative to the task difficulty.
-Here it would seem that the 102 class flower recognition should be much more difficult than the other two tasks, and I tried using sampling ratios in the range of about 0.5 to 0.7 for the flower task.
+Here it would seem that the 102 class flower recognition should be much more difficult than the other two tasks, and we tried using sampling ratios in the range of about 0.5 to 0.7 for the flower task.
 The best result achieved with these ratios was multiple percentage points below the single-task performance on all tasks.
 However, when the flower task ratio was 0.1, it was possible to surpass the single-task results on all the tasks.
 This training approach took significantly longer to converge to results.
@@ -119,7 +166,7 @@ And seeing as the other tasks are improved as well, it shows that some of the fe
 
 From the three task models, the final model was picked as the one having the best average validation accuracy on all the tasks.
 The final model wasn't just this model directly, though.
-To get the final model, I froze all the shared weights and then did fine-tuning similar to what one might do when training a transfer learning classifier.
+To get the final model, we froze all the shared weights and then did fine-tuning similar to what one might do when training a transfer learning classifier.
 Having the model train on all the tasks using the frozen representations seemed to be useful.
 The fine-tuning may be a good idea since, while training, the shared features are constantly shifting, and when one task is trained, it shifts the weights according to its gradients.
 The other tasks won't have adjusted to the new, slightly shifted shared weights, which can lead to incorrect classifications.
@@ -127,7 +174,7 @@ When the shared weights are frozen, each of the task heads gets to learn the exa
 
 All in all, these experiments validated the assumptions made about the multi-task training quite well.
 Still, finding the sampling ratio is very laborious and not very intuitive.
-This is why the results for the citrus and flower pair is a bit lower, since I spent less time finding the optimal ratios and mainly verified that it works as expected.
+This is why the results for the citrus and flower pair are worse since we spent less time finding the optimal ratios and mainly verified that it roughly works as expected.
 Perhaps it could be automated to get somewhat decent indications of what should be tried.
 The problem, in the end, is that even if some kind of grid search could be applied, it would take very long to predict the final metrics of the models, and as seen in the discrepancy of the flower ratios, it could take many epochs to get the final results.
 Perhaps some kind of dynamic sampling ratio, where the task lowest relative to the expected accuracy is sampled more, could be beneficial.
@@ -137,3 +184,4 @@ Here we will create similar models to \citep{visualPerson}, but using EfficientN
 
 \section{Multiple object detectors}
 Train multiple object detector using shared representations
+
