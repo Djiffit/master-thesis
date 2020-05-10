@@ -1,7 +1,6 @@
-
 \chapter{Experiments}
-As we have covered, the effect of a Multi-Task problem setting is challenging to quantify theoretically without experiments.
-Here we will take various datasets for object recognition, object detection, and pose estimation and see what the effects of training them in a multi-task setting are.
+As we have covered, the effect of a Multi-Task problem setting is challenging to quantify theoretically without experiments. 
+Here we will take various datasets for object recognition, object detection, and pose estimation and see what the effects of training them in a multi-task setting are. 
 The metrics we are mainly interested in are the reduction in model size, inference time, and model accuracy on the different tasks compared to the single-task counterparts.
 We will also address the difficulty of the multi-task training process when compared to the single-task problem.
 These issues will include trying different sharing architectures and searching for the new hyperparameters that provide the best possible results.
@@ -9,22 +8,20 @@ The experiments will focus on utilizing the previously presented EfficientNet an
 The actual models will be EfficientNet-B3 and ResNet-101 since they require a roughly equivalent amount of memory to train.
 
 \section{Training setup}
-All the experiments use the same computer, and the model training is done using an Nvidia GeForce RTX 2070 GPU that has 8 GB of GDDR6 VRAM \citep{nvidiaRTX}.
-Thus all the models will have to be small enough to train on this relatively small amount of memory.
-The deep learning framework that is used to implement the models in all the experiments will be PyTorch \citep{pytorch} that is used inside Docker \citep{docker} containers.
-Also, Nvidia Apex \citep{Apex} will be used to train models using mixed precision floating-point numbers to reduce the size of the models and to increase the speed of floating-point operations.
+All the experiments use the same computer, and the model training is done using an Nvidia GeForce RTX 2070 GPU that has 8 GB of GDDR6 VRAM \citep{nvidiaRTX}. 
+Thus all the models will have to be small enough to train on this relatively small amount of memory. 
+The deep learning framework that is used to implement the models in all the experiments will be PyTorch \citep{pytorch} that is used inside Docker \citep{docker} containers. 
+Also, Nvidia Apex \citep{Apex} will be used to train models using mixed precision floating-point numbers to reduce the size of the models and to increase the speed of floating-point operations. 
 The model weights will be 16-bit floating-point numbers where it is safe to use the lower precision representation.
 Besides the performance improvement, using lower precision floating-points can act as a regularizer as the model can't overfit on the high precision values and thus improve model accuracy as well \citep{mixedTraining}.
 
-As a default for each task, we will use the following default procedures unless otherwise stated.
-For the Multi-task training process, we will sample the data sets for each task with a probability respective to its size.
+As a default for each task, we will use the following default procedures unless otherwise stated. 
+For the Multi-task training process, we will sample the data sets for each task with a probability respective to its size. 
 The loss function for every task has the same weight multiplier of one.
 The batch size for each task will be maximized to fit within the memory requirement, giving a batch size of 32.
 For weight optimizer, we will use SGD with a cyclic learning rate scheduler \citep{cycliclr}.
 
 \section{Training loop}
-
-
 The base training loop for a multi-task training problem is relatively similar to that of a single-task model.
 Algorithm 1 shows the alterations that are needed for the training loop.
 The main difference is that instead of a single data loader, batch size, and loss function, there needs to be one of each for each task that is trained.
@@ -60,16 +57,14 @@ All the parts of the standard training loop can be chosen from the provided list
     \end{minipage}
 \end{figure}
 
-
 The provided algorithm assumes that at a time, we are interested only in the labels of a single task per image.
 If there is a need to train multiple tasks from a single input, then the minor adjustment that is needed is to sum the losses of multiple tasks that are backpropagated.
 Otherwise, the training loop remains the same, even if multiple tasks are optimized from a single batch.
 
-
 \section{Mixed precision training}
 
 \section{Basic multiple object classification tasks}
-As we have previously covered, fine-tuning an ImageNet classifier often produces good results.
+As we have previously covered, fine-tuning an ImageNet classifier often produces good results. 
 Here we will take a pre-trained ImageNet backbone and learn multiple object classification tasks using the shared image embedding.
 First, we will use two datasets that both contain images of healthy and unhealthy plants.
 
@@ -77,7 +72,7 @@ First, we will use two datasets that both contain images of healthy and unhealth
     \centering
     \includegraphics[width=0.8\textwidth]{imgs/citrus_beans_examples.png}
     \caption{Example images from the citrus and ibean data sets.
-        The images in the top row are from ibean, and the bottom row is from the citrus data set.}
+    The images in the top row are from ibean, and the bottom row is from the citrus data set.}
 \end{figure}
 
 The ibean dataset \citep{beansdata} contains 1296 images classified into three classes; Healthy, Angular Leaf Spot, and Bean Rust.
@@ -95,13 +90,13 @@ But as the tasks are quite simple, the benefits can be relatively small as the l
 In the case of the citrus data set, learning to classify the citrus fruits could prove quite difficult, and for that, the bean leaves likely won't be of much help.
 This model is depicted in figure 7.2.
 
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=0.8\textwidth]{imgs/object_classification_architecture.png}
-    \caption{Network architecture for two image classification tasks.}
+\begin{figure}[h!] 
+\centering 
+\includegraphics[width=0.8\textwidth]{imgs/object_classification_architecture.png}
+\caption{Network architecture for two image classification tasks.}
 \end{figure}
 
-To further extend the generalizability, we will try to add a third somewhat similar classification task using the TensorFlow flowers dataset \citep{tfflowers}, which contains five different types of flowers.
+To further extend the generalizability, we will try to add a third somewhat similar classification task using the TensorFlow flowers dataset \citep{tfflowers}, which contains five different types of flowers. 
 The assumption here would be that flowers could require similar features as the previous leaf classification tasks, thus when increasing the training data with a closely related task, we could increase the generalizability even further.
 
 Multi-task and single-task models were created and evaluated for both EfficientNet and ResNet backbones.
@@ -112,7 +107,7 @@ The sampling was done with a random number to pick which data loader would be us
 If the sampling is done by going through each of the datasets entirely one at a time, the model ends up at a point where only one of the tasks has good accuracy.
 If the ratio is left as proportional to the data set size, the multi-task model ends up only learning to classify the ibean data set, and the accuracy for the citrus data will stay low.
 After some experimentation, the suitable probabilities for achieving good results with the EfficientNet multi-task classifier were 0.66 for the citrus and 0.33 for the ibean data.
-Interestingly, the same ratio does not directly transfer to the ResNet model.
+Interestingly, the same ratio does not directly transfer to the ResNet model. 
 When we used the same ratio as with the EfficientNet, the model still seems to converge only on a good result for the ibean data set.
 For the final results with the ResNet classifier, the sampling probability for the citrus dataset needed to be raised, and the value we ended up getting the best results with was 0.73.
 
@@ -178,6 +173,17 @@ This is why the results for the citrus and flower pair are worse since we spent 
 Perhaps it could be automated to get somewhat decent indications of what should be tried.
 The problem, in the end, is that even if some kind of grid search could be applied, it would take very long to predict the final metrics of the models, and as seen in the discrepancy of the flower ratios, it could take many epochs to get the final results.
 Perhaps some kind of dynamic sampling ratio, where the task lowest relative to the expected accuracy is sampled more, could be beneficial.
+
+\section{Multi-label classification}
+For multi-label prediction, there can exist a problem where not all classes are restricted to only their data sets.
+For example, a photo of a dog taken outdoors can contain other classes such as a person, sky, or sea.
+These may not be labeled for that set but could be classes of interest.
+If we train models on incorrect labels, it can lead to unlearning as the model may make correct predictions but is punished due to the absence of the labels for the images.
+If, however, the problem is posed as a multi-task binary classification problem over several classes, each task can have its own distinct data set with labels for only the single task.
+Then upon training on an image containing other classes, there is no inverse learning as the image will not try to learn the other classes if there exists no certainty of that label.
+
+We will run some experiments on a 14 class multi-label prediction with some overlap between the classes in the images.
+The goal here would be to see how what kind of a difference there would be in training with a single-task, multi-task, and a typical multi-label model with a data set containing overlapping classes.
 
 \section{Different tasks using shared representation}
 Here we will create similar models to \citep{visualPerson}, but using EfficientNet, and then we will add a shared object detector to detect the people.
