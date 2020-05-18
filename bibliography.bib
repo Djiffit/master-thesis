@@ -1270,3 +1270,78 @@ note = {arXiv: 2004.10934},
 keywords = {Computer Science - Computer Vision and Pattern Recognition, Electrical Engineering and Systems Science - Image and Video Processing},
 file = {Bochkovskiy et al. - 2020 - YOLOv4 Optimal Speed and Accuracy of Object Detec.pdf:/home/konstaku/Zotero/storage/YFN9D2A4/Bochkovskiy et al. - 2020 - YOLOv4 Optimal Speed and Accuracy of Object Detec.pdf:application/pdf}
 }
+
+
+@inproceedings{self_supervised_detection,
+	location = {Long Beach, {CA}, {USA}},
+	title = {Multi-Task Self-Supervised Object Detection via Recycling of Bounding Box Annotations},
+	isbn = {978-1-72813-293-8},
+	url = {https://ieeexplore.ieee.org/document/8954013/},
+	doi = {10.1109/CVPR.2019.00512},
+	abstract = {In spite of recent enormous success of deep convolutional networks in object detection, they require a large amount of bounding box annotations, which are often timeconsuming and error-prone to obtain. To make better use of given limited labels, we propose a novel object detection approach that takes advantage of both multi-task learning ({MTL}) and self-supervised learning ({SSL}). We propose a set of auxiliary tasks that help improve the accuracy of object detection. They create their own labels by recycling the bounding box labels (i.e. annotations of the main task) in an {SSL} manner, and are jointly trained with the object detection model in an {MTL} way. Our approach is integrable with any region proposal based detection models. We empirically validate that our approach effectively improves detection performance on various architectures and datasets. We test two state-of-the-art region proposal object detectors, including Faster R-{CNN} [39] and R-{FCN} [10], with three {CNN} backbones of {ResNet}-101 [22], {InceptionResNet}-v2 [45], and {MobileNet} [23] on two benchmark datasets of {PASCAL} {VOC} [14] and {COCO} [30].},
+	eventtitle = {2019 {IEEE}/{CVF} Conference on Computer Vision and Pattern Recognition ({CVPR})},
+	pages = {4979--4988},
+	booktitle = {2019 {IEEE}/{CVF} Conference on Computer Vision and Pattern Recognition ({CVPR})},
+	publisher = {{IEEE}},
+	author = {Lee, Wonhee and Na, Joonil and Kim, Gunhee},
+	urldate = {2020-05-06},
+	date = {2019-06},
+	langid = {english},
+	file = {Lee et al. - 2019 - Multi-Task Self-Supervised Object Detection via Re.pdf:/Users/kokutvon/Zotero/storage/LZ3IF86I/Lee et al. - 2019 - Multi-Task Self-Supervised Object Detection via Re.pdf:application/pdf}
+}
+
+@article{cross_data,
+	title = {Cross-dataset Training for Class Increasing Object Detection},
+	url = {http://arxiv.org/abs/2001.04621},
+	abstract = {We present a conceptually simple, ﬂexible and general framework for cross-dataset training in object detection. Given two or more already labeled datasets that target for different object classes, cross-dataset training aims to detect the union of the different classes, so that we do not have to label all the classes for all the datasets. By crossdataset training, existing datasets can be utilized to detect the merged object classes with a single model. Further more, in industrial applications, the object classes usually increase on demand. So when adding new classes, it is quite time-consuming if we label the new classes on all the existing datasets. While using cross-dataset training, we only need to label the new classes on the new dataset. We experiment on {PASCAL} {VOC}, {COCO}, {WIDER} {FACE} and {WIDER} Pedestrian with both solo and cross-dataset settings. Results show that our cross-dataset pipeline can achieve similar impressive performance simultaneously on these datasets compared with training independently.},
+	journaltitle = {{arXiv}:2001.04621 [cs]},
+	author = {Yao, Yongqiang and Wang, Yan and Guo, Yu and Lin, Jiaojiao and Qin, Hongwei and Yan, Junjie},
+	urldate = {2020-05-06},
+	date = {2020-01-13},
+	langid = {english},
+	eprinttype = {arxiv},
+	eprint = {2001.04621},
+	keywords = {Computer Science - Computer Vision and Pattern Recognition},
+	file = {Yao et al. - 2020 - Cross-dataset Training for Class Increasing Object.pdf:/Users/kokutvon/Zotero/storage/V6YRDQ9B/Yao et al. - 2020 - Cross-dataset Training for Class Increasing Object.pdf:application/pdf}
+}
+
+@article{PVOC,
+	title = {The Pascal Visual Object Classes ({VOC}) Challenge},
+	volume = {88},
+	issn = {0920-5691, 1573-1405},
+	url = {http://link.springer.com/10.1007/s11263-009-0275-4},
+	doi = {10.1007/s11263-009-0275-4},
+	abstract = {The {PASCAL} Visual Object Classes ({VOC}) challenge is a benchmark in visual object category recognition and detection, providing the vision and machine learning communities with a standard dataset of images and annotation, and standard evaluation procedures. Organised annually from 2005 to present, the challenge and its associated dataset has become accepted as the benchmark for object detection.},
+	pages = {303--338},
+	number = {2},
+	journaltitle = {International Journal of Computer Vision},
+	shortjournal = {Int J Comput Vis},
+	author = {Everingham, Mark and Van Gool, Luc and Williams, Christopher K. I. and Winn, John and Zisserman, Andrew},
+	urldate = {2020-05-18},
+	date = {2010-06},
+	langid = {english},
+	file = {Everingham et al. - 2010 - The Pascal Visual Object Classes (VOC) Challenge.pdf:/Users/kokutvon/Zotero/storage/PL9ZPYH8/Everingham et al. - 2010 - The Pascal Visual Object Classes (VOC) Challenge.pdf:application/pdf}
+}
+
+@online{COCO_SITE,
+	title = {{COCO} - Common Objects in Context},
+	url = {http://cocodataset.org/#detection-eval},
+	urldate = {2020-05-18},
+	file = {COCO - Common Objects in Context:/Users/kokutvon/Zotero/storage/2BRKN5AW/cocodataset.org.html:text/html}
+}
+
+@article{COCO,
+	title = {Microsoft {COCO}: Common Objects in Context},
+	url = {http://arxiv.org/abs/1405.0312},
+	shorttitle = {Microsoft {COCO}},
+	abstract = {We present a new dataset with the goal of advancing the state-of-the-art in object recognition by placing the question of object recognition in the context of the broader question of scene understanding. This is achieved by gathering images of complex everyday scenes containing common objects in their natural context. Objects are labeled using per-instance segmentations to aid in precise object localization. Our dataset contains photos of 91 objects types that would be easily recognizable by a 4 year old. With a total of 2.5 million labeled instances in 328k images, the creation of our dataset drew upon extensive crowd worker involvement via novel user interfaces for category detection, instance spotting and instance segmentation. We present a detailed statistical analysis of the dataset in comparison to {PASCAL}, {ImageNet}, and {SUN}. Finally, we provide baseline performance analysis for bounding box and segmentation detection results using a Deformable Parts Model.},
+	journaltitle = {{arXiv}:1405.0312 [cs]},
+	author = {Lin, Tsung-Yi and Maire, Michael and Belongie, Serge and Bourdev, Lubomir and Girshick, Ross and Hays, James and Perona, Pietro and Ramanan, Deva and Zitnick, C. Lawrence and Dollár, Piotr},
+	urldate = {2020-05-18},
+	date = {2015-02-20},
+	langid = {english},
+	eprinttype = {arxiv},
+	eprint = {1405.0312},
+	keywords = {Computer Science - Computer Vision and Pattern Recognition},
+	file = {Lin et al. - 2015 - Microsoft COCO Common Objects in Context.pdf:/Users/kokutvon/Zotero/storage/42NDX7NI/Lin et al. - 2015 - Microsoft COCO Common Objects in Context.pdf:application/pdf}
+}
