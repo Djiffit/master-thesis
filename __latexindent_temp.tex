@@ -55,8 +55,15 @@ As object detectors are often run on video data, inference time can be more sign
 The head is where the architectures differ the most, and generally, any backbone could be combined with a specific detector head.
 The head comprises of a neck, which connects the intermediate features from the backbone to the final head.
 The intermediate features are generally connections from some specific layers of the backbone.
-Earlier single-stage detectors used the extracted features directly, but the current state-of-the-art methods use special feature pyramids and path aggregation to get the best results \citep{efficientDet}
-For example, the YOLO v4 uses spatial pyramid pooling \citep{SPP} over the DarkNet features and path aggregation net \citep{PANET} to concatenate the parameters for the classifier head \citep{yolov4}.
+Earlier single-stage detectors used the extracted features directly, but the current state-of-the-art methods use special feature pyramids and path aggregation to get the best results \citep{efficientDet}.
+For example, the YOLO v4 uses spatial pyramid pooling \citep{SPP} over the DarkNet features and path aggregation net (PANet) \citep{PANET} to concatenate the parameters for the classifier head \citep{yolov4}.
+Different ways of combining the feature pyramids are described in Figure 5.2.
+Like many other parts of the architecture, picking one is a trade-off of more parameters and inference time and accuracy.
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{imgs/detector_necks.png}
+    \caption{a) Basic FPN \citep{FPN} where features are combined in only one direction. b) PANet modifies the basic FPN by adding a path from the lower level features to higher-level features. d) Fully-connected FPN requires a lot of extra features. f) BiFPN tries to prune the connections to the most important ones.}
+\end{figure}
 
 In two-stage detectors like faster R-CNN \citep{faster-rcnn}, there is a region proposal network (RPN), which predicts region proposals using a sliding window for some anchor boxes.
 Running this RPN is expensive, and often the two-stage models are much slower than the single-stage detectors.
@@ -83,6 +90,7 @@ The model will be punished for detecting these non-labeled positive examples due
 
 One way to do this is by disallowing the labels from incorrect datasets affecting the total loss.
 For example, in \citep{cross_data}, the RetinaNet \citep{retinaNet} model's loss function is modified to ignore the losses for tasks that are not a part of the dataset.
+All models using the same focal loss as RetinaNet can be trained with this adjusted loss function.
 This way, each class will get its own positive and negative dataset to train on and not affect the performance of the other classes.
 Still, this does not completely solve the problem as some of the classes might require conflicting features, as can be the case when very different tasks are combined. 
 In that case, it could be smart to split the similar classes into different detectors and maybe share only the lower levels between all tasks.
@@ -93,7 +101,29 @@ For example, we might want to classify whether it is raining, the sun is shining
 Again, collecting a dataset containing all labels for all images is quite expensive, but we can train this with a separate binary classification head for each task.
 And as collecting a separate dataset for each task is relatively easy, it is possible to create a quite powerful model with relative ease.
 
-\section{Self-supervised object detection}
-
-
 \section{EfficientDet}
+EfficientDet \citep{efficientDet} is an object detection model, that is based on the previously covered EfficientNet ImageNet model.
+The neck for the EfficientDet is a unique bidirectional feature pyramid network (BiFPN).
+The EfficientDet model also uses similar compound scaling as the EfficientNet models for the new object detection specific parts.
+The scaling factor is used for the BiFPN network, box and class predictor networks, and to find the optimal input resolution.
+The EfficientNet model architecture is shown in Figure 5.3.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{imgs/efficientDet.png}
+    \caption{EfficientDet architecture comprises of the EfficientNet \citep{efficientNet} backbone, the bidirectional feature pyramid network neck and the class and box classifier heads.}
+\end{figure}
+
+The different feature maps in the BiFPN are combined using a weighted feature fusion.
+The feature maps can't be directly combined since they have different dimensionality, so they have to be up or downsampled depending on the direction of the connection.
+By weighing each feature map, the network can learn how important each feature map is.
+Since the dimensionalities differ from one another, they likely don't contribute equally to the output feature maps, which is signified by the learned weight.
+The BiFPN connection architecture is a simplified version of the PANet, as shown in Figure 5.2.
+The goal of the changes from PANet is to have a more high-level fusion of features while dropping the nodes that have little feature fusion and then to stack multiple of these layers to get the final model \citep{efficientDet}.
+
+The efficient scaling of the parameters and the BiFPN architecture allow EfficientDet to produce impressive results at relatively high framerates.
+The new YOLO v4 produces very similar scores at acceptable framerates also \citep{yolov4}.
+Still, some slightly better results are produced by the two-stage detectors, but those can't reach a 30 FPS inference time \citep{yolov4}.
+So in practice, using either the EfficientNet or YOLO is a good idea when video needs to be classified.
+The EfficientNet scales relatively well with larger EfficientNet backbones, but it is not possible to classify real-time video.
+This flexibility allows for picking the model with a suitable accuracy for the problem at hand.
