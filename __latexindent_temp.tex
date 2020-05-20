@@ -33,7 +33,7 @@ To get the AP for a class, we need to graph the precision-recall curve and then 
 For example, the Pascal Visual Object Classes Challenge (VOC) \citep{PVOC} recommends doing this by using 11 points of interpolated precision.
 So we get the following formula for Average Precision:
 
-\[AP = \frac{1} {11} L_{total} = \sum_{r \in \{0, 0.1, \ldots, 0.9 , 1\}}{p_{interp}(r)}\] \noindent
+\[AP = \frac{1} {11} \sum_{r \in \{0, 0.1, \ldots, 0.9 , 1\}}{p_{interp}(r)}\] \noindent
 
 Where $p_{interp}$ is defined as
 
@@ -42,6 +42,26 @@ Where $p_{interp}$ is defined as
 Then to get the mAP score, we can average the AP score for each of the classes in the data set.
 As was mentioned, this way of calculating the AP is not always the same, for example, the COCO metrics \citep{COCO_SITE} recommend using 101 points for integrating the curve instead of the 11 proposed in the VOC.
 This discrepancy in the integration means that not all AP scores are directly comparable.
+
+\section{Object detection model structure}
+Much like image classifiers and many other vision tasks, modern object detectors rely on pre-trained backbones to generate the features required for predicting bounding boxes.
+A classifier head is required to get these predictions, but in object detectors, this head is more complicated than in image classification.
+
+For the backbone, most object detection architectures use one of the same ImageNet models as in image classification such as ResNet or VGG.
+However, the YOLO models use DarkNet, which is specifically designed for achieving efficient results in object detection \citep{yolov4}.
+The main reason for picking one backbone over another is often a function of both accuracy and inference time.
+As object detectors are often run on video data, inference time can be more significant than in image classification, as it is often desirable to be able to run them in real-time.
+
+The head is where the architectures differ the most, and generally, any backbone could be combined with a specific detector head.
+The head comprises of a neck, which connects the intermediate features from the backbone to the final head.
+The intermediate features are generally connections from some specific layers of the backbone.
+Earlier single-stage detectors used the extracted features directly, but the current state-of-the-art methods use special feature pyramids and path aggregation to get the best results \citep{efficientDet}
+For example, the YOLO v4 uses spatial pyramid pooling \citep{SPP} over the DarkNet features and path aggregation net \citep{PANET} to concatenate the parameters for the classifier head \citep{yolov4}.
+
+In two-stage detectors like faster R-CNN \citep{faster-rcnn}, there is a region proposal network (RPN), which predicts region proposals using a sliding window for some anchor boxes.
+Running this RPN is expensive, and often the two-stage models are much slower than the single-stage detectors.
+The benefit of the two-stage approach is generally a better accuracy. 
+Still, recently the one-stage methods like YOLO v4 have achieved very similar accuracies to the two-stage ones with much faster inference times \citep{yolov4}.
 
 \section{Multi-dataset training}
 Often an object detection problem requires detecting multiple different classes in a similar context.
@@ -61,6 +81,12 @@ Similarily we will find cars that are unlabeled within the stop sign dataset.
 When we naively train this model, we will end up detecting cars and stop signs that are actually correct but incorrect based on the labels.
 The model will be punished for detecting these non-labeled positive examples due to the absence of the labels.
 
+One way to do this is by disallowing the labels from incorrect datasets affecting the total loss.
+For example, in \citep{cross_data}, the RetinaNet \citep{retinaNet} model's loss function is modified to ignore the losses for tasks that are not a part of the dataset.
+This way, each class will get its own positive and negative dataset to train on and not affect the performance of the other classes.
+Still, this does not completely solve the problem as some of the classes might require conflicting features, as can be the case when very different tasks are combined. 
+In that case, it could be smart to split the similar classes into different detectors and maybe share only the lower levels between all tasks.
+
 Similar multi-dataset training can also be applied in multi-label image classification settings.
 A multi-label image classification problem is one where we want to assign multiple labels to an image.
 For example, we might want to classify whether it is raining, the sun is shining, the sea is visible, is there a dog in the image, and so on for all the classes of interest.
@@ -68,5 +94,6 @@ Again, collecting a dataset containing all labels for all images is quite expens
 And as collecting a separate dataset for each task is relatively easy, it is possible to create a quite powerful model with relative ease.
 
 \section{Self-supervised object detection}
+
 
 \section{EfficientDet}

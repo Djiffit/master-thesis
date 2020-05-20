@@ -1345,3 +1345,69 @@ file = {Bochkovskiy et al. - 2020 - YOLOv4 Optimal Speed and Accuracy of Object 
 	keywords = {Computer Science - Computer Vision and Pattern Recognition},
 	file = {Lin et al. - 2015 - Microsoft COCO Common Objects in Context.pdf:/Users/kokutvon/Zotero/storage/42NDX7NI/Lin et al. - 2015 - Microsoft COCO Common Objects in Context.pdf:application/pdf}
 }
+
+
+@article{retinaNet,
+	title = {Focal Loss for Dense Object Detection},
+	url = {http://arxiv.org/abs/1708.02002},
+	abstract = {The highest accuracy object detectors to date are based on a two-stage approach popularized by R-{CNN}, where a classiﬁer is applied to a sparse set of candidate object locations. In contrast, one-stage detectors that are applied over a regular, dense sampling of possible object locations have the potential to be faster and simpler, but have trailed the accuracy of two-stage detectors thus far. In this paper, we investigate why this is the case. We discover that the extreme foreground-background class imbalance encountered during training of dense detectors is the central cause. We propose to address this class imbalance by reshaping the standard cross entropy loss such that it down-weights the loss assigned to well-classiﬁed examples. Our novel Focal Loss focuses training on a sparse set of hard examples and prevents the vast number of easy negatives from overwhelming the detector during training. To evaluate the effectiveness of our loss, we design and train a simple dense detector we call {RetinaNet}. Our results show that when trained with the focal loss, {RetinaNet} is able to match the speed of previous one-stage detectors while surpassing the accuracy of all existing state-of-the-art two-stage detectors. Code is at: https://github.com/facebookresearch/Detectron.},
+	journaltitle = {{arXiv}:1708.02002 [cs]},
+	author = {Lin, Tsung-Yi and Goyal, Priya and Girshick, Ross and He, Kaiming and Dollár, Piotr},
+	urldate = {2020-05-20},
+	date = {2018-02-07},
+	langid = {english},
+	eprinttype = {arxiv},
+	eprint = {1708.02002},
+	keywords = {Computer Science - Computer Vision and Pattern Recognition},
+	file = {Lin et al. - 2018 - Focal Loss for Dense Object Detection.pdf:/Users/kokutvon/Zotero/storage/58WLXQU6/Lin et al. - 2018 - Focal Loss for Dense Object Detection.pdf:application/pdf}
+}
+
+@article{SPP,
+	title = {Spatial Pyramid Pooling in Deep Convolutional Networks for Visual Recognition},
+	volume = {8691},
+	url = {http://arxiv.org/abs/1406.4729},
+	doi = {10.1007/978-3-319-10578-9_23},
+	abstract = {Existing deep convolutional neural networks ({CNNs}) require a ﬁxed-size (e.g., 224×224) input image. This requirement is “artiﬁcial” and may reduce the recognition accuracy for the images or sub-images of an arbitrary size/scale. In this work, we equip the networks with another pooling strategy, “spatial pyramid pooling”, to eliminate the above requirement. The new network structure, called {SPP}-net, can generate a ﬁxed-length representation regardless of image size/scale. Pyramid pooling is also robust to object deformations. With these advantages, {SPP}-net should in general improve all {CNN}-based image classiﬁcation methods. On the {ImageNet} 2012 dataset, we demonstrate that {SPP}-net boosts the accuracy of a variety of {CNN} architectures despite their different designs. On the Pascal {VOC} 2007 and Caltech101 datasets, {SPP}-net achieves state-of-theart classiﬁcation results using a single full-image representation and no ﬁne-tuning.},
+	pages = {346--361},
+	journaltitle = {{arXiv}:1406.4729 [cs]},
+	author = {He, Kaiming and Zhang, Xiangyu and Ren, Shaoqing and Sun, Jian},
+	urldate = {2020-05-20},
+	date = {2014},
+	langid = {english},
+	eprinttype = {arxiv},
+	eprint = {1406.4729},
+	keywords = {Computer Science - Computer Vision and Pattern Recognition},
+	file = {He et al. - 2014 - Spatial Pyramid Pooling in Deep Convolutional Netw.pdf:/Users/kokutvon/Zotero/storage/SLJQBND2/He et al. - 2014 - Spatial Pyramid Pooling in Deep Convolutional Netw.pdf:application/pdf}
+}
+
+@article{PANET,
+	title = {Path Aggregation Network for Instance Segmentation},
+	url = {http://arxiv.org/abs/1803.01534},
+	abstract = {The way that information propagates in neural networks is of great importance. In this paper, we propose Path Aggregation Network ({PANet}) aiming at boosting information ﬂow in proposal-based instance segmentation framework. Speciﬁcally, we enhance the entire feature hierarchy with accurate localization signals in lower layers by bottom-up path augmentation, which shortens the information path between lower layers and topmost feature. We present adaptive feature pooling, which links feature grid and all feature levels to make useful information in each feature level propagate directly to following proposal subnetworks. A complementary branch capturing different views for each proposal is created to further improve mask prediction.},
+	journaltitle = {{arXiv}:1803.01534 [cs]},
+	author = {Liu, Shu and Qi, Lu and Qin, Haifang and Shi, Jianping and Jia, Jiaya},
+	urldate = {2020-05-20},
+	date = {2018-09-18},
+	langid = {english},
+	eprinttype = {arxiv},
+	eprint = {1803.01534},
+	keywords = {Computer Science - Computer Vision and Pattern Recognition},
+	file = {Liu et al. - 2018 - Path Aggregation Network for Instance Segmentation.pdf:/Users/kokutvon/Zotero/storage/3NHSPDEW/Liu et al. - 2018 - Path Aggregation Network for Instance Segmentation.pdf:application/pdf}
+}
+
+
+@article{efficientDet,
+	title = {{EfficientDet}: Scalable and Efficient Object Detection},
+	url = {http://arxiv.org/abs/1911.09070},
+	shorttitle = {{EfficientDet}},
+	abstract = {Model efﬁciency has become increasingly important in computer vision. In this paper, we systematically study various neural network architecture design choices for object detection and propose several key optimizations to improve efﬁciency. First, we propose a weighted bi-directional feature pyramid network ({BiFPN}), which allows easy and fast multi-scale feature fusion; Second, we propose a compound scaling method that uniformly scales the resolution, depth, and width for all backbone, feature network, and box/class prediction networks at the same time. Based on these optimizations, we have developed a new family of object detectors, called {EfﬁcientDet}, which consistently achieve an order-of-magnitude better efﬁciency than prior art across a wide spectrum of resource constraints. In particular, without bells and whistles, our {EfﬁcientDet}-D7 achieves stateof-the-art 51.0 {mAP} on {COCO} dataset with 52M parameters and 326B {FLOPS}1, being 4x smaller and using 9.3x fewer {FLOPS} yet still more accurate (+0.3\% {mAP}) than the best previous detector.},
+	journaltitle = {{arXiv}:1911.09070 [cs, eess]},
+	author = {Tan, Mingxing and Pang, Ruoming and Le, Quoc V.},
+	urldate = {2020-01-16},
+	date = {2019-11-20},
+	langid = {english},
+	eprinttype = {arxiv},
+	eprint = {1911.09070},
+	keywords = {Computer Science - Machine Learning, Computer Science - Computer Vision and Pattern Recognition, Electrical Engineering and Systems Science - Image and Video Processing},
+	file = {Tan et al. - 2019 - EfficientDet Scalable and Efficient Object Detect.pdf:/Users/kokutvon/Zotero/storage/8M7J6U3R/Tan et al. - 2019 - EfficientDet Scalable and Efficient Object Detect.pdf:application/pdf}
+}
