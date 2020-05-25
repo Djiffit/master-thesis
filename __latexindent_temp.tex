@@ -1,129 +1,61 @@
-\chapter{Object detection}
-Object detection is another prevalent task in the domain of computer vision.
-An object detection task is one where the goal is to localize one or many different classes of objects using bounding boxes.
-Before current deep learning-based techniques, a popular way to solve the problem was to use handcrafted features like in image classification and to use a sliding window over the image for localizing objects.
-These previous techniques include, for example, the Viola-Jones detector \citep{viola-jones}, which uses a sliding window and AdaBoost for features, and another popular method was using histograms of oriented gradients \citep{hogs} to find where the boundaries of objects exist.
-These days there exist various ways of using the feature maps of neural networks for learning the filters to get much better results.
-The various architectures can be split into two approaches, one-stage detectors, and two-stage detectors.
-The two-stage detectors require region proposals, based on which the object detection is done.
-An often-used family of these kinds of methods is the R-CNN classifiers, for example, the faster R-CNN \citep{faster-rcnn}.
-In the one-stage detectors, features from various layers of the classifier are used to get the predictions.
-For example, the YOLOv4 \citep{yolov4} is the 4th iteration of the single-stage YOLO family of detectors that are very popular due to the good balance between fast speed and good accuracy.
+\chapter{Neural networks}
+The topics presented in this thesis are based on neural networks, especially convolutional neural networks, which are a distinct neural network variation for image processing using filters.
+Here we provide a very brief high-level overview of some of the concepts that are important for the later chapters, but a more detailed overview of deep learning and neural networks can be found, for example, in \citep{deep-learning}.
 
-\section{Metrics}
-The training of object detection models requires data sets that have been labeled for that purpose.
-Generally, the data sets contain bounding box annotations for each of the classes in the data set, such as seen in Figure 5.1.
-For this reason, object detection models can't use a simple metric like the basic accuracy in image classification.
-As the images are often manually labeled, the boxes are most likely not completely consistent.
-So most likely, the predictions are never going to align with the labeled boxes perfectly.
-Consequently, the method for evaluating object detection performance is Average Precision (AP) or mean Average Precision (mAP) or one of their variants.
-These metrics use intersection over union (IoU) score to evaluate how incorrect the predicted bounding box is when compared to the actual label. Intersection over union is visualized in Figure 5.1.
+\section{Convolutional Neural Networks}
+The most significant component of Convolutional Neural Networks (CNNs) is the convolutional layers that are their primary building block.
+Using convolutional filters allows neural networks to extract useful information from images to accomplish various tasks.
+The convolutional blocks are based on the mathematical convolution operation of capturing the signal of pre-determined window size.
+A CNN classifier often consists of multiple convolutional layers with other layers in between.
+Successive convolutional layers build on top of one another, and the deeper layers get high activations on more specific features.
+In many final models, the earlier layers are thus somewhat similar and re-usable as they often detect relatively primitive shapes, like diagonal or horizontal lines.
+In this thesis, we often talk about the parameters or the weights of a network.
+The number of parameters in a network tells how complex it is and how expensive it is to store.
+The floating-point numbers in the various layers are these weights, which are generally 32-bit numbers, but their precision can vary.
 
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=0.8\textwidth]{imgs/intersection_over_union.png}
-    \caption{The visual formula for calculating intersection over union.}
+\subsection{Parameters}
+To get the total number of parameters required for a single convolutional layer, we need to determine the input size, convolution window size, and the number of filters.
+For example, if the input is a 256x256 RGB image, the input size is 256x256x3.
+Now, if we apply 16 filters with a window size of 5, each of the filters requires 5x5x3 parameters, bringing the total to 1200 parameters.
+A fully connected layer with 1000 hidden units would require a matrix with around 200 million parameters, so it would not really be possible even to apply multiple of these layers while maintaining the image size.
+The convolution allows for keeping the dimensions between successive layers and only modifying the number of channels between the layers.
+Often convolutional models reduce the first two dimensions, and the number of channels increases in the deeper layers.
+For this, the convolutions can use a stride parameter to skip some positions for the convolution.
+The pooling layer is another way to reduce the size.
+Generally used pooling layers are average and maximum pool layers. 
+They are applied similarly to a convolution but capture the average or the maximum of a window.
+Neither of these approaches requires any extra learnable weights.
+
+
+\subsection{Embedding}
+Generally, the role of the convolutional layers in a CNN model is to act as a feature extractor.
+As can be seen in the number of parameters of the fully connected layer on a full-sized image, the image needs to have a smaller dense representation in order to connect a linear layer to it.
+This representation can be generated with the convolutional layers.
+The final representation that can be pushed into a linear classifier for some final inference is called an image embedding.
+Embeddings are representations of things in relatively small continuous numbered vectors, here we consider embeddings of images, but embeddings are used, for example, for words and sentences as well.
+Besides just doing classification, the embeddings can represent things, for example, faces or objects.
+When a general embedding is generated it can be used to for example to evaluate if someone is the same person as the embedding or to find similar images.
+
+\begin{figure}[h!] 
+\centering 
+\includegraphics[width=0.8\textwidth]{imgs/object_classification_architecture.png}
+\caption{Image of an example of a convolutional neural network architecture with backbone (a), image classifier (b) and task head (c) labeled. TODO: IMAGE}
 \end{figure}
 
-To get to a final AP score, the first thing that has to be decided is the IoU score threshold for considering a prediction to be correct.
-For example, we could consider all predictions that have over 50\% or 75\% overlap in the IoU.
-The threshold value for IoU that should be used is not entirely standardized, and there are multiple ways of calculating the AP score.
-For example, the popular COCO dataset \citep{COCO} uses an average of 10 IoU scores ranging from .5 to .95 IoU thresholds as the main metric.
-To get the AP for a class, we need to graph the precision-recall curve and then calculate the area under it.
-For example, the Pascal Visual Object Classes Challenge (VOC) \citep{PVOC} recommends doing this by using 11 points of interpolated precision.
-So we get the following formula for Average Precision:
+\subsection{Backbone}
+The feature extraction part of a convolutional classifier is called the backbone.
+Finding better features is often correlated with more parameters and a larger model, but various architectural decisions can also help.
+The largest convolutional models have thousands of layers.
+Best models often use as large backbones as is possible within the constraints of the specific deployment.
+The backbone is thus responsible for creating the image embedding that is used to produce an output.
+Some tasks require feature maps taken from the middle of the backbone instead of only relying on the final layer.
 
-\[AP = \frac{1} {11} \sum_{r \in \{0, 0.1, \ldots, 0.9 , 1\}}{p_{interp}(r)}\] \noindent
+\subsection{Head}
+The final layers of a classifier are called the head.
+The head is responsible for producing the output, and its exact architecture varies from task to task.
+It could be just a single linear layer connecting the image embedding to final class probability distribution or an image segmentation model classifying each pixel in the image.
+The head can thus contain whatever layers are needed to get the output, combining batch normalization, dropout, convolutional, recurrent, and linear layers depending on what is needed to solve the task.
+An example visualization of how the different parts of a convolutional model are connected is shown in Figure 2.1.
+The architecture would vary on a task-by-task basis, and the figure shows a basic image classifier architecture.
 
-Where $p_{interp}$ is defined as
 
-\[p_{interp}(r) = \max \limits_{\tilde{r}:\tilde{r} \geq r} p(\tilde{r})\]
-
-Then to get the mAP score, we can average the AP score for each of the classes in the data set.
-As was mentioned, this way of calculating the AP is not always the same, for example, the COCO metrics \citep{COCO_SITE} recommend using 101 points for integrating the curve instead of the 11 proposed in the VOC.
-This discrepancy in the integration means that not all AP scores are directly comparable.
-
-\section{Object detection model structure}
-Much like image classifiers and many other vision tasks, modern object detectors rely on pre-trained backbones to generate the features required for predicting bounding boxes.
-A classifier head is required to get these predictions, but in object detectors, this head is more complicated than in image classification.
-
-For the backbone, most object detection architectures use one of the same ImageNet models as in image classification such as ResNet or VGG.
-However, the YOLO models use DarkNet, which is specifically designed for achieving efficient results in object detection \citep{yolov4}.
-The main reason for picking one backbone over another is often a function of both accuracy and inference time.
-As object detectors are often run on video data, inference time can be more significant than in image classification, as it is often desirable to be able to run them in real-time.
-
-The head is where the architectures differ the most, and generally, any backbone could be combined with a specific detector head.
-The head comprises of a neck, which connects the intermediate features from the backbone to the final head.
-The intermediate features are generally connections from some specific layers of the backbone.
-Earlier single-stage detectors used the extracted features directly, but the current state-of-the-art methods use special feature pyramids and path aggregation to get the best results \citep{efficientDet}.
-For example, the YOLO v4 uses spatial pyramid pooling \citep{SPP} over the DarkNet features and path aggregation net (PANet) \citep{PANET} to concatenate the parameters for the classifier head \citep{yolov4}.
-Different ways of combining the feature pyramids are described in Figure 5.2.
-Like many other parts of the architecture, picking one is a trade-off of more parameters and inference time and accuracy.
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=0.8\textwidth]{imgs/detector_necks.png}
-    \caption{a) Basic FPN \citep{FPN} where features are combined in only one direction. b) PANet modifies the basic FPN by adding a path from the lower level features to higher-level features. d) Fully-connected FPN requires a lot of extra features. f) BiFPN tries to prune the connections to the most important ones.}
-\end{figure}
-
-In two-stage detectors like faster R-CNN \citep{faster-rcnn}, there is a region proposal network (RPN), which predicts region proposals using a sliding window for some anchor boxes.
-Running this RPN is expensive, and often the two-stage models are much slower than the single-stage detectors.
-The benefit of the two-stage approach is generally a better accuracy. 
-Still, recently the one-stage methods like YOLO v4 have achieved very similar accuracies to the two-stage ones with much faster inference times \citep{yolov4}.
-
-\section{Multi-dataset training}
-Often an object detection problem requires detecting multiple different classes in a similar context.
-For example, a self-driving car would need to detect various traffic signs, cars, pedestrians, road markings, cyclists, and many other things.
-Collecting a single dataset that has labels for all of the classes of interest can be a very daunting task.
-Even if it is feasible to create the dataset for the original classes of interest, this approach does not scale very well when new classes need to be recognized.
-As likely the original dataset might contain millions of images labeled for multiple classes, adding a new class would require going through the entire dataset again and labeling the new class as well.
-The new class may be relatively rare; for example, we may be interested in detecting emergency vehicles with sirens on.
-Here is where multi-dataset learning is highly beneficial as it only allows for collecting a specific class dataset.
-This type of cross-dataset learning is useful when we need to combine multiple distinct data sources to detect some union of the labels \citep{cross_data}.
-
-The main difficulty in combining multiple datasets for detection lies in the fact that they likely contain unlabeled overlapping classes.
-For example, given a dataset for detecting cars and another for detecting stop signs, we have two distinct datasets where only one of the classes is labeled.
-If we train this model, assuming that the labels are genuinely valid, we will end up unlearning the tasks due to the overlap of the classes.
-The problem lies in the fact that it is most likely that in the car dataset, we will find stop signs that are not labeled.
-Similarily we will find cars that are unlabeled within the stop sign dataset.
-When we naively train this model, we will end up detecting cars and stop signs that are actually correct but incorrect based on the labels.
-The model will be punished for detecting these non-labeled positive examples due to the absence of the labels.
-
-One way to do this is by disallowing the labels from incorrect datasets affecting the total loss.
-For example, in \citep{cross_data}, the RetinaNet \citep{retinaNet} model's loss function is modified to ignore the losses for tasks that are not a part of the dataset.
-All models using the same focal loss as RetinaNet can be trained with this adjusted loss function.
-This way, each class will get its own positive and negative dataset to train on and not affect the performance of the other classes.
-Still, this does not completely solve the problem as some of the classes might require conflicting features, as can be the case when very different tasks are combined. 
-In that case, it could be smart to split the similar classes into different detectors and maybe share only the lower levels between all tasks.
-
-Similar multi-dataset training can also be applied in multi-label image classification settings.
-A multi-label image classification problem is one where we want to assign multiple labels to an image.
-For example, we might want to classify whether it is raining, the sun is shining, the sea is visible, is there a dog in the image, and so on for all the classes of interest.
-Again, collecting a dataset containing all labels for all images is quite expensive, but we can train this with a separate binary classification head for each task.
-And as collecting a separate dataset for each task is relatively easy, it is possible to create a quite powerful model with relative ease.
-
-\section{EfficientDet}
-EfficientDet \citep{efficientDet} is an object detection model, that is based on the previously covered EfficientNet ImageNet model.
-The neck for the EfficientDet is a unique bidirectional feature pyramid network (BiFPN).
-The EfficientDet model also uses similar compound scaling as the EfficientNet models for the new object detection specific parts.
-The scaling factor is used for the BiFPN network, box and class predictor networks, and to find the optimal input resolution.
-The EfficientNet model architecture is shown in Figure 5.3.
-
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=0.8\textwidth]{imgs/efficientDet.png}
-    \caption{EfficientDet architecture comprises of the EfficientNet \citep{efficientNet} backbone, the bidirectional feature pyramid network neck and the class and box classifier heads.}
-\end{figure}
-
-The different feature maps in the BiFPN are combined using a weighted feature fusion.
-The feature maps can't be directly combined since they have different dimensionality, so they have to be up or downsampled depending on the direction of the connection.
-By weighing each feature map, the network can learn how important each feature map is.
-Since the dimensionalities differ from one another, they likely don't contribute equally to the output feature maps, which is signified by the learned weight.
-The BiFPN connection architecture is a simplified version of the PANet, as shown in Figure 5.2.
-The goal of the changes from PANet is to have a more high-level fusion of features while dropping the nodes that have little feature fusion and then to stack multiple of these layers to get the final model \citep{efficientDet}.
-
-The efficient scaling of the parameters and the BiFPN architecture allow EfficientDet to produce impressive results at relatively high framerates.
-The new YOLO v4 produces very similar scores at acceptable framerates also \citep{yolov4}.
-Still, some slightly better results are produced by the two-stage detectors, but those can't reach a 30 FPS inference time \citep{yolov4}.
-So in practice, using either the EfficientNet or YOLO is a good idea when video needs to be classified.
-The EfficientNet scales relatively well with larger EfficientNet backbones, but it is not possible to classify real-time video.
-This flexibility allows for picking the model with a suitable accuracy for the problem at hand.
