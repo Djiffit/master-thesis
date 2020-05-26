@@ -181,14 +181,136 @@ These may not be labeled for that set but could be classes of interest.
 If we train models on incorrect labels, it can lead to unlearning as the model may make correct predictions but is punished due to the absence of the labels for the images.
 If, however, the problem is posed as a multi-task binary classification problem over several classes, each task can have its own distinct data set with labels for only the single task.
 Then upon training on an image containing other classes, there is no inverse learning as the image will not try to learn the other classes if there exists no certainty of that label.
+Still, the problem is not gone as often any dataset has at least some mislabeled examples.
 
 We will run some experiments on a 14 class multi-label prediction with some overlap between the classes in the images.
-The goal here would be to see how what kind of a difference there would be in training with a single-task, multi-task, and a typical multi-label model with a data set containing overlapping classes.
+The goal here would be to see how what kind of a difference there would be in training with a single-task and multi-task model over all of the labels.
 
-\section{Object detection with image classification}
-Okay coolio
+\begin{table}[]
+    \centering
+    \begin{tabular}{lccl}
+        \multicolumn{1}{l}{\textbf{}}    & \multicolumn{1}{l}{\textbf{Multi-task}} & \multicolumn{1}{l}{\textbf{Single-task}} \\ \cline{2-3}
+        \multicolumn{1}{l}{People} & \multicolumn{1}{c}{94\%}            & \multicolumn{1}{c}{-}                           \\ \hline
+        \multicolumn{1}{l}{Man} & \multicolumn{1}{c}{-}               & \multicolumn{1}{c}{84\%}                        \\ \hline
+        \multicolumn{1}{l}{Woman} & \multicolumn{1}{c}{-}               & \multicolumn{1}{c}{-}                           \\ \hline
+        \multicolumn{1}{l}{Baby}       & \multicolumn{1}{c}{96\%}            & \multicolumn{1}{c}{-}                           \\ \hline
+        \multicolumn{1}{l}{Sea}       & \multicolumn{1}{c}{-}               & \multicolumn{1}{c}{86\%}                        \\ \hline
+        \multicolumn{1}{l}{River}       & \multicolumn{1}{c}{-}               & \multicolumn{1}{c}{-}                           \\ \hline
+        \multicolumn{1}{l}{EfficientNet} & \multicolumn{1}{c}{94\%}            & \multicolumn{1}{c}{88\%}                        \\ \hline
+        \multicolumn{1}{l}{ResNet}       & \multicolumn{1}{c}{96\%}            & \multicolumn{1}{c}{89\%}                        \\ \hline
+        \multicolumn{1}{l}{ResNet}       & \multicolumn{1}{c}{96\%}            & \multicolumn{1}{c}{91\%}                        \\ \hline
+        \multicolumn{1}{l}{ResNet}       & \multicolumn{1}{c}{96\%}            & \multicolumn{1}{c}{-}                           \\ \hline
+        \multicolumn{1}{l}{Average}       & \multicolumn{1}{c}{-}               & \multicolumn{1}{c}{85\%}                        \\ \hline
+    \end{tabular}
+    \caption{Accuracies on the data sets for both single-task and multi-task models.}
+\end{table}
+
+The dataset is a collection of 15000 images that have labels for some of the classes.
+The number of labels for each task is highly varied.
+The smallest tasks have dozens of images, whereas the largest ones have thousands.
+From this dataset, we will take for each class a 15\% cut for validating the performance.
+In this case, we will pose our main problem as a binary classification problem.
+For each of the tasks, we will train a classifier telling if the label exists in the image or not.
+The classifier will use a ResNet-101 as a backbone, and the head will be a regular fully connected layer connected to a positive and negative class for each of the tasks.
+For the single-task models, we will have the same ResNet backbone as for the multi-task model.
+The main metric that we will compare will be the ratio of correct labelings per class.
+Since we pose this as a binary classification task, it is easy to guarantee that our test sets have an exact 50/50 split for positive and negative classes.
+Similarly, while training, we can oversample the positive classes in a way to guarantee that each batch will have half positive and half negative classes.
+This way, we won't learn classifiers that are biased toward predicting the absence of the label due to the small number of images for that class.
+The control over the sampling of the data is a very beneficial trait of the multi-task problem setting.
+
+To train the multi-task model, we experimented on various sampling ratios to find the best model.
+Manually giving a meaningful sampling ratio is quite difficult due to the relatively large number of tasks in this multi-task model.
+The various sampling ratios we tested for this data were equal sampling, data proportional sampling, and finally, some manual adjustments to the proportional sampling based on the results.
+The proportional sampling was the one that produced the final best model.
+It is quite an interesting result, considering just how small some of the classes are relative to the entire data set.
+We tried adjusting the proportional ratios based on the difference from the single-task accuracies but could not find ratios that would have improved the performance.
+Based on the previous results, we could say that there likely exists some ratios that could provide superior results, but finding them is too expensive.
+With the best model, which was chosen based on the average accuracy on the validation data, the model achieved an average of 89\% accuracy in labeling all the tasks.
+By average, we mean taking the accuracy of each task separately and averaging those averages and not the total ratio of correct classifications.
+
+The single-task model training was done similarly to the multi-task model and by using the same data loading techniques.
+This way, we reached an average accuracy of 91\%, beating the multi-task model slightly.
+All the task-specific results for both multi- and single-task models are collected in Table 6.2.
+Some part of the errors is due to the misclassification of the data, based on a random sample, around 2\% of the labels are wrong.
+These results yet again show that it is possible to learn different tasks using the same representations.
+Yes, in this case, the multi-task accuracy didn't match the single-task counterparts, but they are relatively close.
+And all this is not really a fair comparison as the single-task models account for a total of around 14 times as many parameters.
+If the single-task models were trained on significantly smaller backbones, the multi-task model could be more accurate, showing the benefit of using larger models over multiple tasks.
+And even picking the smallest ResNets, the number of parameters over 14 tasks would be larger than a single ResNet101.
+
+\section{Object detection}
+In this section, we will use multiple data sources and combine them into a single powerful object detector.
+To be specific, our goal is to create an object detector for 37 different cat and dog species.
+The two datasets that we will use are the COCO dataset \citep{COCO} from which we will take the cat and dog classes and the Oxford-IIT Pet Dataset \citep{catsdogs}, which comprises of images with labels for the 37 different cat and dog species that we will detect.
+In these experiments, the backbone used will be EfficientNet-0, which will be used in the EfficientDet architecture as well as an independent EfficientNet backbone.
+The base for the code of the detector uses this Pytorch implementation of EfficientDet \citep{pytorch-efficientdet}.
+The base model is then modified to meet the needs of our experiments.
+
+There are multiple ways to approach this problem.
+We will train two different models to see how the results differ.
+The first approach is to do a brute-force two-stage detector, where we share the common backbone.
+In this approach, the detector would try to learn to detect the dog and cat classes from the COCO dataset, while an object classifier is trained using the same backbone as the detector.
+The object classifier is then responsible for giving the actual class of interest.
+This way, the training is relatively simple, and the backbone would be used recursively.
+Specifically, the detector would generate the regions for the animals that would be cropped and pushed through the backbone, this time to the classifier head.
+This recursive use of the backbone is efficient in terms of the parameters, but running images through the same backbone twice could turn out to be too expensive as it would double the inference time.
+
+The second way of approaching this problem is to first train a model on the COCO classes and to create a detector for the cat and dog classes.
+Using the high-level model, we can automatically create acceptable object detection labels for the 37 classes in the pets dataset.
+Then we can initialize a 37 class object detector using the weights of the two-class model.
+By having such a well-initialized model for the detection, the second part of the training focuses on learning the features to differentiate between the very similar classes.
+An interesting question here is just how well the object detector works when the classes are so similar.
+In an image classifier setting, it would make sense that the model could learn the subtle features that are unique to each of the classes.
+As we previously covered, the object detector is a multi-task problem. 
+It follows that the network has to both decide the anchors most likely containing an object and also determining the class of the object.
+If we look at the classes for the COCO dataset for object detection, for example, we can see that there are 80 classes, but they are relatively difficult to mix up. 
+In Figure 6.3, we have an example of two images from the pets dataset showing two classes that would be relatively easy to mix up.
+
+\begin{figure}[h!] 
+\centering 
+\includegraphics[width=0.8\textwidth]{imgs/pets-example.png}
+\caption{Example of two very similar classes in the pets dataset. On the left is an American bulldog and on the right is an American pit bull terrier.}
+\end{figure}
+
+To evaluate the effects of both approaches, we will look at multiple metrics.
+Since the two approaches are quite different, we can't make an entirely fair direct comparison between them.
+The baseline scores for our EfficientNet-0 model are 92\% accuracy on the pets dataset and a 0.55 AP on detecting the cat and dog classes in the COCO dataset.
+We will calculate these same scores for the recursive model to see how close the multi-task model can get.
+To compare the two approaches, we will calculate the accuracy of correctly detected species in a set of the pets dataset.
+The labels are not going to be perfect as they are generated by the model automatically, but should show if there are major discrepancies in the performance between the two approaches.
+
+To train the single-stage model, we first created a new dataset in the COCO format from the dog and cat classes.
+Instead of having two classes, we combined both dog and cat into a single category as the goal is to detect them as well as possible, and we are not interested in the classification.
+It is important to set the category id to be one instead of zero when training the object detector when there is only one class since otherwise, there will not be any predictions for the background.
+With this new dataset, we initialized the EfficientDet model and trained it to detect the single class from the COCO dataset.
+We first fine-tuned the head for ten epochs and then fine-tuned the entire network for 40 more epochs, and we picked the model with the lowest validation loss as the best one.
+The chosen model achieved 0.54 AP when tested.
+Then we created a new COCO style dataset out of the pets dataset.
+To get the annotations, we ran the images through our one-class object detector and labeled all found boxes with the class of the image from the pets dataset.
+The COCO format requires the labels as a tuple of four numbers signifying the x and y coordinates of the top left of the bounding box, followed by the bounding box width and the height.
+Since most of the images in the pets dataset contain only a single animal, we could tell that there were incorrect boxes as the number of annotations was about 10-15\% higher than the number of images.
+The bounding boxes were most likely not perfect, but good enough to get decent results.
+We initialized the model with the weights of the original object detector, which meant that the regression loss for the model was consistently low.
+So the training mostly focused on learning to minimize the classification loss with the new 37 classes.
+Since this was a much more difficult problem than the original, it took a bit longer to reach the best model.
+Evaluating the model on the artificial labels of the validation set gave an AP score of 0.55.
+
+There are a few ways this kind of training could be extended to possibly get even better results.
+We could attempt to train the largest possible model to get the best possible results on the original dataset so that the artificial labels for the unlabeled dataset would be the best possible.
+We could create two heads in the object detector to train the detector on both the original COCO images and the new images in a multi-task setting to hopefully get a more general detector.
+The training could get better if multiple cycles were completed, and the training would work in a semi-supervised way.
+So what we used here would be the first labels for the new dataset.
+The training would be done jointly on both datasets, as previously proposed.
+Every n epochs, we would generate new bounding boxes for the pets dataset, to finally reach the optimal bounding boxes for the classes in the pets dataset.
+Finally, we could do the label transfer also in the other direction.
+Since the COCO has the correct bounding boxes, we could run the image classifier trained on the pets dataset on those boxes to generate the actual animal species for them.
 
 
-\section{Object detection classification and segmentation}
-Train cool stuff
+For the two-task model, we trained it in a very similar fashion to the previous multi-task models.
+The object detector only required adding the final classification head on top of the backbone, and then the model could be trained with a basic multi-task training loop.
+
+
+\section{Detection, classification and segmentation}
+Thinkkers do it like it is done in \citep{multinet} but use efficientnet for all parts?
 
