@@ -119,7 +119,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Set up personal information for the title page and the abstract form.
 %% Replace parameters with your information.
-\title{OwO}
+\title{Multi-task learning in Computer Vision}
 
 % TM: Contributors to template editors now listed in the beginning of the file in comments
 \author{Konsta Kutvonen}
@@ -130,11 +130,11 @@
 % Set supervisors and examiners, use the titles according to the thesis language
 % Prof. 
 % Dr. or in Finnish toht. or tri or FT, TkT, Ph.D. or in Swedish... 
-\supervisors{Prof.~D.U.~Mind}
-\examiners{Prof.~D.U.~Mind, Dr.~O.~Why}
+\supervisors{Prof. Laura Ruotsalainen}
+\examiners{Prof. Laura Ruotsalainen, Dr.~O.~Why}
 
 
-\keywords{ulkoasu, tiivistelmä, lähdeluettelo}
+\keywords{computer vision, deep learning, convolutional neural networks, multi-task learning}
 \additionalinformation{\translate{\track}}
 
 %% For seminar papers and such, cover page and abstract
@@ -150,8 +150,8 @@
 %% about three levels in the path; each path requires a new line.
 
 \classification{\protect{\ \\
-\  General and reference $\rightarrow$ Document types  $\rightarrow$ Surveys and overviews\  \\
-\  Applied computing  $\rightarrow$ Document management and text processing  $\rightarrow$ Document management $\rightarrow$ Text editing
+\  Computing methodologies $\rightarrow$ Artificial intelligence  $\rightarrow$ Computer vision \  \\
+\  Computing methodologies $\rightarrow$ Machine learning  $\rightarrow$ Learning paradigms $\rightarrow$ Multi-task learning
 }}
 
 %% if you want to quote someone special. You can comment this line out and there will be nothing on the document.
@@ -198,17 +198,20 @@
 
 \begin{otherlanguage}{english}
     \begin{abstract}
-        Use this otherlanguage environment to write your abstract in another language if needed.
-
-        Topics are classified according to the ACM Computing Classification System
-        (CCS), see
-        \url{https://www.acm.org/about-acm/class}:
-        check command \verb+\classification{}+. A small set of paths (1--3) should be used, starting from any top nodes
-        referred to bu the root term CCS leading to the leaf nodes. The elements
-        in the path are separated by right arrow, and emphasis of each element individually can be indicated
-        by the use of bold face for high importance or italics for intermediate
-        level. The combination of individual boldface terms may give the reader
-        additional insight.
+        With modern computer vision algorithms, it is possible to solve many different kinds of problems, such as image detection, image classification, and image segmentation.
+        In some cases, like in the case of a camera-based self-driving car, the task can't yet be adequately solved as a direct mapping from image to action with a single model.
+        In such situations, we need more complex systems that can solve multiple computer vision tasks to understand the environment and act based on it for acceptable results.
+        Training each task on their own can be expensive in terms of storage required for all weights and especially for the inference time as the output of several large models is needed.
+        Fortunately, many state-of-the-art solutions to these problems use Convolutional Neural Networks and often feature some ImageNet backbone in their architecture.
+        With multi-task learning, we can combine some of the tasks into a single model, sharing the convolutional weights in the network.
+        Sharing the weights allows for training smaller models that produce outputs faster and require less computational resources, which is essential, especially when the models are run on embedded devices with constrained computation capability and no ability to rely on the cloud. 
+        
+        In this thesis, we will present some state-of-the-art models to solve image classification and object detection problems.
+        We will define multi-task learning, how we can train multi-task models, and take a look at various multi-task models and how they exhibit the benefits of multi-task learning.
+        Finally, to evaluate how training multi-task models changes the basic training paradigm and to find what issues arise, we will train multiple multi-task models.
+        The models will mainly focus on image classification and object detection using various data sets.
+        They will combine multiple tasks into a single model, and we will observe the impact of training the tasks in a multi-task setting.
+        
     \end{abstract}
 \end{otherlanguage}
 
@@ -250,16 +253,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \backmatter
 \begin{appendices}
-
-    %\input{instructions_english}
-
-    \appendix{Sample Appendix\label{appendix:model}}
-    usually starts on its own page, with the name and number of the appendix at the top.
-    The appendices here are just models of the table of contents and the presentation. Each appendix
-    Each appendix is paginated separately.
-
-    In addition to complementing the main document, each appendix is also its own, independent entity.
-    This means that an appendix cannot be just an image or a piece of programming, but the appendix must explain its contents and meaning.
 
 \end{appendices}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
