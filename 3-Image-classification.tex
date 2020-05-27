@@ -77,3 +77,33 @@ Instead, the optimization should be for latency directly as in MnasNet if that i
 The proposed EfficientNet models use mobile inverted bottleneck (MBConv) blocks used in MobileNetV2 \citep{mobileNetv2} in constructing the base model. The MobileNet uses a Depthwise Separable Convolution, where a depthwise convolution and a pointwise convolution are applied in sequence. The depthwise convolution applies ${d_i}$ ${k x k}$ filters to the input, where ${d_i}$ is the input channels and ${k}$ is the kernel size leading to an output channel count ${d_j = d_i}$. A normal convolutional layer would apply multiple filters having ${M}$ channels with the computational cost of ${h_i w_i d_i d_j k^2}$, whereas the depthwise convolution only has a cost of ${h_i w_i d_i (k^2 + d_j)}$, reducing the cost by ${k^2}$. The result of the depthwise convolution then runs through a pointwise convolution, where a ${1 \times 1 \times d_j}$ 1d convolution is applied to get the final output as a linear combination of the channels. The inverted residuals in MBConv are connections similar to ResNet, but in this case, they are connected between the low dimensional layers.
 
 \section{Training image classifiers}
+An image classifier's basic function is to predict which of some set of classes exists in an image.
+So, to train a model to answer such a question, a data set with images and accompanying labels are needed.
+For example, the Oxford-IIT Pets dataset \citep{catsdogs} consists of images of 37 different cat and dog species and labels for those images signifying which of the 37 classes an image represents.
+The dataset consists of about 200 images per class, so it is relatively small and an excellent example of a situation where transfer learning is instrumental in getting good results.
+
+After the data of the images and labels are gathered to a data loader, that outputs small batches for training, the model needs to be constructed.
+For the backbone, any ImageNet classifier will do. 
+For example, EfficientNet-B4 could be a good decision.
+So we will initialize the backbone of our model with the weights of a pre-trained EfficientNet that was trained on the ImageNet data set by someone with access to large computational resources.
+After the model has been initialized, the head has to be changed to be compatible with our new task.
+By default, the model will be expecting to classify images to the thousand classes of the ImageNet.
+In this case, we want to solve the 37 cat and dog species problem, so the final fully connected layer has to be changed.
+It will be initialized as a fully connected layer with 37 output units, representing each of the classes, connecting the embedding to the outputs.
+The head does not need to be just a single, fully connected layer, but it could also contain more fully connected layers, dropout layers, and batch normalization layers and more.
+Adding more than a single fully connected layer might be a good idea if the backbone remains frozen and is not fine-tuned. 
+That way, the head can learn some useful combinations of the image embedding instead of optimizing the features in the backbone.
+
+Once all the layers are in place, the model needs to be optimized with a training loop.
+Every iteration, a loss needs to be calculated for the batch that has been sampled from the data loader.
+To be able to calculate the loss, the outputs of the final fully connected layer need to be normalized into a distribution of probabilities with softmax.
+The softmax is defined as
+\[{Softmax(x_i) = \frac{exp(x_i)}{\sum_j exp(x_j)}}\] \noindent
+For each class $i$, we will calculate the proportion of its score with respect to the sum of all the classes' scores, creating the probability distribution.
+Since we have a single correct class, we would want to maximize the probability of the correct class and minimize the probability of the other classes.
+The loss function to do exactly this optimization is called categorical cross-entropy, and it is defined as follows.
+\[{CE(y) = -\frac{1}{N}\sum_{i=1}^{N}(y_i * log(p_i) + ( 1 - y_i ) * log ( 1 - p_i))}\] \noindent
+Where $N$ is the number of classes, $y_i$ is either 1 or 0 depending on if it is the correct label and $p_i$ is the probability for that class.
+This formula does exactly what we previously described that we wanted to do.
+To get the loss for a single class, if $y = 1$, the value will be the first part of the sum, if $y = 0$, the value will be the second part of the sum, since $(1 - y_i)$ is now 1.
+When we optimize the model, in the case of the chosen architecture, the model will reach around 95\% accuracy on this data set \citep{efficientNet}.
