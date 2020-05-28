@@ -69,6 +69,7 @@ In two-stage detectors like faster R-CNN \citep{faster-rcnn}, there is a region 
 Running this RPN is expensive, and often the two-stage models are much slower than the single-stage detectors.
 The benefit of the two-stage approach is generally a better accuracy. 
 Still, recently the one-stage methods like YOLO v4 have achieved very similar accuracies to the two-stage ones with much faster inference times \citep{yolov4}.
+By utilizing new ways of using the feature maps, the object detectors have recently become significantly better over the years, as can be seen from the different iterations of the YOLO models, as they have been using very similar backbones over the years \citep{yolov4}.
 
 \section{Multi-dataset training}
 Often an object detection problem requires detecting multiple different classes in a similar context.
@@ -106,7 +107,9 @@ EfficientDet \citep{efficientDet} is an object detection model, that is based on
 The neck for the EfficientDet is a unique bidirectional feature pyramid network (BiFPN).
 The EfficientDet model also uses similar compound scaling as the EfficientNet models for the new object detection specific parts.
 The scaling factor is used for the BiFPN network, box and class predictor networks, and to find the optimal input resolution.
-The EfficientNet model architecture is shown in Figure 5.3.
+The EfficinetDet shows that improving the backbone is quite useful for the entirety of the model.
+This can especially be seen when looking at the comparisons of using a ResNet vs an EfficientNet as the backbone in the same EfficientDet architecture \citep{efficientDet}.
+The EfficientDet model architecture is shown in Figure 5.3.
 
 \begin{figure}[h!]
     \centering
@@ -129,3 +132,65 @@ The EfficientNet scales relatively well with larger EfficientNet backbones, but 
 This flexibility allows for picking the model with a suitable accuracy for the problem at hand.
 
 \section{Training object detectors}
+As we described previously, object detectors are trained when there is a need to localize some set of classes within images by describing them with bounding boxes.
+One widely used format for labeling such a dataset is the format for the object detection data in the COCO data set.
+The COCO data consists of a set of images and a separate JSON file containing the labels.
+The label file contains a list of all the images for the data set and a unique identifier for each image.
+There is also an annotation list that contains a list of objects that specify the bounding box annotations.
+The annotations are specified as being linked to a single image by its image id and defining the bounding box annotation dimensions.
+The bounding box annotations are formatted by providing the coordinates of the top-left corner of the annotations and then the width and height of the box, so it is a tuple of four numbers (x, y, width, height).
+To train on new data sets, they should be formatted similarly to make the training as easy as possible.
+
+Once the data set has been gathered and collected in a correct format for the object detection task, a model needs to be picked.
+Here, the final inference model's requirements need to be evaluated to decide whether a single-stage or a two-stage detector should be used.
+For example, when running the model in real-time, a single-stage detector might be better, and in the case of doing text detection, it seems to be more popular to use a two-stage detector.
+We will describe here how things work for the EfficientDet, which is a single-stage detector.
+
+Once the exact architecture has been chosen, an implementation of it is needed to construct the model.
+Generally, all the popular architectures have open-source implementations on GitHub in both Tensorflow and Pytorch, which are the most popular deep learning frameworks, that can be used.
+Most of these implementations come quite readily wrapped in a way that given a correctly formatted data set, the models will be automatically initialized with the correct number of classes, and the training process is already specified by the input of a few necessary parameters.
+As mentioned in the case of image classification, it is extremely important to initialize with the pre-trained weights with an object detection model to achieve the best results instead of training from scratch.
+In an object detector, the problem-specific part is the number of classes in the classification head, which can be seen in Figure 5.3.
+For the rest of the network, pre-trained weights should be used.
+
+Training the EfficientNet itself is a multi-task training problem. 
+We have two losses, the regression loss signifying how close the bounding boxes are to the annotations by calculating IoU and classification loss, which tells how incorrect the predicted labels are.
+A major problem in optimizing anchor-based single-stage detectors like the EfficientDet is the fact that between the background no-class and the foreground classes of interest, there is a massive discrepancy in the number of instances to classify \citep{retinaNet}.
+The anchor-based detectors determine whether an anchor placed at any valid spot in the image contains a class of interest or the background. 
+There are tens of thousands to hundreds of thousands of valid anchors to consider depending on the architecture. 
+Due to this, we can have a class imbalance of 1:1000 between the positive and negative cases.
+For this reason, the recent single-stage detectors use a focal loss presented in the RetinaNet paper, to account for this class imbalance \citep{retinaNet}.
+
+The focal loss introduces two new parameters to the cross-entropy formula to account for the class imbalance. 
+The formula for focal loss is as follows.
+\[FL(p_i) = -\alpha_i * log(1-p_i)^\gamma * log(p_i)\] \noindent
+Where $\alpha$ and $\gamma$ are the new scaling factors and $p_i$ is defined as $p$ if y = 1 and $1 - p$ otherwise.
+The factor $\alpha$ is there to weight the loss for the positive and negative cases separately. 
+It is a parameter that is recommended to be set at the inverse class frequency, but the value can be searched by experimentation as well \citep{retinaNet}.
+The factor $\gamma$ makes sure that a large number of easy classifications do not dominate the total loss.
+For $\gamma$ the recommended value is two \citep{retinaNet}.
+With this loss function, it is possible to have a very large number of anchors, where a large majority of them are always predicted as the background class.
+
+With these, the object detection model can be trained.
+Still, just leaving all the extra parameters at the default values may not produce the best results.
+For example, the possible anchors that the model uses are specified using specific parameters.
+The parameters that can be modified are the anchor size, depending on whether large or small objects need to be detected, the anchor sizes can be modified to suit the task at hand.
+The anchors also have aspect ratios applied to them, which can be modified, the default ratios are 1:1, 2:1, and 1:2. 
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{imgs/nms.png}
+    \caption{Object detection without non-max suppression. The same car is detected multiple times.}
+\end{figure}
+
+Finally, once a model has been trained with a suitable dataset, architecture, and hyperparameters, it can output predictions for new images.
+If the model is used without any modifications, the output boxes will likely look like the predictions in Figure 5.4.
+To fix this issue in the predictions, non-max suppression (NMS) should be used \citep{nms}.
+With non-max suppression, we can achieve only a single bounding box that better represents what is most likely wanted.
+In some cases, using NMS can lead to not being able to predict heavily overlapping classes.
+Generally, though NMS should pretty much always be used to avoid the issue depicted in the Figure 5.4.
+
+The object detectors are a good example of multi-task learning and how using the same feature maps, it is possible to solve multiple problems.
+In this case, only a single annotation is needed to label for the two different tasks that can be optimized together.
+Since we have two losses that are calculated, we can decide to focus on one of the losses by adding a multiplier to it and see if the higher loss could improve that task.
+While some of the things covered here will be similar in the two-stage detectors, the region proposal network approach is very different from the anchor-based single-stage detectors covered in this section.
