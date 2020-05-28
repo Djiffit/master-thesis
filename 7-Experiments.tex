@@ -179,11 +179,18 @@ For multi-label prediction, there can exist a problem where not all classes are 
 For example, a photo of a dog taken outdoors can contain other classes such as a person, sky, or sea.
 These may not be labeled for that set but could be classes of interest.
 If we train models on incorrect labels, it can lead to unlearning as the model may make correct predictions but is punished due to the absence of the labels for the images.
-If, however, the problem is posed as a multi-task binary classification problem over several classes, each task can have its own distinct data set with labels for only the single task.
+However, if the problem is posed as a multi-task binary classification problem over several classes, each task can have its own distinct data set with labels for only the single task.
 Then upon training on an image containing other classes, there is no inverse learning as the image will not try to learn the other classes if there exists no certainty of that label.
 Still, the problem is not gone as often any dataset has at least some mislabeled examples.
 
+\begin{figure}[h!] 
+\centering 
+\includegraphics[width=0.8\textwidth]{imgs/object_classification_architecture.png}
+\caption{The architectures of the 14 head multi-task model and a single-task model. TODO: ADD IMAGE}
+\end{figure}
+
 We will run some experiments on a 14 class multi-label prediction with some overlap between the classes in the images.
+The 14 head multi-task model structure and the structure of the 14 identical single-task models are shown in Figure 6.3.
 The goal here would be to see how what kind of a difference there would be in training with a single-task and multi-task model over all of the labels.
 
 \begin{table}[]
@@ -196,6 +203,10 @@ The goal here would be to see how what kind of a difference there would be in tr
         \multicolumn{1}{l}{Baby}       & \multicolumn{1}{c}{96\%}            & \multicolumn{1}{c}{-}                           \\ \hline
         \multicolumn{1}{l}{Sea}       & \multicolumn{1}{c}{-}               & \multicolumn{1}{c}{86\%}                        \\ \hline
         \multicolumn{1}{l}{River}       & \multicolumn{1}{c}{-}               & \multicolumn{1}{c}{-}                           \\ \hline
+        \multicolumn{1}{l}{EfficientNet} & \multicolumn{1}{c}{94\%}            & \multicolumn{1}{c}{88\%}                        \\ \hline
+        \multicolumn{1}{l}{ResNet}       & \multicolumn{1}{c}{96\%}            & \multicolumn{1}{c}{89\%}                        \\ \hline
+        \multicolumn{1}{l}{ResNet}       & \multicolumn{1}{c}{96\%}            & \multicolumn{1}{c}{91\%}                        \\ \hline
+        \multicolumn{1}{l}{ResNet}       & \multicolumn{1}{c}{96\%}            & \multicolumn{1}{c}{-}                           \\ \hline
         \multicolumn{1}{l}{EfficientNet} & \multicolumn{1}{c}{94\%}            & \multicolumn{1}{c}{88\%}                        \\ \hline
         \multicolumn{1}{l}{ResNet}       & \multicolumn{1}{c}{96\%}            & \multicolumn{1}{c}{89\%}                        \\ \hline
         \multicolumn{1}{l}{ResNet}       & \multicolumn{1}{c}{96\%}            & \multicolumn{1}{c}{91\%}                        \\ \hline
@@ -256,6 +267,12 @@ This way, the training is relatively simple, and the backbone would be used recu
 Specifically, the detector would generate the regions for the animals that would be cropped and pushed through the backbone, this time to the classifier head.
 This recursive use of the backbone is efficient in terms of the parameters, but running images through the same backbone twice could turn out to be too expensive as it would double the inference time.
 
+\begin{figure}[h!] 
+\centering 
+\includegraphics[width=0.8\textwidth]{imgs/object_classification_architecture.png}
+\caption{EfficientDet models for solving the object detection problem. In a) we have the basic object detector. In b) we have the recursive object detector. In c) we show the hypotetical multi-task model. TODO: ADD IMAGE}
+\end{figure}
+
 The second way of approaching this problem is to first train a model on the COCO classes and to create a detector for the cat and dog classes.
 Using the high-level model, we can automatically create acceptable object detection labels for the 37 classes in the pets dataset.
 Then we can initialize a 37 class object detector using the weights of the two-class model.
@@ -264,7 +281,7 @@ An interesting question here is just how well the object detector works when the
 In an image classifier setting, it would make sense that the model could learn the subtle features that are unique to each of the classes.
 As we previously covered, the object detector is a multi-task problem. 
 It follows that the network has to both decide the anchors most likely containing an object and also determining the class of the object.
-If we look at the classes for the COCO dataset for object detection, for example, we can see that there are 80 classes, but they are relatively difficult to mix up. 
+If we look at the classes for the COCO dataset for object detection, for example, we can see that there are 80 classes, but they are relatively difficult to mix up due to being quite distinct from one another. 
 In Figure 6.3, we have an example of two images from the pets dataset showing two classes that would be relatively easy to mix up.
 
 \begin{figure}[h!] 
@@ -275,13 +292,17 @@ In Figure 6.3, we have an example of two images from the pets dataset showing tw
 
 To evaluate the effects of both approaches, we will look at multiple metrics.
 Since the two approaches are quite different, we can't make an entirely fair direct comparison between them.
+To get somewhat of an idea for how well the models detect our 37 different classes, we will use a slightly arbitrary metric.
+We will measure the accuracy of the detector on our test set for the pets dataset.
+A positive example is one where the detector gives the highest confidence to the correct class.
+This is a somewhat simplified version of measuring the detector performance.
 The baseline scores for our EfficientNet-0 model are 92\% accuracy on the pets dataset and a 0.55 AP on detecting the cat and dog classes in the COCO dataset.
 We will calculate these same scores for the recursive model to see how close the multi-task model can get.
 To compare the two approaches, we will calculate the accuracy of correctly detected species in a set of the pets dataset.
 The labels are not going to be perfect as they are generated by the model automatically, but should show if there are major discrepancies in the performance between the two approaches.
 
 To train the single-stage model, we first created a new dataset in the COCO format from the dog and cat classes.
-Instead of having two classes, we combined both dog and cat into a single category as the goal is to detect them as well as possible, and we are not interested in the classification.
+Instead of having two classes, we combined both dog and cat into a single category as the goal is to detect them as well as possible, and we are not interested in identifying whether it is a dog or a cat.
 It is important to set the category id to be one instead of zero when training the object detector when there is only one class since otherwise, there will not be any predictions for the background.
 With this new dataset, we initialized the EfficientDet model and trained it to detect the single class from the COCO dataset.
 We first fine-tuned the head for ten epochs and then fine-tuned the entire network for 40 more epochs, and we picked the model with the lowest validation loss as the best one.
@@ -306,11 +327,61 @@ Every n epochs, we would generate new bounding boxes for the pets dataset, to fi
 Finally, we could do the label transfer also in the other direction.
 Since the COCO has the correct bounding boxes, we could run the image classifier trained on the pets dataset on those boxes to generate the actual animal species for them.
 
+The recursive model heavily relies on sharing the EfficientNet backbone in the detector between the classifier head and the detector head.
+The model is recursive because, on the first pass, we will find the cat or dog regions from the model using the detector head.
+Thus, the detector head is predicting only a single class as the distinction between the cat or dog class is of no interest in the detector.
+Given these detected objects, we can crop them from the original image and pass through the other head, which is concerned with classifying the image into the 37 classes of interest.
 
-For the two-task model, we trained it in a very similar fashion to the previous multi-task models.
-The object detector only required adding the final classification head on top of the backbone, and then the model could be trained with a basic multi-task training loop.
+For the recursive two-phase model, we trained it in a very similar fashion to the previous multi-task models.
+In this case, we ran the experiment with only a few sampling ratios, of which a 50/50 split produced the best results.
+The object detector only required adding the final classification head on top of the backbone, and then the model could be trained with a basic multi-task training loop since the EfficientNet backbone that we wanted to use is already a part of the EfficientDet model.
 
+\begin{table}[]
+    \centering
+    \begin{tabular}{lccl}
+        \multicolumn{1}{l}{\textbf{Task}}    & \multicolumn{1}{l}{\textbf{Value}}  \\ \cline{1-2}
+        \multicolumn{1}{l}{EfficientNet-B0 single-task pets accuracy} & \multicolumn{1}{c}{93\%}                    \\ \hline
+        \multicolumn{1}{l}{EfficientDet-D0 single-task on cat or dog AP} & \multicolumn{1}{c}{0.54}                       \\ \hline
+        \multicolumn{1}{l}{EfficientDet-D0 artificial data 37 classes AP} & \multicolumn{1}{c}{0.55}                       \\ \hline
+        \multicolumn{1}{l}{EfficientDet-D0 artificial data 37 classes accuracy on pets detection} & \multicolumn{1}{c}{85\%}                    \\ \hline
+        \multicolumn{1}{l}{Recursive detector cat or dog AP}       & \multicolumn{1}{c}{0.52}                    \\ \hline
+        \multicolumn{1}{l}{Recursive detector pets head accuracy}       & \multicolumn{1}{c}{89\%}                       \\ \hline
+        \multicolumn{1}{l}{Recursive detector 37 class detector accuracy on pets detection}       & \multicolumn{1}{c}{91\%}                       \\ \hline
+    \end{tabular}
+    \caption{Accuracies on the data sets for both single-task and multi-task models.}
+\end{table}
+
+To compare the models, we have collected the various metrics in Table 6.3. 
+The pure object detector for 37 classes had a 0.55 AP score on the artificially labeled dataset of the pets, and this is mildly higher than the base AP for the cat or dog detector.
+While the number seems impressive given the number of highly similar classes, it is not exactly comparable to the baseline due to the fact that the pets dataset is not that varied in terms of having many or different sized animals.
+Furthermore, the bounding box labels are created by the initial state of the 37 object detector, which likely causes the accuracy for the bounding boxes is going to be very high.
+The regression loss of localizing the boxes stays very low and stable throughout all of the training, showing that likely the detection part does not change that much.
+In our artificial detection evaluation metric, this pure detector achieved an 85\% accuracy.
+The accuracy is relatively high, given the difficulty of detecting and classifying such similar classes.
+
+The recursive multi-task model reached again slightly lower accuracies than the single task counterparts.
+The AP score on the cat or dog detection task dropped by 0.02 and the accuracy on the pets classification dropped by 4\% to 89\%.
+Interestingly, the detector task had a higher accuracy than the classification head had on the pets test set.
+The better accuracy could result from the fact that classifying a cropped animal is easier than to classify it within a larger frame.
+And since the object detector is relatively decent at finding the cat or dog candidates as a combination, these achieve better results.
+
+Based on the numbers, we could say that the two-stage detector seems to be the better one.
+The main downside to doing the two-stage detection is the fact that it would have to work one frame behind the video.
+Since on the first loop, we would detect our objects in the first frame.
+On the second frame we would pass the second frame and the cropped images that we found in the first frame.
+If the classification is done in this manner, the inference time cost won't be that much as it will be just the head to get the classification outputs.
+In the case that multiple videos would be run in parallel, this could possibly not be possible as at some point, the input could be too large to handle as a single batch.
+On the other hand, the pure detector doesn't need such considerations.
+The pure detector's problem is that it has some obvious downsides due to the artificial training set that was created for it.
+Whereas the recursive model does relatively as well on all kinds of data, the pure detector seems to have issues when there are multiple objects to detect, or the size varies.
+These issues likely stem from the fact that the pets dataset consists mostly of single relatively large animals, which is not always the case.
+Because the training and test sets are from the same source, they are relatively similar, so the performance is very transferable between those tasks.
+Some of the previously mentioned ways of training could alleviate this problem.
+Perhaps by having two classifier heads and doing auxiliary training on the COCO cats and dogs could make the detector detect the animals better, and hopefully, the classifier could solve the problem for all sizes from the single source.
+This modification is also pictured in Figure 6.4.
 
 \section{Detection, classification and segmentation}
 Thinkkers do it like it is done in \citep{multinet} but use efficientnet for all parts?
 
+\section{Recap}
+This will be an overview of all the challenges and things about multi-task training based on the experiments we have done.
