@@ -38,12 +38,13 @@ When a general embedding is generated it can be used to for example to evaluate 
 
 \begin{figure}[h!] 
 \centering 
-\includegraphics[width=0.8\textwidth]{imgs/object_classification_architecture.png}
-\caption{Image of an example of a convolutional neural network architecture with backbone (a), image classifier (b) and task head (c) labeled. TODO: IMAGE}
+\includegraphics[width=0.8\textwidth]{imgs/vggnet.png}
+\caption{Image of an example of a convolutional neural network architecture with backbone (a), image classifier (b) and task head (c) labeled. The architecture in this image is the VGGNet \citep{VGG}.}
 \end{figure}
 
 \subsection{Backbone}
 The feature extraction part of a convolutional classifier is called the backbone.
+The backbone is annotated in Figure 2.1.
 Finding better features is often correlated with more parameters and a larger model, but various architectural decisions can also help.
 The largest convolutional models have thousands of layers.
 Best models often use as large backbones as is possible within the constraints of the specific deployment.
@@ -57,5 +58,3 @@ It could be just a single linear layer connecting the image embedding to final c
 The head can thus contain whatever layers are needed to get the output, combining batch normalization, dropout, convolutional, recurrent, and linear layers depending on what is needed to solve the task.
 An example visualization of how the different parts of a convolutional model are connected is shown in Figure 2.1.
 The architecture would vary on a task-by-task basis, and the figure shows a basic image classifier architecture.
-
-

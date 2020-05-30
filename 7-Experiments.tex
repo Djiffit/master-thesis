@@ -61,8 +61,6 @@ The provided algorithm assumes that at a time, we are interested only in the lab
 If there is a need to train multiple tasks from a single input, then the minor adjustment that is needed is to sum the losses of multiple tasks that are backpropagated.
 Otherwise, the training loop remains the same, even if multiple tasks are optimized from a single batch.
 
-\section{Mixed precision training}
-
 \section{Basic multiple object classification tasks}
 As we have previously covered, fine-tuning an ImageNet classifier often produces good results. 
 Here we will take a pre-trained ImageNet backbone and learn multiple object classification tasks using the shared image embedding.
@@ -96,7 +94,7 @@ This model is depicted in figure 7.2.
 \caption{Network architecture for two image classification tasks.}
 \end{figure}
 
-To further extend the generalizability, we will try to add a third somewhat similar classification task using the TensorFlow flowers dataset \citep{tfflowers}, which contains five different types of flowers. 
+To further extend the generalizability, we will try to add a third somewhat similar classification task using the Oxford flowers102 dataset \citep{flowers102}, which contains 102 different types of flowers for classification. 
 The assumption here would be that flowers could require similar features as the previous leaf classification tasks, thus when increasing the training data with a closely related task, we could increase the generalizability even further.
 
 Multi-task and single-task models were created and evaluated for both EfficientNet and ResNet backbones.
@@ -185,8 +183,8 @@ Still, the problem is not gone as often any dataset has at least some mislabeled
 
 \begin{figure}[h!] 
 \centering 
-\includegraphics[width=0.8\textwidth]{imgs/object_classification_architecture.png}
-\caption{The architectures of the 14 head multi-task model and a single-task model. TODO: ADD IMAGE}
+\includegraphics[width=0.8\textwidth]{imgs/image-labeling.png}
+\caption{Architectures for both single-and multi-task models. The model (a) is the single-task model, which is the same for all 14 tasks. Model (b) is the Multi-task model, which contains 14 heads for each of the classification tasks. For these classifiers we took both max and average pool to create the embedding.}
 \end{figure}
 
 We will run some experiments on a 14 class multi-label prediction with some overlap between the classes in the images.
@@ -197,21 +195,21 @@ The goal here would be to see how what kind of a difference there would be in tr
     \centering
     \begin{tabular}{lccl}
         \multicolumn{1}{l}{\textbf{}}    & \multicolumn{1}{l}{\textbf{Multi-task}} & \multicolumn{1}{l}{\textbf{Single-task}} \\ \cline{2-3}
-        \multicolumn{1}{l}{People} & \multicolumn{1}{c}{94\%}            & \multicolumn{1}{c}{-}                           \\ \hline
-        \multicolumn{1}{l}{Man} & \multicolumn{1}{c}{-}               & \multicolumn{1}{c}{84\%}                        \\ \hline
-        \multicolumn{1}{l}{Woman} & \multicolumn{1}{c}{-}               & \multicolumn{1}{c}{-}                           \\ \hline
-        \multicolumn{1}{l}{Baby}       & \multicolumn{1}{c}{96\%}            & \multicolumn{1}{c}{-}                           \\ \hline
-        \multicolumn{1}{l}{Sea}       & \multicolumn{1}{c}{-}               & \multicolumn{1}{c}{86\%}                        \\ \hline
-        \multicolumn{1}{l}{River}       & \multicolumn{1}{c}{-}               & \multicolumn{1}{c}{-}                           \\ \hline
-        \multicolumn{1}{l}{EfficientNet} & \multicolumn{1}{c}{94\%}            & \multicolumn{1}{c}{88\%}                        \\ \hline
-        \multicolumn{1}{l}{ResNet}       & \multicolumn{1}{c}{96\%}            & \multicolumn{1}{c}{89\%}                        \\ \hline
-        \multicolumn{1}{l}{ResNet}       & \multicolumn{1}{c}{96\%}            & \multicolumn{1}{c}{91\%}                        \\ \hline
-        \multicolumn{1}{l}{ResNet}       & \multicolumn{1}{c}{96\%}            & \multicolumn{1}{c}{-}                           \\ \hline
-        \multicolumn{1}{l}{EfficientNet} & \multicolumn{1}{c}{94\%}            & \multicolumn{1}{c}{88\%}                        \\ \hline
-        \multicolumn{1}{l}{ResNet}       & \multicolumn{1}{c}{96\%}            & \multicolumn{1}{c}{89\%}                        \\ \hline
-        \multicolumn{1}{l}{ResNet}       & \multicolumn{1}{c}{96\%}            & \multicolumn{1}{c}{91\%}                        \\ \hline
-        \multicolumn{1}{l}{ResNet}       & \multicolumn{1}{c}{96\%}            & \multicolumn{1}{c}{-}                           \\ \hline
-        \multicolumn{1}{l}{Average}       & \multicolumn{1}{c}{-}               & \multicolumn{1}{c}{85\%}                        \\ \hline
+        \multicolumn{1}{l}{People} & \multicolumn{1}{c}{90\%}            & \multicolumn{1}{c}{89\%}                           \\ \hline
+        \multicolumn{1}{l}{Man} & \multicolumn{1}{c}{87\%}               & \multicolumn{1}{c}{84\%}                        \\ \hline
+        \multicolumn{1}{l}{Woman} & \multicolumn{1}{c}{86\%}               & \multicolumn{1}{c}{87\%}                           \\ \hline
+        \multicolumn{1}{l}{Baby}       & \multicolumn{1}{c}{87\%}            & \multicolumn{1}{c}{93\%}                           \\ \hline
+        \multicolumn{1}{l}{Sea}       & \multicolumn{1}{c}{89\%}               & \multicolumn{1}{c}{96\%}                        \\ \hline
+        \multicolumn{1}{l}{River}       & \multicolumn{1}{c}{89\%}               & \multicolumn{1}{c}{88\%}                           \\ \hline
+        \multicolumn{1}{l}{Bird} & \multicolumn{1}{c}{88\%}            & \multicolumn{1}{c}{89\%}                        \\ \hline
+        \multicolumn{1}{l}{Car}       & \multicolumn{1}{c}{85\%}            & \multicolumn{1}{c}{94\%}                        \\ \hline
+        \multicolumn{1}{l}{Clouds}       & \multicolumn{1}{c}{93\%}            & \multicolumn{1}{c}{93\%}                        \\ \hline
+        \multicolumn{1}{l}{Dog}       & \multicolumn{1}{c}{87\%}            & \multicolumn{1}{c}{93\%}                           \\ \hline
+        \multicolumn{1}{l}{Flower} & \multicolumn{1}{c}{85\%}            & \multicolumn{1}{c}{93\%}                        \\ \hline
+        \multicolumn{1}{l}{Night}       & \multicolumn{1}{c}{87\%}            & \multicolumn{1}{c}{92\%}                        \\ \hline
+        \multicolumn{1}{l}{Portrait}       & \multicolumn{1}{c}{89\%}            & \multicolumn{1}{c}{91\%}                        \\ \hline
+        \multicolumn{1}{l}{Tree}       & \multicolumn{1}{c}{87\%}            & \multicolumn{1}{c}{92\%}                           \\ \hline
+        \multicolumn{1}{l}{Average}       & \multicolumn{1}{c}{88\%}               & \multicolumn{1}{c}{91\%}                        \\ \hline
     \end{tabular}
     \caption{Accuracies on the data sets for both single-task and multi-task models.}
 \end{table}
@@ -237,7 +235,7 @@ The proportional sampling was the one that produced the final best model.
 It is quite an interesting result, considering just how small some of the classes are relative to the entire data set.
 We tried adjusting the proportional ratios based on the difference from the single-task accuracies but could not find ratios that would have improved the performance.
 Based on the previous results, we could say that there likely exists some ratios that could provide superior results, but finding them is too expensive.
-With the best model, which was chosen based on the average accuracy on the validation data, the model achieved an average of 89\% accuracy in labeling all the tasks.
+With the best model, which was chosen based on the average accuracy on the validation data, the model achieved an average of 88\% accuracy in labeling all the tasks.
 By average, we mean taking the accuracy of each task separately and averaging those averages and not the total ratio of correct classifications.
 
 The single-task model training was done similarly to the multi-task model and by using the same data loading techniques.
@@ -269,8 +267,9 @@ This recursive use of the backbone is efficient in terms of the parameters, but 
 
 \begin{figure}[h!] 
 \centering 
-\includegraphics[width=0.8\textwidth]{imgs/object_classification_architecture.png}
-\caption{EfficientDet models for solving the object detection problem. In a) we have the basic object detector. In b) we have the recursive object detector. In c) we show the hypotetical multi-task model. TODO: ADD IMAGE}
+\includegraphics[width=0.8\textwidth]{imgs/object_detect_combine.png}
+\includegraphics[width=0.8\textwidth]{imgs/recursive.png}
+\caption{EfficientDet models for solving the object detection problem. In a), we have the basic object detector. We show how we train on the COCO data first and then transfer the weights to the model for the pets data with predicted bounding boxes. In red the additions needed to train on both the original data and artificially labeled are shown. Both tasks could share the weights for the detector but would need to have their own class head.  In b), we have the recursive object detector. In yellow, we describe the path to train on the pets data. With green, we describe the path to train the cat or dog object detector. In blue, we show the first cycle of a new prediction. With purple, we show the second cycle for the new detection.}
 \end{figure}
 
 The second way of approaching this problem is to first train a model on the COCO classes and to create a detector for the cat and dog classes.
@@ -282,7 +281,7 @@ In an image classifier setting, it would make sense that the model could learn t
 As we previously covered, the object detector is a multi-task problem. 
 It follows that the network has to both decide the anchors most likely containing an object and also determining the class of the object.
 If we look at the classes for the COCO dataset for object detection, for example, we can see that there are 80 classes, but they are relatively difficult to mix up due to being quite distinct from one another. 
-In Figure 6.3, we have an example of two images from the pets dataset showing two classes that would be relatively easy to mix up.
+In Figure 6.5, we have an example of two images from the pets dataset showing two classes that would be relatively easy to mix up.
 
 \begin{figure}[h!] 
 \centering 
@@ -360,7 +359,7 @@ In our artificial detection evaluation metric, this pure detector achieved an 85
 The accuracy is relatively high, given the difficulty of detecting and classifying such similar classes.
 
 The recursive multi-task model reached again slightly lower accuracies than the single task counterparts.
-The AP score on the cat or dog detection task dropped by 0.02 and the accuracy on the pets classification dropped by 4\% to 89\%.
+The AP score on the cat or dog detection task dropped by 0.02, and the accuracy on the pets classification dropped by 4\% to 89\%.
 Interestingly, the detector task had a higher accuracy than the classification head had on the pets test set.
 The better accuracy could result from the fact that classifying a cropped animal is easier than to classify it within a larger frame.
 And since the object detector is relatively decent at finding the cat or dog candidates as a combination, these achieve better results.
@@ -368,7 +367,7 @@ And since the object detector is relatively decent at finding the cat or dog can
 Based on the numbers, we could say that the two-stage detector seems to be the better one.
 The main downside to doing the two-stage detection is the fact that it would have to work one frame behind the video.
 Since on the first loop, we would detect our objects in the first frame.
-On the second frame we would pass the second frame and the cropped images that we found in the first frame.
+On the second frame, we would pass the second frame and the cropped images that we found in the first frame.
 If the classification is done in this manner, the inference time cost won't be that much as it will be just the head to get the classification outputs.
 In the case that multiple videos would be run in parallel, this could possibly not be possible as at some point, the input could be too large to handle as a single batch.
 On the other hand, the pure detector doesn't need such considerations.

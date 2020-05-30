@@ -162,7 +162,7 @@ Due to this, we can have a class imbalance of 1:1000 between the positive and ne
 For this reason, the recent single-stage detectors use a focal loss presented in the RetinaNet paper, to account for this class imbalance \citep{retinaNet}.
 
 The focal loss introduces two new parameters to the cross-entropy formula to account for the class imbalance. 
-The formula for focal loss is as follows.
+The formula for focal loss (FL) is as follows.
 \[FL(p_i) = -\alpha_i * log(1-p_i)^\gamma * log(p_i)\] \noindent
 Where $\alpha$ and $\gamma$ are the new scaling factors and $p_i$ is defined as $p$ if y = 1 and $1 - p$ otherwise.
 The factor $\alpha$ is there to weight the loss for the positive and negative cases separately. 
