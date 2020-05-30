@@ -211,7 +211,8 @@ The goal here would be to see how what kind of a difference there would be in tr
         \multicolumn{1}{l}{Tree}       & \multicolumn{1}{c}{87\%}            & \multicolumn{1}{c}{92\%}                           \\ \hline
         \multicolumn{1}{l}{Average}       & \multicolumn{1}{c}{88\%}               & \multicolumn{1}{c}{91\%}                        \\ \hline
     \end{tabular}
-    \caption{Accuracies on the data sets for both single-task and multi-task models.}
+    \caption{Accuracies on the data sets for both single-task and multi-task models. 
+    The accuracy is the proportion for correct labelings in the balance evaluation set, so pure guess would result in 50\% accuracy.}
 \end{table}
 
 The dataset is a collection of 15000 images that have labels for some of the classes.
@@ -237,6 +238,17 @@ We tried adjusting the proportional ratios based on the difference from the sing
 Based on the previous results, we could say that there likely exists some ratios that could provide superior results, but finding them is too expensive.
 With the best model, which was chosen based on the average accuracy on the validation data, the model achieved an average of 88\% accuracy in labeling all the tasks.
 By average, we mean taking the accuracy of each task separately and averaging those averages and not the total ratio of correct classifications.
+
+One new thing that we noticed when training on this data set was that with too high learning rates, the experiments were not very repeatable.
+It seems that in a multi-task setting, it is not easy to tell that the learning rate is too high.
+In this case, when the learning process seemed to progress in a manner that we would call expected, the learning rate might actually be too high.
+With a slightly too high learning rate, it seemed like it is relatively random, whether the model reaches the best weights.
+Most likely, the sampling ratios matter here quite a lot, but with the same sampling ratios and a slightly too high learning rate, there didn't seem to be a guarantee that anything close to the best model would be reached.
+Maybe this has something to do with the large variance in the size of the datasets.
+With more dynamic sampling ratios, the problems might solve themselves, as then some tasks would hopefully not get stuck at low accuracies.
+We noticed here the same thing as in the leaves experiment that a long training process that slowly approaches the optimum seems to produce the best results in the end consistently.
+Maybe this means that finding the intersection that can solve all the tasks optimally is relatively small and easy to overshoot with too large learning rates.
+Similarly, with incorrect sampling ratios, the model would never be able to reach the weights needed for the shared optimal solution.
 
 The single-task model training was done similarly to the multi-task model and by using the same data loading techniques.
 This way, we reached an average accuracy of 91\%, beating the multi-task model slightly.
@@ -281,7 +293,7 @@ In an image classifier setting, it would make sense that the model could learn t
 As we previously covered, the object detector is a multi-task problem. 
 It follows that the network has to both decide the anchors most likely containing an object and also determining the class of the object.
 If we look at the classes for the COCO dataset for object detection, for example, we can see that there are 80 classes, but they are relatively difficult to mix up due to being quite distinct from one another. 
-In Figure 6.5, we have an example of two images from the pets dataset showing two classes that would be relatively easy to mix up.
+In Figure 6.6, we have an example of two images from the pets dataset showing two classes that would be relatively easy to mix up.
 
 \begin{figure}[h!] 
 \centering 
@@ -335,22 +347,56 @@ For the recursive two-phase model, we trained it in a very similar fashion to th
 In this case, we ran the experiment with only a few sampling ratios, of which a 50/50 split produced the best results.
 The object detector only required adding the final classification head on top of the backbone, and then the model could be trained with a basic multi-task training loop since the EfficientNet backbone that we wanted to use is already a part of the EfficientDet model.
 
+
 \begin{table}[]
     \centering
     \begin{tabular}{lccl}
-        \multicolumn{1}{l}{\textbf{Task}}    & \multicolumn{1}{l}{\textbf{Value}}  \\ \cline{1-2}
-        \multicolumn{1}{l}{EfficientNet-B0 single-task pets accuracy} & \multicolumn{1}{c}{93\%}                    \\ \hline
-        \multicolumn{1}{l}{EfficientDet-D0 single-task on cat or dog AP} & \multicolumn{1}{c}{0.54}                       \\ \hline
-        \multicolumn{1}{l}{EfficientDet-D0 artificial data 37 classes AP} & \multicolumn{1}{c}{0.55}                       \\ \hline
-        \multicolumn{1}{l}{EfficientDet-D0 artificial data 37 classes accuracy on pets detection} & \multicolumn{1}{c}{85\%}                    \\ \hline
-        \multicolumn{1}{l}{Recursive detector cat or dog AP}       & \multicolumn{1}{c}{0.52}                    \\ \hline
-        \multicolumn{1}{l}{Recursive detector pets head accuracy}       & \multicolumn{1}{c}{89\%}                       \\ \hline
-        \multicolumn{1}{l}{Recursive detector 37 class detector accuracy on pets detection}       & \multicolumn{1}{c}{91\%}                       \\ \hline
+        \multicolumn{1}{l}{\textbf{Pets classification}}    & \multicolumn{1}{l}{\textbf{}}  \\ \cline{1-2}
+        \multicolumn{1}{l}{EfficientNet-B0 baseline} & \multicolumn{1}{c}{93\%}                    \\ \hline
+        \multicolumn{1}{l}{Recursive detector task head}       & \multicolumn{1}{c}{89\%}                       \\ \hline
+        \\
     \end{tabular}
-    \caption{Accuracies on the data sets for both single-task and multi-task models.}
+    \caption{
+    This table lists the accuracy for pets classification without localisation based on the baseline model and the classifier head in the recursive model.
+    }
 \end{table}
 
-To compare the models, we have collected the various metrics in Table 6.3. 
+
+\begin{table}
+    \centering
+    \begin{tabular}{lccl}
+        \multicolumn{1}{l}{\textbf{Cat or dog detection}}    & \multicolumn{1}{l}{\textbf{}}  \\ \cline{1-2}
+        \multicolumn{1}{l}{EfficientDet-D0 baseline} & \multicolumn{1}{c}{0.54}                       \\ \hline
+        \multicolumn{1}{l}{Recursive detector}       & \multicolumn{1}{c}{0.52}                    \\ \hline
+    \end{tabular}
+    \caption {
+        This contains the AP score for detecting the single cat or dog class for the baseline and the recursive detector.    
+    }
+\end{table}
+\begin{table}
+    \centering
+    \begin{tabular}{lccl}
+        \multicolumn{1}{l}{\textbf{Custom pets detection metric}}    & \multicolumn{1}{l}{\textbf{}}  \\ \cline{1-2}
+        \multicolumn{1}{l}{EfficientDet-D0 trained with artificial data} & \multicolumn{1}{c}{85\%}     \\ \hline 
+        \multicolumn{1}{l}{Recursive detector with separate heads}       & \multicolumn{1}{c}{91\%}                       \\ \hline
+    \end{tabular}
+    \caption {
+        This table compares the EfficientDet trained on artificial data and the recursive model in detecting the 37 pets classes.
+        Here the metric is the proportion of correct classifications in the most confidently detected box.
+    }
+\end{table}
+\begin{table}
+    \centering
+    \begin{tabular}{lccl}
+        \multicolumn{1}{l}{\textbf{37 class object detection}}    & \multicolumn{1}{l}{\textbf{}}  \\ \cline{1-2}
+        \multicolumn{1}{l}{EfficientDet-D0 artificial data 37 classes AP} & \multicolumn{1}{c}{0.55}                       \\ \hline
+    \end{tabular}
+    \caption {
+        The AP score on 37 class object detection for the model with artificial data.
+    }
+\end{table}
+
+To compare the models, we have collected the various metrics in Tables 6.3 to 6.5, grouped by the comparable metrics. 
 The pure object detector for 37 classes had a 0.55 AP score on the artificially labeled dataset of the pets, and this is mildly higher than the base AP for the cat or dog detector.
 While the number seems impressive given the number of highly similar classes, it is not exactly comparable to the baseline due to the fact that the pets dataset is not that varied in terms of having many or different sized animals.
 Furthermore, the bounding box labels are created by the initial state of the 37 object detector, which likely causes the accuracy for the bounding boxes is going to be very high.

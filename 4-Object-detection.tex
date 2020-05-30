@@ -21,7 +21,7 @@ These metrics use intersection over union (IoU) score to evaluate how incorrect 
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.8\textwidth]{imgs/intersection_over_union.png}
+    \includegraphics[width=0.8\textwidth]{imgs/IoU-own.png}
     \caption{The visual formula for calculating intersection over union.}
 \end{figure}
 
@@ -113,8 +113,8 @@ The EfficientDet model architecture is shown in Figure 5.3.
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.8\textwidth]{imgs/efficientDet.png}
-    \caption{EfficientDet architecture comprises of the EfficientNet \citep{efficientNet} backbone, the bidirectional feature pyramid network neck and the class and box classifier heads.}
+    \includegraphics[width=0.8\textwidth]{imgs/eDet-own.png}
+    \caption{EfficientDet architecture comprises of the EfficientNet \citep{efficientNet} backbone, the bidirectional feature pyramid network neck and the class and box classifier heads. Here only one BiFPN layer is pictured, but there are multiple of them normally stacked in succession.}
 \end{figure}
 
 The different feature maps in the BiFPN are combined using a weighted feature fusion.

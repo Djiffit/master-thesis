@@ -33,8 +33,8 @@ Unlike the ImageNet challenge, most real-world tasks do not have such an abundan
 
 \begin{figure}[h!] 
 \centering 
-\includegraphics[width=0.8\textwidth]{imgs/imagenet_parameters.png}
-\caption{Number of parameters in popular ImageNet classifiers. Figure from \citep{efficientNet}.\label{fig:params}}
+\includegraphics[width=0.8\textwidth]{imgs/imagenet-own.png}
+\caption{Number of parameters in popular ImageNet classifiers. Figure adapted from \citep{efficientNet}.\label{fig:params}}
 \end{figure}
 
 Picking which classifier to use as a base is often problem-dependent. As it is not possible to declare one network structure to be the best at all tasks, picking the best model to start with usually requires the user to compare different architectures and weighing the requirements for the problem at hand. Often though, the larger models will perform better, and there exists a correlation between performing well on ImageNet and being a good transfer learning model \citep{betterTransfer}. Though as can be seen in figure 3.1, better performance often comes at the cost of many more parameters, requiring more memory to train the model. Though, as the results in \citep{classifierPerformance} show, just the number of parameters is not the only thing to compare as the throughput of a Resnet50 turns out to be about three times as large as the throughput of an EfficientNet-B4 \citep{efficientNet} even though they have a similar amount of parameters. So in the case of time-constrained inference environments, also the time required for an inference has to be taken into account when picking models.

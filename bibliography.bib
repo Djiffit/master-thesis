@@ -3,7 +3,6 @@
 	title = {{ImageNet} classification with deep convolutional neural networks},
 	volume = {60},
 	issn = {00010782},
-	url = {http://dl.acm.org/citation.cfm?doid=3098997.3065386},
 	doi = {10.1145/3065386},
 	abstract = {We trained a large, deep convolutional neural network to classify the 1.2 million high-resolution images in the ImageNet LSVRC-2010 contest into the 1000 different classes. On the test data, we achieved top-1 and top-5 error rates of 37.5\% and 17.0\% which is considerably better than the previous state-of-the-art. The neural network, which has 60 million parameters and 650,000 neurons, consists of ﬁve convolutional layers, some of which are followed by max-pooling layers, and three fully-connected layers with a ﬁnal 1000-way softmax. To make training faster, we used non-saturating neurons and a very efﬁcient GPU implementation of the convolution operation. To reduce overﬁtting in the fully-connected layers we employed a recently-developed regularization method called “dropout” that proved to be very effective. We also entered a variant of this model in the ILSVRC-2012 competition and achieved a winning top-5 test error rate of 15.3\%, compared to 26.2\% achieved by the second-best entry.},
 	language = {en},
@@ -63,7 +62,12 @@
 }
 
 
-
+@INPROCEEDINGS{kitti,
+  author = {Jannik Fritsch and Tobias Kuehnl and Andreas Geiger},
+  title = {A New Performance Measure and Evaluation Benchmark for Road Detection Algorithms},
+  booktitle = {International Conference on Intelligent Transportation Systems (ITSC)},
+  year = {2013}
+} 
 
 
 
@@ -146,7 +150,6 @@ file = {IEEE Xplore Abstract Record:/home/konstaku/Zotero/storage/ZCESIJS9/89203
 	title = {A {Survey} on {Transfer} {Learning}},
 	volume = {22},
 	issn = {1041-4347},
-	url = {http://ieeexplore.ieee.org/document/5288526/},
 	doi = {10.1109/TKDE.2009.191},
 	abstract = {A major assumption in many machine learning and data mining algorithms is that the training and future data must be in the same feature space and have the same distribution. However, in many real-world applications, this assumption may not hold. For example, we sometimes have a classiﬁcation task in one domain of interest, but we only have sufﬁcient training data in another domain of interest, where the latter data may be in a different feature space or follow a different data distribution. In such cases, knowledge transfer, if done successfully, would greatly improve the performance of learning by avoiding much expensive data labeling efforts. In recent years, transfer learning has emerged as a new learning framework to address this problem. This survey focuses on categorizing and reviewing the current progress on transfer learning for classiﬁcation, regression and clustering problems. In this survey, we discuss the relationship between transfer learning and other related machine learning techniques such as domain adaptation, multitask learning and sample selection bias, as well as co-variate shift. We also explore some potential future issues in transfer learning research.},
 	language = {en},
@@ -198,7 +201,6 @@ editor = {H. Wallach and H. Larochelle and A. Beygelzimer and F. d\textquotesing
 pages = {103--112},
 year = {2019},
 publisher = {Curran Associates, Inc.},
-url = {http://papers.nips.cc/paper/8305-gpipe-efficient-training-of-giant-neural-networks-using-pipeline-parallelism.pdf}
 }
 
 
@@ -228,7 +230,6 @@ file = {Howard et al. - 2017 - MobileNets Efficient Convolutional Neural Network
         	editor={Richard C. Wilson, Edwin R. Hancock and William A. P. Smith},
         	doi={10.5244/C.30.87},
         	isbn={1-901725-59-6},
-        	url={https://dx.doi.org/10.5244/C.30.87}
         }
 @INPROCEEDINGS{mnas,
 
@@ -250,7 +251,6 @@ file = {Howard et al. - 2017 - MobileNets Efficient Convolutional Neural Network
 	location = {Cham},
 	title = {Neural Architecture Search},
 	isbn = {978-3-030-05318-5},
-	url = {https://doi.org/10.1007/978-3-030-05318-5_3},
 	series = {The Springer Series on Challenges in Machine Learning},
 	abstract = {Deep Learning has enabled remarkable progress over the last years on a variety of tasks, such as image recognition, speech recognition, and machine translation. One crucial aspect for this progress are novel neural architectures. Currently employed architectures have mostly been developed manually by human experts, which is a time-consuming and error-prone process. Because of this, there is growing interest in automated neural architecture search methods. We provide an overview of existing work in this field of research and categorize them according to three dimensions: search space, search strategy, and performance estimation strategy.},
 	pages = {63--77},
@@ -271,7 +271,6 @@ address = {Cham},
 title = {Mutual {Learning} to {Adapt} for {Joint} {Human} {Parsing} and {Pose} {Estimation}},
 volume = {11209},
 isbn = {978-3-030-01227-4 978-3-030-01228-1},
-url = {http://link.springer.com/10.1007/978-3-030-01228-1_31},
 abstract = {This paper presents a novel Mutual Learning to Adapt model (MuLA) for joint human parsing and pose estimation. It eﬀectively exploits mutual beneﬁts from both tasks and simultaneously boosts their performance. Diﬀerent from existing post-processing or multi-task learning based methods, MuLA predicts dynamic task-speciﬁc model parameters via recurrently leveraging guidance information from its parallel tasks. Thus MuLA can fast adapt parsing and pose models to provide more powerful representations by incorporating information from their counterparts, giving more robust and accurate results. MuLA is implemented with convolutional neural networks and end-to-end trainable. Comprehensive experiments on benchmarks LIP and extended PASCALPerson-Part demonstrate the eﬀectiveness of the proposed MuLA model with superior performance to well established baselines.},
 language = {en},
 urldate = {2020-02-26},
@@ -291,7 +290,6 @@ file = {Nie et al. - 2018 - Mutual Learning to Adapt for Joint Human Parsing a.p
 address = {Salt Lake City, UT, USA},
 title = {Multi-task {Learning} {Using} {Uncertainty} to {Weigh} {Losses} for {Scene} {Geometry} and {Semantics}},
 isbn = {978-1-5386-6420-9},
-url = {https://ieeexplore.ieee.org/document/8578879/},
 doi = {10.1109/CVPR.2018.00781},
 abstract = {Numerous deep learning applications beneﬁt from multitask learning with multiple regression and classiﬁcation objectives. In this paper we make the observation that the performance of such systems is strongly dependent on the relative weighting between each task’s loss. Tuning these weights by hand is a difﬁcult and expensive process, making multi-task learning prohibitive in practice. We propose a principled approach to multi-task deep learning which weighs multiple loss functions by considering the homoscedastic uncertainty of each task. This allows us to simultaneously learn various quantities with different units or scales in both classiﬁcation and regression settings. We demonstrate our model learning per-pixel depth regression, semantic and instance segmentation from a monocular input image. Perhaps surprisingly, we show our model can learn multi-task weightings and outperform separate models trained individually on each task.},
 language = {en},
@@ -340,7 +338,6 @@ file = {Liebel and Körner - 2019 - MultiDepth Single-Image Depth Estimation via
 address = {Long Beach, CA, USA},
 title = {End-{To}-{End} {Multi}-{Task} {Learning} {With} {Attention}},
 isbn = {978-1-72813-293-8},
-url = {https://ieeexplore.ieee.org/document/8954221/},
 doi = {10.1109/CVPR.2019.00197},
 abstract = {We propose a novel multi-task learning architecture, which allows learning of task-speciﬁc feature-level attention. Our design, the Multi-Task Attention Network (MTAN), consists of a single shared network containing a global feature pool, together with a soft-attention module for each task. These modules allow for learning of taskspeciﬁc features from the global features, whilst simultaneously allowing for features to be shared across different tasks. The architecture can be trained end-to-end and can be built upon any feed-forward neural network, is simple to implement, and is parameter efﬁcient. We evaluate our approach on a variety of datasets, across both image-toimage predictions and image classiﬁcation tasks. We show that our architecture is state-of-the-art in multi-task learning compared to existing methods, and is also less sensitive to various weighting schemes in the multi-task loss function. Code is available at https://github.com/ lorenmt/mtan.},
 language = {en},
@@ -381,7 +378,6 @@ file = {Liu et al. - 2019 - End-To-End Multi-Task Learning With Attention.pdf:/h
 address = {Salt Lake City, UT, USA},
 title = {Multi-task {Learning} {Using} {Uncertainty} to {Weigh} {Losses} for {Scene} {Geometry} and {Semantics}},
 isbn = {978-1-5386-6420-9},
-url = {https://ieeexplore.ieee.org/document/8578879/},
 doi = {10.1109/CVPR.2018.00781},
 abstract = {Numerous deep learning applications beneﬁt from multitask learning with multiple regression and classiﬁcation objectives. In this paper we make the observation that the performance of such systems is strongly dependent on the relative weighting between each task’s loss. Tuning these weights by hand is a difﬁcult and expensive process, making multi-task learning prohibitive in practice. We propose a principled approach to multi-task deep learning which weighs multiple loss functions by considering the homoscedastic uncertainty of each task. This allows us to simultaneously learn various quantities with different units or scales in both classiﬁcation and regression settings. We demonstrate our model learning per-pixel depth regression, semantic and instance segmentation from a monocular input image. Perhaps surprisingly, we show our model can learn multi-task weightings and outperform separate models trained individually on each task.},
 language = {en},
@@ -501,7 +497,6 @@ file = {Jang et al. - 2019 - Learning What and Where to Transfer.pdf:/home/konst
 address = {Columbus, OH, USA},
 title = {Learning and {Transferring} {Mid}-level {Image} {Representations} {Using} {Convolutional} {Neural} {Networks}},
 isbn = {978-1-4799-5118-5},
-url = {http://ieeexplore.ieee.org/lpdocs/epic03/wrapper.htm?arnumber=6909618},
 doi = {10.1109/CVPR.2014.222},
 abstract = {Convolutional neural networks (CNN) have recently shown outstanding image classiﬁcation performance in the largescale visual recognition challenge (ILSVRC2012). The success of CNNs is attributed to their ability to learn rich midlevel image representations as opposed to hand-designed low-level features used in other image classiﬁcation methods. Learning CNNs, however, amounts to estimating millions of parameters and requires a very large number of annotated image samples. This property currently prevents application of CNNs to problems with limited training data. In this work we show how image representations learned with CNNs on large-scale annotated datasets can be efﬁciently transferred to other visual recognition tasks with limited amount of training data. We design a method to reuse layers trained on the ImageNet dataset to compute mid-level image representation for images in the PASCAL VOC dataset. We show that despite differences in image statistics and tasks in the two datasets, the transferred representation leads to signiﬁcantly improved results for object and action classiﬁcation, outperforming the current state of the art on Pascal VOC 2007 and 2012 datasets. We also show promising results for object and action localization.},
 language = {en},
@@ -524,7 +519,6 @@ file = {Oquab et al. - 2014 - Learning and Transferring Mid-level Image Represen
 address = {Mountain View, California, USA},
 title = {A {Multi}-{Task} {Framework} for {Weather} {Recognition}},
 isbn = {978-1-4503-4906-2},
-url = {http://dl.acm.org/citation.cfm?doid=3123266.3123382},
 doi = {10.1145/3123266.3123382},
 abstract = {Weather recognition is important in practice, while this task has not been thoroughly explored so far. The current trend of dealing with this task is treating it as a single classi cation problem, i.e., determining whether a given image belongs to a certain weather category or not. However, weather recognition di ers signi cantly from traditional image classi cation, since several weather features may appear simultaneously. In this case, a simple classi cation result is insu cient to describe the weather condition. To address this issue, we propose to provide auxiliary weather related information for comprehensive weather description. Speci cally, semantic segmentation of weather-cues, such as blue sky and white clouds, is exploited as an auxiliary task in this paper. Moreover, a convolutional neural network (CNN) based multi-task framework is developed which aims to concurrently tackle weather category classi cation task and weather-cues segmentation task. Due to the intrinsic relationships between these two tasks, exploring auxiliary semantic segmentation of weather-cues can also help to learn discriminative features for the classi cation task, and thus obtain superior accuracy. To verify the e ectiveness of the proposed approach, extra segmentation masks of weather-cues are generated manually on an existing weather image dataset. Experimental results have demonstrated the superior performance of our approach. The enhanced dataset, source codes and pre-trained models are available at https://github.com/wzgwzg/Multitask\_Weather.},
 language = {en},
@@ -542,7 +536,6 @@ title = {{WeatherNet}: {Recognising} {Weather} and {Visual} {Conditions} from {S
 volume = {8},
 issn = {2220-9964},
 shorttitle = {{WeatherNet}},
-url = {https://www.mdpi.com/2220-9964/8/12/549},
 doi = {10.3390/ijgi8120549},
 abstract = {Extracting information related to weather and visual conditions at a given time and space is indispensable for scene awareness, which strongly impacts our behaviours, from simply walking in a city to riding a bike, driving a car, or autonomous driveassistance. Despite the significance of this subject, it is still not been fully addressed by the machine intelligence relying on deep learning and computer vision to detect the multi-labels of weather and visual conditions with a unified method that can be easily used for practice. What has been achieved to-date is rather sectorial models that address limited number of labels that do not cover the wide spectrum of weather and visual conditions. Nonetheless, weather and visual conditions are often addressed individually. In this paper, we introduce a novel framework to automatically extract this information from street-level images relying on deep learning and computer vision using a unified method without any pre-defined constraints in the processed images. A pipeline of four deep Convolutional Neural Network (CNN) models, so-called the WeatherNet, is trained, relying on residual learning using ResNet50 architecture, to extract various weather and visual conditions such as Dawn/dusk, day and night for time detection, and glare for lighting conditions, and clear, rainy, snowy, and foggy for weather conditions. The WeatherNet shows strong performance in extracting this information from user-defined images or video streams that can be used not limited to: autonomous vehicles and drive-assistance systems, tracking behaviours, safety-related research, or even for better understanding cities through images for policy-makers.},
 language = {en},
@@ -598,7 +591,6 @@ title = {{MultiPoseNet}: {Fast} {Multi}-{Person} {Pose} {Estimation} {Using} {Po
 volume = {11215},
 isbn = {978-3-030-01251-9 978-3-030-01252-6},
 shorttitle = {{MultiPoseNet}},
-url = {http://link.springer.com/10.1007/978-3-030-01252-6_26},
 abstract = {In this paper, we present MultiPoseNet, a novel bottom-up multi-person pose estimation architecture that combines a multi-task model with a novel assignment method. MultiPoseNet can jointly handle person detection, person segmentation and pose estimation problems. The novel assignment method is implemented by the Pose Residual Network (PRN) which receives keypoint and person detections, and produces accurate poses by assigning keypoints to person instances. On the COCO keypoints dataset, our pose estimation method outperforms all previous bottom-up methods both in accuracy (+4-point mAP over previous best result) and speed; it also performs on par with the best top-down methods while being at least 4x faster. Our method is the fastest real time system with ∼23 frames/sec.},
 language = {en},
 booktitle = {Computer {Vision} – {ECCV} 2018},
@@ -634,7 +626,6 @@ editor = {H. Wallach and H. Larochelle and A. Beygelzimer and F. d\textquotesing
 pages = {8024--8035},
 year = {2019},
 publisher = {Curran Associates, Inc.},
-url = {http://papers.neurips.cc/paper/9015-pytorch-an-imperative-style-high-performance-deep-learning-library.pdf}
 }
 
 @misc{Apex,
@@ -708,7 +699,6 @@ editor = {I. Guyon and U. V. Luxburg and S. Bengio and H. Wallach and R. Fergus 
 pages = {5998--6008},
 year = {2017},
 publisher = {Curran Associates, Inc.},
-url = {http://papers.nips.cc/paper/7181-attention-is-all-you-need.pdf}
 }
 
 
@@ -756,7 +746,6 @@ file = {Perreault et al. - 2020 - SpotNet Self-Attention Multi-Task Network for 
 address = {Long Beach, CA, USA},
 title = {Multi-{Task} {Self}-{Supervised} {Object} {Detection} via {Recycling} of {Bounding} {Box} {Annotations}},
 isbn = {978-1-72813-293-8},
-url = {https://ieeexplore.ieee.org/document/8954013/},
 doi = {10.1109/CVPR.2019.00512},
 abstract = {In spite of recent enormous success of deep convolutional networks in object detection, they require a large amount of bounding box annotations, which are often timeconsuming and error-prone to obtain. To make better use of given limited labels, we propose a novel object detection approach that takes advantage of both multi-task learning (MTL) and self-supervised learning (SSL). We propose a set of auxiliary tasks that help improve the accuracy of object detection. They create their own labels by recycling the bounding box labels (i.e. annotations of the main task) in an SSL manner, and are jointly trained with the object detection model in an MTL way. Our approach is integrable with any region proposal based detection models. We empirically validate that our approach effectively improves detection performance on various architectures and datasets. We test two state-of-the-art region proposal object detectors, including Faster R-CNN [39] and R-FCN [10], with three CNN backbones of ResNet-101 [22], InceptionResNet-v2 [45], and MobileNet [23] on two benchmark datasets of PASCAL VOC [14] and COCO [30].},
 language = {en},
@@ -775,7 +764,6 @@ address = {Berlin, Heidelberg},
 title = {Describing {Clothing} by {Semantic} {Attributes}},
 volume = {7574},
 isbn = {978-3-642-33711-6 978-3-642-33712-3},
-url = {http://link.springer.com/10.1007/978-3-642-33712-3_44},
 abstract = {Describing clothing appearance with semantic attributes is an appealing technique for many important applications. In this paper, we propose a fully automated system that is capable of generating a list of nameable attributes for clothes on human body in unconstrained images. We extract low-level features in a pose-adaptive manner, and combine complementary features for learning attribute classiﬁers. Mutual dependencies between the attributes are then explored by a Conditional Random Field to further improve the predictions from independent classiﬁers. We validate the performance of our system on a challenging clothing attribute dataset, and introduce a novel application of dressing style analysis that utilizes the semantic attributes produced by our system.},
 language = {en},
 urldate = {2020-05-06},
@@ -828,7 +816,6 @@ address = {Kauai, HI, USA},
 title = {Rapid object detection using a boosted cascade of simple features},
 volume = {1},
 isbn = {978-0-7695-1272-3},
-url = {http://ieeexplore.ieee.org/document/990517/},
 doi = {10.1109/CVPR.2001.990517},
 abstract = {This paper describes a machine learning approach for visual object detection which is capable of processing images extremely rapidly and achieving high detection rates. This work is distinguished by three key contributions. The ﬁrst is the introduction of a new image representation called the “Integral Image” which allows the features used by our detector to be computed very quickly. The second is a learning algorithm, based on AdaBoost, which selects a small number of critical visual features from a larger set and yields extremely efﬁcient classiﬁers[6]. The third contribution is a method for combining increasingly more complex classiﬁers in a “cascade” which allows background regions of the image to be quickly discarded while spending more computation on promising object-like regions. The cascade can be viewed as an object speciﬁc focus-of-attention mechanism which unlike previous approaches provides statistical guarantees that discarded regions are unlikely to contain the object of interest. In the domain of face detection the system yields detection rates comparable to the best previous systems. Used in real-time applications, the detector runs at 15 frames per second without resorting to image differencing or skin color detection.},
 language = {en},
@@ -845,7 +832,6 @@ file = {Viola and Jones - 2001 - Rapid object detection using a boosted cascade 
 	title = {Histograms of {Oriented} {Gradients} for {Human} {Detection}},
 	volume = {1},
 	isbn = {978-0-7695-2372-9},
-	url = {http://ieeexplore.ieee.org/document/1467360/},
 	doi = {10.1109/CVPR.2005.177},
 	abstract = {We study the question of feature sets for robust visual object recognition, adopting linear SVM based human detection as a test case. After reviewing existing edge and gradient based descriptors, we show experimentally that grids of Histograms of Oriented Gradient (HOG) descriptors signiﬁcantly outperform existing feature sets for human detection. We study the inﬂuence of each stage of the computation on performance, concluding that ﬁne-scale gradients, ﬁne orientation binning, relatively coarse spatial binning, and high-quality local contrast normalization in overlapping descriptor blocks are all important for good results. The new approach gives near-perfect separation on the original MIT pedestrian database, so we introduce a more challenging dataset containing over 1800 annotated human images with a large range of pose variations and backgrounds.},
 	language = {en},
@@ -865,7 +851,6 @@ editor = {C. Cortes and N. D. Lawrence and D. D. Lee and M. Sugiyama and R. Garn
 pages = {91--99},
 year = {2015},
 publisher = {Curran Associates, Inc.},
-url = {http://papers.nips.cc/paper/5638-faster-r-cnn-towards-real-time-object-detection-with-region-proposal-networks.pdf}
 }
 
 
@@ -889,7 +874,6 @@ file = {Bochkovskiy et al. - 2020 - YOLOv4 Optimal Speed and Accuracy of Object 
 	location = {Long Beach, {CA}, {USA}},
 	title = {Multi-Task Self-Supervised Object Detection via Recycling of Bounding Box Annotations},
 	isbn = {978-1-72813-293-8},
-	url = {https://ieeexplore.ieee.org/document/8954013/},
 	doi = {10.1109/CVPR.2019.00512},
 	abstract = {In spite of recent enormous success of deep convolutional networks in object detection, they require a large amount of bounding box annotations, which are often timeconsuming and error-prone to obtain. To make better use of given limited labels, we propose a novel object detection approach that takes advantage of both multi-task learning ({MTL}) and self-supervised learning ({SSL}). We propose a set of auxiliary tasks that help improve the accuracy of object detection. They create their own labels by recycling the bounding box labels (i.e. annotations of the main task) in an {SSL} manner, and are jointly trained with the object detection model in an {MTL} way. Our approach is integrable with any region proposal based detection models. We empirically validate that our approach effectively improves detection performance on various architectures and datasets. We test two state-of-the-art region proposal object detectors, including Faster R-{CNN} [39] and R-{FCN} [10], with three {CNN} backbones of {ResNet}-101 [22], {InceptionResNet}-v2 [45], and {MobileNet} [23] on two benchmark datasets of {PASCAL} {VOC} [14] and {COCO} [30].},
 	eventtitle = {2019 {IEEE}/{CVF} Conference on Computer Vision and Pattern Recognition ({CVPR})},
@@ -921,7 +905,6 @@ file = {Bochkovskiy et al. - 2020 - YOLOv4 Optimal Speed and Accuracy of Object 
 	title = {The Pascal Visual Object Classes ({VOC}) Challenge},
 	volume = {88},
 	issn = {0920-5691, 1573-1405},
-	url = {http://link.springer.com/10.1007/s11263-009-0275-4},
 	doi = {10.1007/s11263-009-0275-4},
 	abstract = {The {PASCAL} Visual Object Classes ({VOC}) challenge is a benchmark in visual object category recognition and detection, providing the vision and machine learning communities with a standard dataset of images and annotation, and standard evaluation procedures. Organised annually from 2005 to present, the challenge and its associated dataset has become accepted as the benchmark for object detection.},
 	pages = {303--338},
@@ -948,7 +931,6 @@ booktitle = {ECCV},
 year = {2014},
 abstract = {We present a new dataset with the goal of advancing the state-of-the-art in object recognition by placing the question of object recognition in the context of the broader question of scene understanding. This is achieved by gathering images of complex everyday scenes containing common objects in their natural context. Objects are labeled using per-instance segmentations to aid in precise object localization. Our dataset contains photos of 91 objects types that would be easily recognizable by a 4 year old. With a total of 2.5 million labeled instances in 328k images, the creation of our dataset drew upon extensive crowd worker involvement via novel user interfaces for category detection, instance spotting and instance segmentation. We present a detailed statistical analysis of the dataset in comparison to PASCAL, ImageNet, and SUN. Finally, we provide baseline performance analysis for bounding box and segmentation detection results using a Deformable Parts Model.},
 publisher = {European Conference on Computer Vision},
-url = {https://www.microsoft.com/en-us/research/publication/microsoft-coco-common-objects-in-context/},
 edition = {ECCV},
 }
 
@@ -1022,7 +1004,6 @@ URL	= {https://arxiv.org/abs/1911.09070}
   pages = {936-944},
   publisher = {IEEE Computer Society},
   title = {Feature Pyramid Networks for Object Detection.},
-  url = {http://dblp.uni-trier.de/db/conf/cvpr/cvpr2017.html#LinDGHHB17},
   year = 2017
 }
 
@@ -1077,7 +1058,6 @@ URL	= {https://arxiv.org/abs/1911.09070}
     year = "2019",
     address = "Minneapolis, Minnesota",
     publisher = "Association for Computational Linguistics",
-    url = "https://www.aclweb.org/anthology/N19-1423",
     doi = "10.18653/v1/N19-1423",
     pages = "4171--4186",
     abstract = "We introduce a new language representation model called BERT, which stands for Bidirectional Encoder Representations from Transformers. Unlike recent language representation models (Peters et al., 2018a; Radford et al., 2018), BERT is designed to pre-train deep bidirectional representations from unlabeled text by jointly conditioning on both left and right context in all layers. As a result, the pre-trained BERT model can be fine-tuned with just one additional output layer to create state-of-the-art models for a wide range of tasks, such as question answering and language inference, without substantial task-specific architecture modifications. BERT is conceptually simple and empirically powerful. It obtains new state-of-the-art results on eleven natural language processing tasks, including pushing the GLUE score to 80.5 (7.7 point absolute improvement), MultiNLI accuracy to 86.7{\%} (4.6{\%} absolute improvement), SQuAD v1.1 question answering Test F1 to 93.2 (1.5 point absolute improvement) and SQuAD v2.0 Test F1 to 83.1 (5.1 point absolute improvement).",

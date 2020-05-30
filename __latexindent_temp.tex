@@ -1,1125 +1,432 @@
-
-@article{alexNet,
-	title = {{ImageNet} classification with deep convolutional neural networks},
-	volume = {60},
-	issn = {00010782},
-	url = {http://dl.acm.org/citation.cfm?doid=3098997.3065386},
-	doi = {10.1145/3065386},
-	abstract = {We trained a large, deep convolutional neural network to classify the 1.2 million high-resolution images in the ImageNet LSVRC-2010 contest into the 1000 different classes. On the test data, we achieved top-1 and top-5 error rates of 37.5\% and 17.0\% which is considerably better than the previous state-of-the-art. The neural network, which has 60 million parameters and 650,000 neurons, consists of ﬁve convolutional layers, some of which are followed by max-pooling layers, and three fully-connected layers with a ﬁnal 1000-way softmax. To make training faster, we used non-saturating neurons and a very efﬁcient GPU implementation of the convolution operation. To reduce overﬁtting in the fully-connected layers we employed a recently-developed regularization method called “dropout” that proved to be very effective. We also entered a variant of this model in the ILSVRC-2012 competition and achieved a winning top-5 test error rate of 15.3\%, compared to 26.2\% achieved by the second-best entry.},
-	language = {en},
-	number = {6},
-	journal = {Communications of the ACM},
-	author = {Krizhevsky, Alex and Sutskever, Ilya and Hinton, Geoffrey E.},
-	year = {2017},
-	pages = {84--90},
-	file = {Krizhevsky et al. - 2017 - ImageNet classification with deep convolutional ne.pdf:/home/konstaku/Zotero/storage/45HSR2RH/Krizhevsky et al. - 2017 - ImageNet classification with deep convolutional ne.pdf:application/pdf}
-}
-
-@inproceedings{imagenet,
-  title={Imagenet: A large-scale hierarchical image database},
-  author={Deng, Jia and Dong, Wei and Socher, Richard and Li, Li-Jia and Li, Kai and Fei-Fei, Li},
-  booktitle={2009 IEEE conference on computer vision and pattern recognition},
-  pages={248--255},
-  year={2009},
-  organization={Ieee}
-}
-
-
-
-@misc{ILSVRC,
-	title = {{ImageNet} {Large} {Scale} {Visual} {Recognition} {Competition} ({ILSVRC})},
-	url = {http://www.image-net.org/challenges/LSVRC/},
-	urldate = {2020-01-26},
-	file = {ImageNet Large Scale Visual Recognition Competition (ILSVRC):/home/konstaku/Zotero/storage/2IGV2WF3/LSVRC.html:text/html}
-}
-
-@inproceedings{resNet,
-  title={Deep residual learning for image recognition},
-  author={He, Kaiming and Zhang, Xiangyu and Ren, Shaoqing and Sun, Jian},
-  booktitle={Proceedings of the IEEE conference on computer vision and pattern recognition},
-  pages={770--778},
-  year={2016}
-}
-
-
-@article{imageNet_summary,
-  title={Imagenet large scale visual recognition challenge},
-  author={Russakovsky, Olga and Deng, Jia and Su, Hao and Krause, Jonathan and Satheesh, Sanjeev and Ma, Sean and Huang, Zhiheng and Karpathy, Andrej and Khosla, Aditya and Bernstein, Michael and others},
-  journal={International journal of computer vision},
-  volume={115},
-  number={3},
-  pages={211--252},
-  year={2015},
-  publisher={Springer}
-}
-
-
-@inproceedings{objectNet,
-  title={ObjectNet: A large-scale bias-controlled dataset for pushing the limits of object recognition models},
-  author={Barbu, Andrei and Mayo, David and Alverio, Julian and Luo, William and Wang, Christopher and Gutfreund, Dan and Tenenbaum, Josh and Katz, Boris},
-  booktitle={Advances in Neural Information Processing Systems},
-  pages={9448--9458},
-  year={2019}
-}
-
-
-
-
-
-
-
-
-
-
-@InProceedings{efficientNet,
-  title = 	 {EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks},
-  author = 	 {Tan, Mingxing and Le, Quoc},
-  booktitle = 	 {Proceedings of the 36th International Conference on Machine Learning},
-  pages = 	 {6105--6114},
-  year = 	 {2019},
-  editor = 	 {Chaudhuri, Kamalika and Salakhutdinov, Ruslan},
-  volume = 	 {97},
-  series = 	 {Proceedings of Machine Learning Research},
-  address = 	 {Long Beach, California, USA},
-  publisher = 	 {PMLR}
-}
-
-
-
-
-@inproceedings{betterTransfer,
-  title={Do better imagenet models transfer better?},
-  author={Kornblith, Simon and Shlens, Jonathon and Le, Quoc V},
-  booktitle={Proceedings of the IEEE conference on computer vision and pattern recognition},
-  pages={2661--2671},
-  year={2019}
-}
-
-@article{classifierPerformance,
-title = {Compounding the {Performance} {Improvements} of {Assembled} {Techniques} in a {Convolutional} {Neural} {Network}},
-url = {http://arxiv.org/abs/2001.06268},
-abstract = {Recent studies in image classiﬁcation have demonstrated a variety of techniques for improving the performance of Convolutional Neural Networks (CNNs). However, attempts to combine existing techniques to create a practical model are still uncommon. In this study, we carry out extensive experiments to validate that carefully assembling these techniques and applying them to a basic CNN model in combination can improve the accuracy and robustness of the model while minimizing the loss of throughput. For example, our proposed ResNet-50 shows an improvement in top-1 accuracy from 76.3\% to 82.78\%, and an mCE improvement from 76.0\% to 48.9\%, on the ImageNet ILSVRC2012 validation set. With these improvements, inference throughput only decreases from 536 to 312. The resulting model signiﬁcantly outperforms state-of-theart models with similar accuracy in terms of mCE and inference throughput. To verify the performance improvement in transfer learning, ﬁne grained classiﬁcation and image retrieval tasks were tested on several open datasets and showed that the improvement to backbone network performance boosted transfer learning performance signiﬁcantly. Our approach achieved 1st place in the iFood Competition Fine-Grained Visual Recognition at CVPR 2019 1, and the source code and trained models will be made publicly available 2.},
-language = {en},
-journal = {arXiv:2001.06268 [cs]},
-author = {Lee, Jungkyu and Won, Taeryun and Hong, Kiho},
-year = {2020},
-note = {arXiv: 2001.06268},
-keywords = {Computer Science - Computer Vision and Pattern Recognition},
-file = {Lee et al. - 2020 - Compounding the Performance Improvements of Assemb.pdf:/home/konstaku/Zotero/storage/788PI52C/Lee et al. - 2020 - Compounding the Performance Improvements of Assemb.pdf:application/pdf}
-}
-
-@article{leNet,
-  title={Gradient-based learning applied to document recognition},
-  author={LeCun, Yann and Bottou, L{\'e}on and Bengio, Yoshua and Haffner, Patrick},
-  journal={Proceedings of the IEEE},
-  volume={86},
-  number={11},
-  pages={2278--2324},
-  year={1998},
-  publisher={Ieee}
-}
-
-
-@inproceedings{rethinkTransfer,
-  title={Rethinking imagenet pre-training},
-  author={He, Kaiming and Girshick, Ross and Doll{\'a}r, Piotr},
-  booktitle={Proceedings of the IEEE International Conference on Computer Vision},
-  pages={4918--4927},
-  year={2019}
-}
-
-@inproceedings{transferSurvey,
-title = {A {Survey} of {Transfer} {Learning} for {Convolutional} {Neural} {Networks}},
-doi = {10.1109/SIBGRAPI-T.2019.00010},
-abstract = {Transfer learning is an emerging topic that may drive the success of machine learning in research and industry. The lack of data on specific tasks is one of the main reasons to use it, since collecting and labeling data can be very expensive and can take time, and recent concerns with privacy make difficult to use real data from users. The use of transfer learning helps to fast prototype new machine learning models using pre-trained models from a source task since training on millions of images can take time and requires expensive GPUs. In this survey, we review the concepts and definitions related to transfer learning and we list the different terms used in the literature. We bring the point of view from different authors of prior surveys, adding some more recent findings in order to give a clear vision of directions for future work in this field of research.},
-booktitle = {2019 32nd {SIBGRAPI} {Conference} on {Graphics}, {Patterns} and {Images} {Tutorials} ({SIBGRAPI}-{T})},
-author = {Ribani, Ricardo and Marengoni, Mauricio},
-month = oct,
-year = {2019},
-note = {ISSN: 2474-0691},
-keywords = {Machine learning, Convolutional Neural Networks, Data models, Deep Learning, Probability distribution, Supervised learning, Task analysis, Training, Transfer Learning},
-pages = {47--57},
-file = {IEEE Xplore Abstract Record:/home/konstaku/Zotero/storage/ZCESIJS9/8920338.html:text/html;IEEE Xplore Full Text PDF:/home/konstaku/Zotero/storage/PZN27DVW/Ribani and Marengoni - 2019 - A Survey of Transfer Learning for Convolutional Ne.pdf:application/pdf}
-}
-
-@article{transferSurvey2010,
-	title = {A {Survey} on {Transfer} {Learning}},
-	volume = {22},
-	issn = {1041-4347},
-	url = {http://ieeexplore.ieee.org/document/5288526/},
-	doi = {10.1109/TKDE.2009.191},
-	abstract = {A major assumption in many machine learning and data mining algorithms is that the training and future data must be in the same feature space and have the same distribution. However, in many real-world applications, this assumption may not hold. For example, we sometimes have a classiﬁcation task in one domain of interest, but we only have sufﬁcient training data in another domain of interest, where the latter data may be in a different feature space or follow a different data distribution. In such cases, knowledge transfer, if done successfully, would greatly improve the performance of learning by avoiding much expensive data labeling efforts. In recent years, transfer learning has emerged as a new learning framework to address this problem. This survey focuses on categorizing and reviewing the current progress on transfer learning for classiﬁcation, regression and clustering problems. In this survey, we discuss the relationship between transfer learning and other related machine learning techniques such as domain adaptation, multitask learning and sample selection bias, as well as co-variate shift. We also explore some potential future issues in transfer learning research.},
-	language = {en},
-	number = {10},
-	journal = {IEEE Transactions on Knowledge and Data Engineering},
-	author = {Pan, Sinno Jialin and Yang, Qiang},
-	year = {2010},
-	pages = {1345--1359},
-	file = {Pan and Yang - 2010 - A Survey on Transfer Learning.pdf:/home/konstaku/Zotero/storage/YZBBSKDB/Pan and Yang - 2010 - A Survey on Transfer Learning.pdf:application/pdf}
-}
-
-@inproceedings{denseNet,
-  title={Densely connected convolutional networks},
-  author={Huang, Gao and Liu, Zhuang and Van Der Maaten, Laurens and Weinberger, Kilian Q},
-  booktitle={Proceedings of the IEEE conference on computer vision and pattern recognition},
-  pages={4700--4708},
-  year={2017}
-}
-
-@inproceedings{resNext,
-  title={Aggregated residual transformations for deep neural networks},
-  author={Xie, Saining and Girshick, Ross and Doll{\'a}r, Piotr and Tu, Zhuowen and He, Kaiming},
-  booktitle={Proceedings of the IEEE conference on computer vision and pattern recognition},
-  pages={1492--1500},
-  year={2017}
-}
-
-@INPROCEEDINGS{mobileNetv2,
-
-  author={M. {Sandler} and A. {Howard} and M. {Zhu} and A. {Zhmoginov} and L. {Chen}},
-
-  booktitle={2018 IEEE/CVF Conference on Computer Vision and Pattern Recognition}, 
-
-  title={MobileNetV2: Inverted Residuals and Linear Bottlenecks}, 
-
-  year={2018},
-
-  volume={},
-
-  number={},
-
-  pages={4510-4520},}
-
-@incollection{gPipe,
-title = {GPipe: Efficient Training of Giant Neural Networks using Pipeline Parallelism},
-author = {Huang, Yanping and Cheng, Youlong and Bapna, Ankur and Firat, Orhan and Chen, Dehao and Chen, Mia and Lee, HyoukJoong and Ngiam, Jiquan and Le, Quoc V and Wu, Yonghui and Chen, zhifeng},
-booktitle = {Advances in Neural Information Processing Systems 32},
-editor = {H. Wallach and H. Larochelle and A. Beygelzimer and F. d\textquotesingle Alch\'{e}-Buc and E. Fox and R. Garnett},
-pages = {103--112},
-year = {2019},
-publisher = {Curran Associates, Inc.},
-url = {http://papers.nips.cc/paper/8305-gpipe-efficient-training-of-giant-neural-networks-using-pipeline-parallelism.pdf}
-}
-
-
-@article{mobileNet,
-title = {{MobileNets}: {Efficient} {Convolutional} {Neural} {Networks} for {Mobile} {Vision} {Applications}},
-shorttitle = {{MobileNets}},
-url = {http://arxiv.org/abs/1704.04861},
-abstract = {We present a class of efﬁcient models called MobileNets for mobile and embedded vision applications. MobileNets are based on a streamlined architecture that uses depthwise separable convolutions to build light weight deep neural networks. We introduce two simple global hyperparameters that efﬁciently trade off between latency and accuracy. These hyper-parameters allow the model builder to choose the right sized model for their application based on the constraints of the problem. We present extensive experiments on resource and accuracy tradeoffs and show strong performance compared to other popular models on ImageNet classiﬁcation. We then demonstrate the effectiveness of MobileNets across a wide range of applications and use cases including object detection, ﬁnegrain classiﬁcation, face attributes and large scale geo-localization.},
-language = {en},
-journal = {arXiv:1704.04861 [cs]},
-author = {Howard, Andrew G. and Zhu, Menglong and Chen, Bo and Kalenichenko, Dmitry and Wang, Weijun and Weyand, Tobias and Andreetto, Marco and Adam, Hartwig},
-year = {2017},
-note = {arXiv: 1704.04861},
-keywords = {Computer Science - Computer Vision and Pattern Recognition},
-file = {Howard et al. - 2017 - MobileNets Efficient Convolutional Neural Network.pdf:/home/konstaku/Zotero/storage/DGE2QG6B/Howard et al. - 2017 - MobileNets Efficient Convolutional Neural Network.pdf:application/pdf}
-}
-
-        @inproceedings{wideResNet,
-        	title={Wide Residual Networks},
-        	author={Sergey Zagoruyko and Nikos Komodakis},
-        	year={2016},
-        	pages={87.1-87.12},
-        	articleno={87},
-        	numpages={12},
-        	booktitle={Proceedings of the British Machine Vision Conference (BMVC)},
-        	publisher={BMVA Press},
-        	editor={Richard C. Wilson, Edwin R. Hancock and William A. P. Smith},
-        	doi={10.5244/C.30.87},
-        	isbn={1-901725-59-6},
-        	url={https://dx.doi.org/10.5244/C.30.87}
-        }
-@INPROCEEDINGS{mnas,
-
-  author={M. {Tan} and B. {Chen} and R. {Pang} and V. {Vasudevan} and M. {Sandler} and A. {Howard} and Q. V. {Le}},
-
-  booktitle={2019 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)}, 
-
-  title={MnasNet: Platform-Aware Neural Architecture Search for Mobile}, 
-
-  year={2019},
-
-  volume={},
-
-  number={},
-
-  pages={2815-2823},}
-
-@incollection{neuralSearch,
-	location = {Cham},
-	title = {Neural Architecture Search},
-	isbn = {978-3-030-05318-5},
-	url = {https://doi.org/10.1007/978-3-030-05318-5_3},
-	series = {The Springer Series on Challenges in Machine Learning},
-	abstract = {Deep Learning has enabled remarkable progress over the last years on a variety of tasks, such as image recognition, speech recognition, and machine translation. One crucial aspect for this progress are novel neural architectures. Currently employed architectures have mostly been developed manually by human experts, which is a time-consuming and error-prone process. Because of this, there is growing interest in automated neural architecture search methods. We provide an overview of existing work in this field of research and categorize them according to three dimensions: search space, search strategy, and performance estimation strategy.},
-	pages = {63--77},
-	booktitle = {Automated Machine Learning: Methods, Systems, Challenges},
-	publisher = {Springer International Publishing},
-	author = {Elsken, Thomas and Metzen, Jan Hendrik and Hutter, Frank},
-	editor = {Hutter, Frank and Kotthoff, Lars and Vanschoren, Joaquin},
-	date = {2019},
-	langid = {english},
-	doi = {10.1007/978-3-030-05318-5_3},
-	file = {Springer Full Text PDF:/Users/kokutvon/Zotero/storage/JXSPZ6W9/Elsken et al. - 2019 - Neural Architecture Search.pdf:application/pdf}
-}
-
-
-
-@incollection{mutualLearning,
-address = {Cham},
-title = {Mutual {Learning} to {Adapt} for {Joint} {Human} {Parsing} and {Pose} {Estimation}},
-volume = {11209},
-isbn = {978-3-030-01227-4 978-3-030-01228-1},
-url = {http://link.springer.com/10.1007/978-3-030-01228-1_31},
-abstract = {This paper presents a novel Mutual Learning to Adapt model (MuLA) for joint human parsing and pose estimation. It eﬀectively exploits mutual beneﬁts from both tasks and simultaneously boosts their performance. Diﬀerent from existing post-processing or multi-task learning based methods, MuLA predicts dynamic task-speciﬁc model parameters via recurrently leveraging guidance information from its parallel tasks. Thus MuLA can fast adapt parsing and pose models to provide more powerful representations by incorporating information from their counterparts, giving more robust and accurate results. MuLA is implemented with convolutional neural networks and end-to-end trainable. Comprehensive experiments on benchmarks LIP and extended PASCALPerson-Part demonstrate the eﬀectiveness of the proposed MuLA model with superior performance to well established baselines.},
-language = {en},
-urldate = {2020-02-26},
-booktitle = {Computer {Vision} – {ECCV} 2018},
-publisher = {Springer International Publishing},
-author = {Nie, Xuecheng and Feng, Jiashi and Yan, Shuicheng},
-editor = {Ferrari, Vittorio and Hebert, Martial and Sminchisescu, Cristian and Weiss, Yair},
-year = {2018},
-doi = {10.1007/978-3-030-01228-1_31},
-pages = {519--534},
-file = {Nie et al. - 2018 - Mutual Learning to Adapt for Joint Human Parsing a.pdf:/home/konstaku/Zotero/storage/8QYIV5FG/Nie et al. - 2018 - Mutual Learning to Adapt for Joint Human Parsing a.pdf:application/pdf}
-}
-
-
-
-@inproceedings{multiLearningUncertainty,
-address = {Salt Lake City, UT, USA},
-title = {Multi-task {Learning} {Using} {Uncertainty} to {Weigh} {Losses} for {Scene} {Geometry} and {Semantics}},
-isbn = {978-1-5386-6420-9},
-url = {https://ieeexplore.ieee.org/document/8578879/},
-doi = {10.1109/CVPR.2018.00781},
-abstract = {Numerous deep learning applications beneﬁt from multitask learning with multiple regression and classiﬁcation objectives. In this paper we make the observation that the performance of such systems is strongly dependent on the relative weighting between each task’s loss. Tuning these weights by hand is a difﬁcult and expensive process, making multi-task learning prohibitive in practice. We propose a principled approach to multi-task deep learning which weighs multiple loss functions by considering the homoscedastic uncertainty of each task. This allows us to simultaneously learn various quantities with different units or scales in both classiﬁcation and regression settings. We demonstrate our model learning per-pixel depth regression, semantic and instance segmentation from a monocular input image. Perhaps surprisingly, we show our model can learn multi-task weightings and outperform separate models trained individually on each task.},
-language = {en},
-urldate = {2020-01-15},
-booktitle = {2018 {IEEE}/{CVF} {Conference} on {Computer} {Vision} and {Pattern} {Recognition}},
-publisher = {IEEE},
-author = {Cipolla, Roberto and Gal, Yarin and Kendall, Alex},
-year = {2018},
-pages = {7482--7491},
-file = {Cipolla et al. - 2018 - Multi-task Learning Using Uncertainty to Weigh Los.pdf:/home/konstaku/Zotero/storage/JUFEPU8D/Cipolla et al. - 2018 - Multi-task Learning Using Uncertainty to Weigh Los.pdf:application/pdf}
-}
-
-@inproceedings{visualPerson,
-  title = {Visual Person Understanding Through Multi-task and Multi-dataset Learning},
-  author = {Kilian Pfeiffer and Alexander Hermans and Istv\'{a}n S\'{a}r\'{a}ndi and Mark Weber and Bastian Leibe},
-  booktitle = {German Conference on Pattern Recognition},
-  pages = {551--566},
-  date = {2019},
-}
-
-@article{multiDepth,
-title = {{MultiDepth}: {Single}-{Image} {Depth} {Estimation} via {Multi}-{Task} {Regression} and {Classification}},
-shorttitle = {{MultiDepth}},
-url = {http://arxiv.org/abs/1907.11111},
-abstract = {We introduce MultiDepth, a novel training strategy and convolutional neural network (CNN) architecture that allows approaching single-image depth estimation (SIDE) as a multi-task problem. SIDE is an important part of road scene understanding. It, thus, plays a vital role in advanced driver assistance systems and autonomous vehicles. Best results for the SIDE task so far have been achieved using deep CNNs. However, optimization of regression problems, such as estimating depth, is still a challenging task. For the related tasks of image classification and semantic segmentation, numerous CNN-based methods with robust training behavior have been proposed. Hence, in order to overcome the notorious instability and slow convergence of depth value regression during training, MultiDepth makes use of depth interval classification as an auxiliary task. The auxiliary task can be disabled at test-time to predict continuous depth values using the main regression branch more efficiently. We applied MultiDepth to road scenes and present results on the KITTI depth prediction dataset. In experiments, we were able to show that end-to-end multi-task learning with both, regression and classification, is able to considerably improve training and yield more accurate results.},
-language = {en},
-urldate = {2020-01-29},
-journal = {arXiv:1907.11111 [cs]},
-author = {Liebel, Lukas and Körner, Marco},
-month = jul,
-year = {2019},
-note = {arXiv: 1907.11111},
-keywords = {Computer Science - Computer Vision and Pattern Recognition},
-file = {Liebel and Körner - 2019 - MultiDepth Single-Image Depth Estimation via Mult.pdf:/home/konstaku/Zotero/storage/PWEGEBIU/Liebel and Körner - 2019 - MultiDepth Single-Image Depth Estimation via Mult.pdf:application/pdf}
-}
-
-@inproceedings{taskonomy,
-  title={Taskonomy: Disentangling task transfer learning},
-  author={Zamir, Amir R and Sax, Alexander and Shen, William and Guibas, Leonidas J and Malik, Jitendra and Savarese, Silvio},
-  booktitle={Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition},
-  pages={3712--3722},
-  year={2018}
-}
-
-@inproceedings{multiTaskAttention,
-address = {Long Beach, CA, USA},
-title = {End-{To}-{End} {Multi}-{Task} {Learning} {With} {Attention}},
-isbn = {978-1-72813-293-8},
-url = {https://ieeexplore.ieee.org/document/8954221/},
-doi = {10.1109/CVPR.2019.00197},
-abstract = {We propose a novel multi-task learning architecture, which allows learning of task-speciﬁc feature-level attention. Our design, the Multi-Task Attention Network (MTAN), consists of a single shared network containing a global feature pool, together with a soft-attention module for each task. These modules allow for learning of taskspeciﬁc features from the global features, whilst simultaneously allowing for features to be shared across different tasks. The architecture can be trained end-to-end and can be built upon any feed-forward neural network, is simple to implement, and is parameter efﬁcient. We evaluate our approach on a variety of datasets, across both image-toimage predictions and image classiﬁcation tasks. We show that our architecture is state-of-the-art in multi-task learning compared to existing methods, and is also less sensitive to various weighting schemes in the multi-task loss function. Code is available at https://github.com/ lorenmt/mtan.},
-language = {en},
-booktitle = {2019 {IEEE}/{CVF} {Conference} on {Computer} {Vision} and {Pattern} {Recognition} ({CVPR})},
-publisher = {IEEE},
-author = {Liu, Shikun and Johns, Edward and Davison, Andrew J.},
-year = {2019},
-pages = {1871--1880},
-file = {Liu et al. - 2019 - End-To-End Multi-Task Learning With Attention.pdf:/home/konstaku/Zotero/storage/6Z9IWAEJ/Liu et al. - 2019 - End-To-End Multi-Task Learning With Attention.pdf:application/pdf}
-}
-@inproceedings{crossStitch,
-
-  author={I. {Misra} and A. {Shrivastava} and A. {Gupta} and M. {Hebert}},
-
-  booktitle={2016 IEEE Conference on Computer Vision and Pattern Recognition (CVPR)}, 
-
-  title={Cross-Stitch Networks for Multi-task Learning}, 
-
-  year={2016},
-
-  volume={},
-
-  number={},
-
-  pages={3994-4003},}
-
-
-@article{learningToMultitask,
-	title = {Learning to {Multitask}},
-	abstract = {Multitask learning has shown promising performance in many applications and many multitask models have been proposed. In order to identify an effective multitask model for a given multitask problem, we propose a learning framework called Learning to MultiTask (L2MT). To achieve the goal, L2MT exploits historical multitask experience which is organized as a training set consisting of several tuples, each of which contains a multitask problem with multiple tasks, a multitask model, and the relative test error. Based on such training set, L2MT ﬁrst uses a proposed layerwise graph neural network to learn task embeddings for all the tasks in a multitask problem and then learns an estimation function to estimate the relative test error based on task embeddings and the representation of the multitask model based on a uniﬁed formulation. Given a new multitask problem, the estimation function is used to identify a suitable multitask model. Experiments on benchmark datasets show the effectiveness of the proposed L2MT framework.},
-	language = {en},
-	author = {Zhang, Yu and Wei, Ying and Yang, Qiang},
-	pages = {12},
-	file = {Zhang et al. - Learning to Multitask.pdf:/home/konstaku/Zotero/storage/CSZ75VG5/Zhang et al. - Learning to Multitask.pdf:application/pdf}
-}
-
-@inproceedings{usingUncertaintyToWeighLosses,
-address = {Salt Lake City, UT, USA},
-title = {Multi-task {Learning} {Using} {Uncertainty} to {Weigh} {Losses} for {Scene} {Geometry} and {Semantics}},
-isbn = {978-1-5386-6420-9},
-url = {https://ieeexplore.ieee.org/document/8578879/},
-doi = {10.1109/CVPR.2018.00781},
-abstract = {Numerous deep learning applications beneﬁt from multitask learning with multiple regression and classiﬁcation objectives. In this paper we make the observation that the performance of such systems is strongly dependent on the relative weighting between each task’s loss. Tuning these weights by hand is a difﬁcult and expensive process, making multi-task learning prohibitive in practice. We propose a principled approach to multi-task deep learning which weighs multiple loss functions by considering the homoscedastic uncertainty of each task. This allows us to simultaneously learn various quantities with different units or scales in both classiﬁcation and regression settings. We demonstrate our model learning per-pixel depth regression, semantic and instance segmentation from a monocular input image. Perhaps surprisingly, we show our model can learn multi-task weightings and outperform separate models trained individually on each task.},
-language = {en},
-booktitle = {2018 {IEEE}/{CVF} {Conference} on {Computer} {Vision} and {Pattern} {Recognition}},
-publisher = {IEEE},
-author = {Cipolla, Roberto and Gal, Yarin and Kendall, Alex},
-month = jun,
-year = {2018},
-pages = {7482--7491},
-file = {Cipolla et al. - 2018 - Multi-task Learning Using Uncertainty to Weigh Los.pdf:/home/konstaku/Zotero/storage/JUFEPU8D/Cipolla et al. - 2018 - Multi-task Learning Using Uncertainty to Weigh Los.pdf:application/pdf}
-}
-
-@article{lossWeighting,
-	title = {A {Comparison} of {Loss} {Weighting} {Strategies} for {Multi} task {Learning} in {Deep} {Neural} {Networks}},
-	volume = {7},
-	issn = {2169-3536},
-	doi = {10.1109/ACCESS.2019.2943604},
-	abstract = {With the success of deep learning in a wide variety of areas, many deep multi-task learning (MTL) models have been proposed claiming improvements in performance obtained by sharing the learned structure across several related tasks. However, the dynamics of multi-task learning in deep neural networks is still not well understood at either the theoretical or experimental level. In particular, the usefulness of different task pairs is not known a priori. Practically, this means that properly combining the losses of different tasks becomes a critical issue in multi-task learning, as different methods may yield different results. In this paper, we benchmarked different multi-task learning approaches using shared trunk with task specific branches architecture across three different MTL datasets. For the first dataset, i.e. Multi-MNIST (Modified National Institute of Standards and Technology database), we thoroughly tested several weighting strategies, including simply adding task-specific cost functions together, dynamic weight average (DWA) and uncertainty weighting methods each with various amounts of training data per-task. We find that multi-task learning typically does not improve performance for a user-defined combination of tasks. Further experiments evaluated on diverse tasks and network architectures on various datasets suggested that multi-task learning requires careful selection of both task pairs and weighting strategies to equal or exceed the performance of single task learning.},
-	journal = {IEEE Access},
-	author = {Gong, Ting and Lee, Tyler and Stephenson, Cory and Renduchintala, Venkata and Padhy, Suchismita and Ndirango, Anthony and Keskin, Gokce and Elibol, Oguz H.},
-	year = {2019},
-	keywords = {Data models, Task analysis, Training, Deep learning, deep multitask learning models, deep neural networks, dynamic weight average, Dynamic weighting average, Estimation, learning (artificial intelligence), loss weighting strategies, multi-MNIST, multi-objective optimization, multi-task learning, neural nets, task pairs, task specific branches architecture, task-specific cost functions, Training data, Uncertainty, uncertainty weighting},
-	pages = {141627--141632},
-	file = {IEEE Xplore Abstract Record:/home/konstaku/Zotero/storage/XGGZ8FTG/8848395.html:text/html;IEEE Xplore Full Text PDF:/home/konstaku/Zotero/storage/R9J46AED/Gong et al. - 2019 - A Comparison of Loss Weighting Strategies for Mult.pdf:application/pdf}
-}
-
-@article{surveyOnMultiTask,
-title = {A {Survey} on {Multi}-{Task} {Learning}},
-url = {http://arxiv.org/abs/1707.08114},
-abstract = {Multi-Task Learning (MTL) is a learning paradigm in machine learning and its aim is to leverage useful information contained in multiple related tasks to help improve the generalization performance of all the tasks. In this paper, we give a survey for MTL. First, we classify different MTL algorithms into several categories, including feature learning approach, low-rank approach, task clustering approach, task relation learning approach, and decomposition approach, and then discuss the characteristics of each approach. In order to improve the performance of learning tasks further, MTL can be combined with other learning paradigms including semi-supervised learning, active learning, unsupervised learning, reinforcement learning, multi-view learning and graphical models. When the number of tasks is large or the data dimensionality is high, batch MTL models are difﬁcult to handle this situation and online, parallel and distributed MTL models as well as dimensionality reduction and feature hashing are reviewed to reveal their computational and storage advantages. Many real-world applications use MTL to boost their performance and we review representative works.},
-language = {en},
-journal = {arXiv:1707.08114 [cs]},
-author = {Zhang, Yu and Yang, Qiang},
-year = {2018},
-note = {arXiv: 1707.08114},
-keywords = {Computer Science - Artificial Intelligence, Computer Science - Machine Learning},
-file = {Zhang and Yang - 2018 - A Survey on Multi-Task Learning.pdf:/home/konstaku/Zotero/storage/ZZDVVBMV/Zhang and Yang - 2018 - A Survey on Multi-Task Learning.pdf:application/pdf}
-}
-
-@article{origMultitask,
-	title = {Multitask {Learning}},
-	abstract = {Multitask Learning is an approach to inductive transfer that improves generalization by using the domain information contained in the training signals of related tasks as an inductive bias. It does this by learning tasks in parallel while using a shared representation; what is learned for each task can help other tasks be learned better. This paper reviews prior work on MTL, presents new evidence that MTL in backprop nets discovers task relatedness without the need of supervisory signals, and presents new results for MTL with k-nearest neighbor and kernel regression. In this paper we demonstrate multitask learning in three domains. We explain how multitask learning works, and show that there are many opportunities for multitask learning in real domains. We present an algorithm and results for multitask learning with case-based methods like k-nearest neighbor and kernel regression, and sketch an algorithm for multitask learning in decision trees. Because multitask learning works, can be applied to many different kinds of domains, and can be used with different learning algorithms, we conjecture there will be many opportunities for its use on real-world problems.},
-	language = {en},
-	author = {Caruana, Rich},
-	year= {1997},
-	pages = {35},
-	file = {Caruana - Multitask Learning.pdf:/home/konstaku/Zotero/storage/5IZMB2MK/Caruana - Multitask Learning.pdf:application/pdf}
-}
-
-
-@article{whichTasks,
-title = {Which {Tasks} {Should} {Be} {Learned} {Together} in {Multi}-task {Learning}?},
-url = {http://arxiv.org/abs/1905.07553},
-abstract = {Many computer vision applications require solving multiple tasks in real-time. A neural network can be trained to solve multiple tasks simultaneously using ‘multi-task learning’. This saves computation at inference time as only a single network needs to be evaluated. Unfortunately, this often leads to inferior overall performance as task objectives compete, which consequently poses the question: which tasks should and should not be learned together in one network when employing multi-task learning? We systematically study task cooperation and competition and propose a framework for assigning tasks to a few neural networks such that cooperating tasks are computed by the same neural network, while competing tasks are computed by different networks. Our framework offers a time-accuracy trade-off and can produce better accuracy using less inference time than not only a single large multi-task neural network but also many single-task networks.},
-language = {en},
-journal = {arXiv:1905.07553 [cs]},
-author = {Standley, Trevor and Zamir, Amir R. and Chen, Dawn and Guibas, Leonidas and Malik, Jitendra and Savarese, Silvio},
-month = may,
-year = {2019},
-note = {arXiv: 1905.07553},
-keywords = {Computer Science - Computer Vision and Pattern Recognition},
-file = {Standley et al. - 2019 - Which Tasks Should Be Learned Together in Multi-ta.pdf:/home/konstaku/Zotero/storage/8CCVP79Y/Standley et al. - 2019 - Which Tasks Should Be Learned Together in Multi-ta.pdf:application/pdf}
-}
-
-
-@inproceedings{selfDriving,
-address = {Budapest, Hungary},
-title = {Hierarchical {Multi}-{Task} {Learning} for {Healthy} {Drink} {Classification}},
-isbn = {978-1-72811-985-4},
-url = {https://ieeexplore.ieee.org/document/8851796/},
-doi = {10.1109/IJCNN.2019.8851796},
-abstract = {Recent advances in deep convolutional neural networks have enabled convenient diet tracking exploiting photos captured with smartphone cameras. However, most of the current diet tracking apps focus on recognizing solid foods while omitting drinks despite their negative impacts on our health when consumed without moderation. After an extensive analysis of drink images, we found that such an absence is due to the following challenges that conventional convolutional neural networks trained under the single-task learning framework cannot easily handle. First, drinks are amorphous. Second, visual cues of the drinks are often occluded and distorted by their container properties. Third, ingredients are inconspicuous because they often blend into the drink. In this work, we present a healthy drink classiﬁer trained under a hierarchical multi-task learning framework composed of a shared residual network with hierarchically shared convolutional layers between similar tasks and task-speciﬁc fully-connected layers. The proposed structure includes two main tasks, namely sugar level classiﬁcation and alcoholic drink recognition, and six auxiliary tasks, such as classiﬁcation and recognition of drink name, drink type, branding logo, container transparency, container shape, and container material. We also curated a drink dataset, Drink101, composed of 101 different drinks including 11,445 images overall. Our experimental results demonstrate improved classiﬁcation precision compared to single-task learning and baseline multi-task learning approaches.},
-language = {en},
-urldate = {2020-01-29},
-booktitle = {2019 {International} {Joint} {Conference} on {Neural} {Networks} ({IJCNN})},
-publisher = {IEEE},
-author = {Park, Homin and Bharadhwaj, Homanga and Lim, Brian Y.},
-month = jul,
-year = {2019},
-pages = {1--8},
-file = {Park et al. - 2019 - Hierarchical Multi-Task Learning for Healthy Drink.pdf:/home/konstaku/Zotero/storage/P49PC6F6/Park et al. - 2019 - Hierarchical Multi-Task Learning for Healthy Drink.pdf:application/pdf}
-}
-
-@INPROCEEDINGS{healthyDrink,
-
-  author={H. {Park} and H. {Bharadhwaj} and B. Y. {Lim}},
-
-  booktitle={2019 International Joint Conference on Neural Networks (IJCNN)}, 
-
-  title={Hierarchical Multi-Task Learning for Healthy Drink Classification}, 
-
-  year={2019},
-
-  volume={},
-
-  number={},
-
-  pages={1-8},}
-
-
-@article{whatAndWhereToTransfer,
-title = {Learning {What} and {Where} to {Transfer}},
-url = {http://arxiv.org/abs/1905.05901},
-abstract = {As the application of deep learning has expanded to real-world problems with insufﬁcient volume of training data, transfer learning recently has gained much attention as means of improving the performance in such small-data regime. However, when existing methods are applied between heterogeneous architectures and tasks, it becomes more important to manage their detailed conﬁgurations and often requires exhaustive tuning on them for the desired performance. To address the issue, we propose a novel transfer learning approach based on meta-learning that can automatically learn what knowledge to transfer from the source network to where in the target network. Given source and target networks, we propose an efﬁcient training scheme to learn meta-networks that decide (a) which pairs of layers between the source and target networks should be matched for knowledge transfer and (b) which features and how much knowledge from each feature should be transferred. We validate our meta-transfer approach against recent transfer learning methods on various datasets and network architectures, on which our automated scheme signiﬁcantly outperforms the prior baselines that ﬁnd “what and where to transfer” in a hand-crafted manner.},
-language = {en},
-urldate = {2019-12-09},
-journal = {arXiv:1905.05901 [cs, stat]},
-author = {Jang, Yunhun and Lee, Hankook and Hwang, Sung Ju and Shin, Jinwoo},
-month = may,
-year = {2019},
-note = {arXiv: 1905.05901},
-keywords = {Computer Science - Machine Learning, Statistics - Machine Learning},
-file = {Jang et al. - 2019 - Learning What and Where to Transfer.pdf:/home/konstaku/Zotero/storage/264ZRMT9/Jang et al. - 2019 - Learning What and Where to Transfer.pdf:application/pdf}
-}
-
-@inproceedings{transferringMidLevelRepresentations,
-address = {Columbus, OH, USA},
-title = {Learning and {Transferring} {Mid}-level {Image} {Representations} {Using} {Convolutional} {Neural} {Networks}},
-isbn = {978-1-4799-5118-5},
-url = {http://ieeexplore.ieee.org/lpdocs/epic03/wrapper.htm?arnumber=6909618},
-doi = {10.1109/CVPR.2014.222},
-abstract = {Convolutional neural networks (CNN) have recently shown outstanding image classiﬁcation performance in the largescale visual recognition challenge (ILSVRC2012). The success of CNNs is attributed to their ability to learn rich midlevel image representations as opposed to hand-designed low-level features used in other image classiﬁcation methods. Learning CNNs, however, amounts to estimating millions of parameters and requires a very large number of annotated image samples. This property currently prevents application of CNNs to problems with limited training data. In this work we show how image representations learned with CNNs on large-scale annotated datasets can be efﬁciently transferred to other visual recognition tasks with limited amount of training data. We design a method to reuse layers trained on the ImageNet dataset to compute mid-level image representation for images in the PASCAL VOC dataset. We show that despite differences in image statistics and tasks in the two datasets, the transferred representation leads to signiﬁcantly improved results for object and action classiﬁcation, outperforming the current state of the art on Pascal VOC 2007 and 2012 datasets. We also show promising results for object and action localization.},
-language = {en},
-booktitle = {2014 {IEEE} {Conference} on {Computer} {Vision} and {Pattern} {Recognition}},
-publisher = {IEEE},
-author = {Oquab, Maxime and Bottou, Leon and Laptev, Ivan and Sivic, Josef},
-year = {2014},
-pages = {1717--1724},
-file = {Oquab et al. - 2014 - Learning and Transferring Mid-level Image Represen.pdf:/home/konstaku/Zotero/storage/3WWZQLSF/Oquab et al. - 2014 - Learning and Transferring Mid-level Image Represen.pdf:application/pdf}
-}
-
-@InProceedings{VGG,
-  author       = "Karen Simonyan and Andrew Zisserman",
-  title        = "Very Deep Convolutional Networks for Large-Scale Image Recognition",
-  booktitle    = "International Conference on Learning Representations",
-  year         = "2015",
-}
-
-@inproceedings{multiTaskWeather,
-address = {Mountain View, California, USA},
-title = {A {Multi}-{Task} {Framework} for {Weather} {Recognition}},
-isbn = {978-1-4503-4906-2},
-url = {http://dl.acm.org/citation.cfm?doid=3123266.3123382},
-doi = {10.1145/3123266.3123382},
-abstract = {Weather recognition is important in practice, while this task has not been thoroughly explored so far. The current trend of dealing with this task is treating it as a single classi cation problem, i.e., determining whether a given image belongs to a certain weather category or not. However, weather recognition di ers signi cantly from traditional image classi cation, since several weather features may appear simultaneously. In this case, a simple classi cation result is insu cient to describe the weather condition. To address this issue, we propose to provide auxiliary weather related information for comprehensive weather description. Speci cally, semantic segmentation of weather-cues, such as blue sky and white clouds, is exploited as an auxiliary task in this paper. Moreover, a convolutional neural network (CNN) based multi-task framework is developed which aims to concurrently tackle weather category classi cation task and weather-cues segmentation task. Due to the intrinsic relationships between these two tasks, exploring auxiliary semantic segmentation of weather-cues can also help to learn discriminative features for the classi cation task, and thus obtain superior accuracy. To verify the e ectiveness of the proposed approach, extra segmentation masks of weather-cues are generated manually on an existing weather image dataset. Experimental results have demonstrated the superior performance of our approach. The enhanced dataset, source codes and pre-trained models are available at https://github.com/wzgwzg/Multitask\_Weather.},
-language = {en},
-urldate = {2019-12-06},
-booktitle = {Proceedings of the 2017 {ACM} on {Multimedia} {Conference} - {MM} '17},
-publisher = {ACM Press},
-author = {Li, Xuelong and Wang, Zhigang and Lu, Xiaoqiang},
-year = {2017},
-pages = {1318--1326},
-file = {Li et al. - 2017 - A Multi-Task Framework for Weather Recognition.pdf:/home/konstaku/Zotero/storage/SYNZBKS3/Li et al. - 2017 - A Multi-Task Framework for Weather Recognition.pdf:application/pdf}
-}
-
-@article{weatherNet,
-title = {{WeatherNet}: {Recognising} {Weather} and {Visual} {Conditions} from {Street}-{Level} {Images} {Using} {Deep} {Residual} {Learning}},
-volume = {8},
-issn = {2220-9964},
-shorttitle = {{WeatherNet}},
-url = {https://www.mdpi.com/2220-9964/8/12/549},
-doi = {10.3390/ijgi8120549},
-abstract = {Extracting information related to weather and visual conditions at a given time and space is indispensable for scene awareness, which strongly impacts our behaviours, from simply walking in a city to riding a bike, driving a car, or autonomous driveassistance. Despite the significance of this subject, it is still not been fully addressed by the machine intelligence relying on deep learning and computer vision to detect the multi-labels of weather and visual conditions with a unified method that can be easily used for practice. What has been achieved to-date is rather sectorial models that address limited number of labels that do not cover the wide spectrum of weather and visual conditions. Nonetheless, weather and visual conditions are often addressed individually. In this paper, we introduce a novel framework to automatically extract this information from street-level images relying on deep learning and computer vision using a unified method without any pre-defined constraints in the processed images. A pipeline of four deep Convolutional Neural Network (CNN) models, so-called the WeatherNet, is trained, relying on residual learning using ResNet50 architecture, to extract various weather and visual conditions such as Dawn/dusk, day and night for time detection, and glare for lighting conditions, and clear, rainy, snowy, and foggy for weather conditions. The WeatherNet shows strong performance in extracting this information from user-defined images or video streams that can be used not limited to: autonomous vehicles and drive-assistance systems, tracking behaviours, safety-related research, or even for better understanding cities through images for policy-makers.},
-language = {en},
-number = {12},
-journal = {ISPRS International Journal of Geo-Information},
-author = {Ibrahim, Mohamed R. and Haworth, James and Cheng, Tao},
-month = nov,
-year = {2019},
-pages = {549},
-file = {Ibrahim et al. - 2019 - WeatherNet Recognising Weather and Visual Conditi.pdf:/home/konstaku/Zotero/storage/V3IZJE9G/Ibrahim et al. - 2019 - WeatherNet Recognising Weather and Visual Conditi.pdf:application/pdf}
-}
-@ARTICLE{biologicalMultitask,
-
-  author={W. {Zhang} and R. {Li} and T. {Zeng} and Q. {Sun} and S. {Kumar} and J. {Ye} and S. {Ji}},
-
-  journal={IEEE Transactions on Big Data}, 
-
-  title={Deep Model Based Transfer and Multi-Task Learning for Biological Image Analysis}, 
-
-  year={2020},
-
-  volume={6},
-
-  number={2},
-
-  pages={322-333},}
-
-
- @InProceedings{uberNet,
-author = {Kokkinos, Iasonas},
-title = {Ubernet: Training a Universal Convolutional Neural Network for Low-, Mid-, and High-Level Vision Using Diverse Datasets and Limited Memory},
-booktitle = {The IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
-year = {2017},
-pages = {6129-6138}
-} 
-
-@article{ruderOverview,
-title = {An {Overview} of {Multi}-{Task} {Learning} in {Deep} {Neural} {Networks}},
-url = {http://arxiv.org/abs/1706.05098},
-abstract = {Multi-task learning (MTL) has led to successes in many applications of machine learning, from natural language processing and speech recognition to computer vision and drug discovery. This article aims to give a general overview of MTL, particularly in deep neural networks. It introduces the two most common methods for MTL in Deep Learning, gives an overview of the literature, and discusses recent advances. In particular, it seeks to help ML practitioners apply MTL by shedding light on how MTL works and providing guidelines for choosing appropriate auxiliary tasks.},
-language = {en},
-journal = {arXiv:1706.05098 [cs, stat]},
-author = {Ruder, Sebastian},
-year = {2017},
-note = {arXiv: 1706.05098},
-keywords = {Computer Science - Machine Learning, Statistics - Machine Learning, Computer Science - Artificial Intelligence},
-file = {Ruder - 2017 - An Overview of Multi-Task Learning in Deep Neural .pdf:/home/konstaku/Zotero/storage/P935YLYB/Ruder - 2017 - An Overview of Multi-Task Learning in Deep Neural .pdf:application/pdf}
-}
-
-@incollection{multiPoseNet,
-address = {Cham},
-title = {{MultiPoseNet}: {Fast} {Multi}-{Person} {Pose} {Estimation} {Using} {Pose} {Residual} {Network}},
-volume = {11215},
-isbn = {978-3-030-01251-9 978-3-030-01252-6},
-shorttitle = {{MultiPoseNet}},
-url = {http://link.springer.com/10.1007/978-3-030-01252-6_26},
-abstract = {In this paper, we present MultiPoseNet, a novel bottom-up multi-person pose estimation architecture that combines a multi-task model with a novel assignment method. MultiPoseNet can jointly handle person detection, person segmentation and pose estimation problems. The novel assignment method is implemented by the Pose Residual Network (PRN) which receives keypoint and person detections, and produces accurate poses by assigning keypoints to person instances. On the COCO keypoints dataset, our pose estimation method outperforms all previous bottom-up methods both in accuracy (+4-point mAP over previous best result) and speed; it also performs on par with the best top-down methods while being at least 4x faster. Our method is the fastest real time system with ∼23 frames/sec.},
-language = {en},
-booktitle = {Computer {Vision} – {ECCV} 2018},
-publisher = {Springer International Publishing},
-author = {Kocabas, Muhammed and Karagoz, Salih and Akbas, Emre},
-editor = {Ferrari, Vittorio and Hebert, Martial and Sminchisescu, Cristian and Weiss, Yair},
-year = {2018},
-doi = {10.1007/978-3-030-01252-6_26},
-note = {Series Title: Lecture Notes in Computer Science},
-pages = {437--453},
-file = {Kocabas et al. - 2018 - MultiPoseNet Fast Multi-Person Pose Estimation Us.pdf:/home/konstaku/Zotero/storage/EBABUMHZ/Kocabas et al. - 2018 - MultiPoseNet Fast Multi-Person Pose Estimation Us.pdf:application/pdf}
-}
-
-
-
-
-@misc{nvidiaRTX,
-title = {Introducing {NVIDIA} {GeForce} {RTX} 2070 {Graphics} {Card}},
-url = {https://www.nvidia.com/fi-fi/geforce/graphics-cards/rtx-2070/},
-abstract = {Nauti reaaliaikaisesta säteenseurannasta, tekoälystä ja jopa kuusinkertaisesta suorituskyvystä edellisen sukupolven näytönohjaimiin verrattuna.{\textless}br/{\textgreater}},
-language = {fi-fi},
-urldate = {2020-03-25},
-journal = {NVIDIA},
-note = {Library Catalog: www.nvidia.com},
-file = {Snapshot:/home/konstaku/Zotero/storage/TRZXWNM3/rtx-2070.html:text/html}
-}
-
-@incollection{pytorch,
-title = {PyTorch: An Imperative Style, High-Performance Deep Learning Library},
-author = {Paszke, Adam and Gross, Sam and Massa, Francisco and Lerer, Adam and Bradbury, James and Chanan, Gregory and Killeen, Trevor and Lin, Zeming and Gimelshein, Natalia and Antiga, Luca and Desmaison, Alban and Kopf, Andreas and Yang, Edward and DeVito, Zachary and Raison, Martin and Tejani, Alykhan and Chilamkurthy, Sasank and Steiner, Benoit and Fang, Lu and Bai, Junjie and Chintala, Soumith},
-booktitle = {Advances in Neural Information Processing Systems 32},
-editor = {H. Wallach and H. Larochelle and A. Beygelzimer and F. d\textquotesingle Alch\'{e}-Buc and E. Fox and R. Garnett},
-pages = {8024--8035},
-year = {2019},
-publisher = {Curran Associates, Inc.},
-url = {http://papers.neurips.cc/paper/9015-pytorch-an-imperative-style-high-performance-deep-learning-library.pdf}
-}
-
-@misc{Apex,
-	title = {{NVIDIA}/apex},
-	copyright = {BSD-3-Clause},
-	url = {https://github.com/NVIDIA/apex},
-	abstract = {A PyTorch Extension:  Tools for easy mixed precision and distributed training in Pytorch},
-	urldate = {2020-03-25},
-	publisher = {NVIDIA Corporation},
-	year = {2020},
-	note = {original-date: 2018-04-23T16:28:52Z}
-}
-
-@inproceedings{mixedTraining,
-title={Mixed Precision Training},
-author={Paulius Micikevicius and Sharan Narang and Jonah Alben and Gregory Diamos and Erich Elsen and David Garcia and Boris Ginsburg and Michael Houston and Oleksii Kuchaiev and Ganesh Venkatesh and Hao Wu},
-booktitle={International Conference on Learning Representations},
-year={2018},
-}
-
-@misc{docker,
-	title = {Empowering {App} {Development} for {Developers} {\textbar} {Docker}},
-	url = {https://www.docker.com/},
-	abstract = {Learn how Docker helps developers bring their ideas to life by conquering the complexity of app development.},
-	language = {en},
-	urldate = {2020-03-25},
-	note = {Library Catalog: www.docker.com},
-	file = {Snapshot:/home/konstaku/Zotero/storage/66KSUDIL/www.docker.com.html:text/html}
-}
-@ONLINE {beansdata,
-	author="Makerere AI Lab",
-	title="Bean disease dataset",
-	year="2020",
-	url="https://github.com/AI-Lab-Makerere/ibean/"
-}
-
-
-@article{citrusdata,
-	title={A citrus fruits and leaves dataset for detection and classification of
-			citrus diseases through machine learning},
-	author={Rauf, Hafiz Tayyab and Saleem, Basharat Ali and Lali, M Ikram Ullah
-			and Khan, Muhammad Attique and Sharif, Muhammad and Bukhari, Syed Ahmad Chan},
-	journal={Data in brief},
-	volume={26},
-	pages={104340},
-	year={2019},
-	publisher={Elsevier}
-}
-@INPROCEEDINGS{cycliclr,
-
-  author={L. N. {Smith}},
-
-  booktitle={2017 IEEE Winter Conference on Applications of Computer Vision (WACV)}, 
-
-  title={Cyclical Learning Rates for Training Neural Networks}, 
-
-  year={2017},
-
-  volume={},
-
-  number={},
-
-  pages={464-472}
-  }
-
-@incollection{attention,
-title = {Attention is All you Need},
-author = {Vaswani, Ashish and Shazeer, Noam and Parmar, Niki and Uszkoreit, Jakob and Jones, Llion and Gomez, Aidan N and Kaiser, \L ukasz and Polosukhin, Illia},
-booktitle = {Advances in Neural Information Processing Systems 30},
-editor = {I. Guyon and U. V. Luxburg and S. Bengio and H. Wallach and R. Fergus and S. Vishwanathan and R. Garnett},
-pages = {5998--6008},
-year = {2017},
-publisher = {Curran Associates, Inc.},
-url = {http://papers.nips.cc/paper/7181-attention-is-all-you-need.pdf}
-}
-
-
-@article{cnn-rnn,
-  author    = {Bin Zhao and
-               Xuelong Li and
-               Xiaoqiang Lu and
-               Zhigang Wang},
-  title     = {A {CNN-RNN} Architecture for Multi-Label Weather Recognition},
-  journal   = {CoRR},
-  volume    = {abs/1904.10709},
-  year      = {2019},
-  url       = {http://arxiv.org/abs/1904.10709},
-  archivePrefix = {arXiv},
-  eprint    = {1904.10709},
-  timestamp = {Thu, 02 May 2019 15:13:44 +0200},
-  biburl    = {https://dblp.org/rec/journals/corr/abs-1904-10709.bib},
-  bibsource = {dblp computer science bibliography, https://dblp.org}
-}
-
-@InProceedings{flowers102,
-	author       = "Maria-Elena Nilsback and Andrew Zisserman",
-	title        = "Automated Flower Classification over a Large Number of Classes",
-	booktitle    = "Indian Conference on Computer Vision, Graphics and Image Processing",
-	year         = "2008",
-}
-
-@article{self_attention_multi_task_object,
-title = {{SpotNet}: {Self}-{Attention} {Multi}-{Task} {Network} for {Object} {Detection}},
-shorttitle = {{SpotNet}},
-url = {http://arxiv.org/abs/2002.05540},
-abstract = {Humans are very good at directing their visual attention toward relevant areas when they search for different types of objects. For instance, when we search for cars, we will look at the streets, not at the top of buildings. The motivation of this paper is to train a network to do the same via a multi-task learning approach. To train visual attention, we produce foreground/background segmentation labels in a semi-supervised way, using background subtraction or optical ﬂow. Using these labels, we train an object detection model to produce foreground/background segmentation maps as well as bounding boxes while sharing most model parameters. We use those segmentation maps inside the network as a self-attention mechanism to weight the feature map used to produce the bounding boxes, decreasing the signal of non-relevant areas. We show that by using this method, we obtain a signiﬁcant mAP improvement on two trafﬁc surveillance datasets, with state-of-the-art results on both UA-DETRAC and UAVDT.},
-language = {en},
-urldate = {2020-05-06},
-journal = {arXiv:2002.05540 [cs]},
-author = {Perreault, Hughes and Bilodeau, Guillaume-Alexandre and Saunier, Nicolas and Héritier, Maguelonne},
-month = feb,
-year = {2020},
-note = {arXiv: 2002.05540},
-keywords = {Computer Science - Computer Vision and Pattern Recognition},
-file = {Perreault et al. - 2020 - SpotNet Self-Attention Multi-Task Network for Obj.pdf:/home/konstaku/Zotero/storage/6HYTMKUK/Perreault et al. - 2020 - SpotNet Self-Attention Multi-Task Network for Obj.pdf:application/pdf}
-}
-
-@inproceedings{self_supervised_object_detection,
-address = {Long Beach, CA, USA},
-title = {Multi-{Task} {Self}-{Supervised} {Object} {Detection} via {Recycling} of {Bounding} {Box} {Annotations}},
-isbn = {978-1-72813-293-8},
-url = {https://ieeexplore.ieee.org/document/8954013/},
-doi = {10.1109/CVPR.2019.00512},
-abstract = {In spite of recent enormous success of deep convolutional networks in object detection, they require a large amount of bounding box annotations, which are often timeconsuming and error-prone to obtain. To make better use of given limited labels, we propose a novel object detection approach that takes advantage of both multi-task learning (MTL) and self-supervised learning (SSL). We propose a set of auxiliary tasks that help improve the accuracy of object detection. They create their own labels by recycling the bounding box labels (i.e. annotations of the main task) in an SSL manner, and are jointly trained with the object detection model in an MTL way. Our approach is integrable with any region proposal based detection models. We empirically validate that our approach effectively improves detection performance on various architectures and datasets. We test two state-of-the-art region proposal object detectors, including Faster R-CNN [39] and R-FCN [10], with three CNN backbones of ResNet-101 [22], InceptionResNet-v2 [45], and MobileNet [23] on two benchmark datasets of PASCAL VOC [14] and COCO [30].},
-language = {en},
-urldate = {2020-05-06},
-booktitle = {2019 {IEEE}/{CVF} {Conference} on {Computer} {Vision} and {Pattern} {Recognition} ({CVPR})},
-publisher = {IEEE},
-author = {Lee, Wonhee and Na, Joonil and Kim, Gunhee},
-month = jun,
-year = {2019},
-pages = {4979--4988},
-file = {Lee et al. - 2019 - Multi-Task Self-Supervised Object Detection via Re.pdf:/home/konstaku/Zotero/storage/LZ3IF86I/Lee et al. - 2019 - Multi-Task Self-Supervised Object Detection via Re.pdf:application/pdf}
-}
-
-@incollection{clothing_attributes_data,
-address = {Berlin, Heidelberg},
-title = {Describing {Clothing} by {Semantic} {Attributes}},
-volume = {7574},
-isbn = {978-3-642-33711-6 978-3-642-33712-3},
-url = {http://link.springer.com/10.1007/978-3-642-33712-3_44},
-abstract = {Describing clothing appearance with semantic attributes is an appealing technique for many important applications. In this paper, we propose a fully automated system that is capable of generating a list of nameable attributes for clothes on human body in unconstrained images. We extract low-level features in a pose-adaptive manner, and combine complementary features for learning attribute classiﬁers. Mutual dependencies between the attributes are then explored by a Conditional Random Field to further improve the predictions from independent classiﬁers. We validate the performance of our system on a challenging clothing attribute dataset, and introduce a novel application of dressing style analysis that utilizes the semantic attributes produced by our system.},
-language = {en},
-urldate = {2020-05-06},
-booktitle = {Computer {Vision} – {ECCV} 2012},
-publisher = {Springer Berlin Heidelberg},
-author = {Chen, Huizhong and Gallagher, Andrew and Girod, Bernd},
-editor = {Hutchison, David and Kanade, Takeo and Kittler, Josef and Kleinberg, Jon M. and Mattern, Friedemann and Mitchell, John C. and Naor, Moni and Nierstrasz, Oscar and Pandu Rangan, C. and Steffen, Bernhard and Sudan, Madhu and Terzopoulos, Demetri and Tygar, Doug and Vardi, Moshe Y. and Weikum, Gerhard and Fitzgibbon, Andrew and Lazebnik, Svetlana and Perona, Pietro and Sato, Yoichi and Schmid, Cordelia},
-year = {2012},
-doi = {10.1007/978-3-642-33712-3_44},
-note = {Series Title: Lecture Notes in Computer Science},
-pages = {609--623},
-file = {Chen et al. - 2012 - Describing Clothing by Semantic Attributes.pdf:/home/konstaku/Zotero/storage/6W5AP33A/Chen et al. - 2012 - Describing Clothing by Semantic Attributes.pdf:application/pdf}
-}
-
-@article{multi_task_attributes,
-title = {Multi-task {CNN} {Model} for {Attribute} {Prediction}},
-volume = {17},
-issn = {1520-9210, 1941-0077},
-url = {http://arxiv.org/abs/1601.00400},
-doi = {10.1109/TMM.2015.2477680},
-abstract = {This paper proposes a joint multi-task learning algorithm to better predict attributes in images using deep convolutional neural networks (CNN). We consider learning binary semantic attributes through a multi-task CNN model, where each CNN will predict one binary attribute. The multitask learning allows CNN models to simultaneously share visual knowledge among different attribute categories. Each CNN will generate attribute-speciﬁc feature representations, and then we apply multi-task learning on the features to predict their attributes. In our multi-task framework, we propose a method to decompose the overall model’s parameters into a latent task matrix and combination matrix. Furthermore, under-sampled classiﬁers can leverage shared statistics from other classiﬁers to improve their performance. Natural grouping of attributes is applied such that attributes in the same group are encouraged to share more knowledge. Meanwhile, attributes in different groups will generally compete with each other, and consequently share less knowledge. We show the effectiveness of our method on two popular attribute datasets.},
-language = {en},
-number = {11},
-urldate = {2020-05-06},
-journal = {IEEE Transactions on Multimedia},
-author = {Abdulnabi, Abrar H. and Wang, Gang and Lu, Jiwen and Jia, Kui},
-month = nov,
-year = {2015},
-note = {arXiv: 1601.00400},
-keywords = {Computer Science - Computer Vision and Pattern Recognition},
-pages = {1949--1959},
-file = {Abdulnabi et al. - 2015 - Multi-task CNN Model for Attribute Prediction.pdf:/home/konstaku/Zotero/storage/8QMCVZW5/Abdulnabi et al. - 2015 - Multi-task CNN Model for Attribute Prediction.pdf:application/pdf}
-}
-
-@article{cross_dataset_training,
-title = {Cross-dataset {Training} for {Class} {Increasing} {Object} {Detection}},
-url = {http://arxiv.org/abs/2001.04621},
-abstract = {We present a conceptually simple, ﬂexible and general framework for cross-dataset training in object detection. Given two or more already labeled datasets that target for different object classes, cross-dataset training aims to detect the union of the different classes, so that we do not have to label all the classes for all the datasets. By crossdataset training, existing datasets can be utilized to detect the merged object classes with a single model. Further more, in industrial applications, the object classes usually increase on demand. So when adding new classes, it is quite time-consuming if we label the new classes on all the existing datasets. While using cross-dataset training, we only need to label the new classes on the new dataset. We experiment on PASCAL VOC, COCO, WIDER FACE and WIDER Pedestrian with both solo and cross-dataset settings. Results show that our cross-dataset pipeline can achieve similar impressive performance simultaneously on these datasets compared with training independently.},
-language = {en},
-journal = {arXiv:2001.04621 [cs]},
-author = {Yao, Yongqiang and Wang, Yan and Guo, Yu and Lin, Jiaojiao and Qin, Hongwei and Yan, Junjie},
-year = {2020},
-note = {arXiv: 2001.04621},
-keywords = {Computer Science - Computer Vision and Pattern Recognition},
-file = {Yao et al. - 2020 - Cross-dataset Training for Class Increasing Object.pdf:/home/konstaku/Zotero/storage/V6YRDQ9B/Yao et al. - 2020 - Cross-dataset Training for Class Increasing Object.pdf:application/pdf}
-}
-
-@inproceedings{viola-jones,
-address = {Kauai, HI, USA},
-title = {Rapid object detection using a boosted cascade of simple features},
-volume = {1},
-isbn = {978-0-7695-1272-3},
-url = {http://ieeexplore.ieee.org/document/990517/},
-doi = {10.1109/CVPR.2001.990517},
-abstract = {This paper describes a machine learning approach for visual object detection which is capable of processing images extremely rapidly and achieving high detection rates. This work is distinguished by three key contributions. The ﬁrst is the introduction of a new image representation called the “Integral Image” which allows the features used by our detector to be computed very quickly. The second is a learning algorithm, based on AdaBoost, which selects a small number of critical visual features from a larger set and yields extremely efﬁcient classiﬁers[6]. The third contribution is a method for combining increasingly more complex classiﬁers in a “cascade” which allows background regions of the image to be quickly discarded while spending more computation on promising object-like regions. The cascade can be viewed as an object speciﬁc focus-of-attention mechanism which unlike previous approaches provides statistical guarantees that discarded regions are unlikely to contain the object of interest. In the domain of face detection the system yields detection rates comparable to the best previous systems. Used in real-time applications, the detector runs at 15 frames per second without resorting to image differencing or skin color detection.},
-language = {en},
-booktitle = {Proceedings of the 2001 {IEEE} {Computer} {Society} {Conference} on {Computer} {Vision} and {Pattern} {Recognition}. {CVPR} 2001},
-publisher = {IEEE Comput. Soc},
-author = {Viola, P. and Jones, M.},
-year = {2001},
-pages = {I--511--I--518},
-file = {Viola and Jones - 2001 - Rapid object detection using a boosted cascade of .pdf:/home/konstaku/Zotero/storage/TYMPXNBF/Viola and Jones - 2001 - Rapid object detection using a boosted cascade of .pdf:application/pdf}
-}
-
-@inproceedings{hogs,
-	address = {San Diego, CA, USA},
-	title = {Histograms of {Oriented} {Gradients} for {Human} {Detection}},
-	volume = {1},
-	isbn = {978-0-7695-2372-9},
-	url = {http://ieeexplore.ieee.org/document/1467360/},
-	doi = {10.1109/CVPR.2005.177},
-	abstract = {We study the question of feature sets for robust visual object recognition, adopting linear SVM based human detection as a test case. After reviewing existing edge and gradient based descriptors, we show experimentally that grids of Histograms of Oriented Gradient (HOG) descriptors signiﬁcantly outperform existing feature sets for human detection. We study the inﬂuence of each stage of the computation on performance, concluding that ﬁne-scale gradients, ﬁne orientation binning, relatively coarse spatial binning, and high-quality local contrast normalization in overlapping descriptor blocks are all important for good results. The new approach gives near-perfect separation on the original MIT pedestrian database, so we introduce a more challenging dataset containing over 1800 annotated human images with a large range of pose variations and backgrounds.},
-	language = {en},
-	booktitle = {2005 {IEEE} {Computer} {Society} {Conference} on {Computer} {Vision} and {Pattern} {Recognition} ({CVPR}'05)},
-	publisher = {IEEE},
-	author = {Dalal, N. and Triggs, B.},
-	year = {2005},
-	pages = {886--893},
-	file = {Dalal and Triggs - 2005 - Histograms of Oriented Gradients for Human Detecti.pdf:/home/konstaku/Zotero/storage/HKE72EBQ/Dalal and Triggs - 2005 - Histograms of Oriented Gradients for Human Detecti.pdf:application/pdf}
-}
-
-@incollection{faster-rcnn,
-title = {Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks},
-author = {Ren, Shaoqing and He, Kaiming and Girshick, Ross and Sun, Jian},
-booktitle = {Advances in Neural Information Processing Systems 28},
-editor = {C. Cortes and N. D. Lawrence and D. D. Lee and M. Sugiyama and R. Garnett},
-pages = {91--99},
-year = {2015},
-publisher = {Curran Associates, Inc.},
-url = {http://papers.nips.cc/paper/5638-faster-r-cnn-towards-real-time-object-detection-with-region-proposal-networks.pdf}
-}
-
-
-@article{yolov4,
-title = {{YOLOv4}: {Optimal} {Speed} and {Accuracy} of {Object} {Detection}},
-shorttitle = {{YOLOv4}},
-url = {http://arxiv.org/abs/2004.10934},
-abstract = {There are a huge number of features which are said to improve Convolutional Neural Network (CNN) accuracy. Practical testing of combinations of such features on large datasets, and theoretical justiﬁcation of the result, is required. Some features operate on certain models exclusively and for certain problems exclusively, or only for small-scale datasets; while some features, such as batch-normalization and residual-connections, are applicable to the majority of models, tasks, and datasets. We assume that such universal features include Weighted-Residual-Connections (WRC), Cross-Stage-Partial-connections (CSP), Cross mini-Batch Normalization (CmBN), Self-adversarial-training (SAT) and Mish-activation. We use new features: WRC, CSP, CmBN, SAT, Mish activation, Mosaic data augmentation, CmBN, DropBlock regularization, and CIoU loss, and combine some of them to achieve state-of-the-art results: 43.5\% AP (65.7\% AP50) for the MS COCO dataset at a realtime speed of ∼65 FPS on Tesla V100. Source code is at https://github.com/AlexeyAB/darknet.},
-language = {en},
-journal = {arXiv:2004.10934 [cs, eess]},
-author = {Bochkovskiy, Alexey and Wang, Chien-Yao and Liao, Hong-Yuan Mark},
-month = apr,
-year = {2020},
-note = {arXiv: 2004.10934},
-keywords = {Computer Science - Computer Vision and Pattern Recognition, Electrical Engineering and Systems Science - Image and Video Processing},
-file = {Bochkovskiy et al. - 2020 - YOLOv4 Optimal Speed and Accuracy of Object Detec.pdf:/home/konstaku/Zotero/storage/YFN9D2A4/Bochkovskiy et al. - 2020 - YOLOv4 Optimal Speed and Accuracy of Object Detec.pdf:application/pdf}
-}
-
-
-@inproceedings{self_supervised_detection,
-	location = {Long Beach, {CA}, {USA}},
-	title = {Multi-Task Self-Supervised Object Detection via Recycling of Bounding Box Annotations},
-	isbn = {978-1-72813-293-8},
-	url = {https://ieeexplore.ieee.org/document/8954013/},
-	doi = {10.1109/CVPR.2019.00512},
-	abstract = {In spite of recent enormous success of deep convolutional networks in object detection, they require a large amount of bounding box annotations, which are often timeconsuming and error-prone to obtain. To make better use of given limited labels, we propose a novel object detection approach that takes advantage of both multi-task learning ({MTL}) and self-supervised learning ({SSL}). We propose a set of auxiliary tasks that help improve the accuracy of object detection. They create their own labels by recycling the bounding box labels (i.e. annotations of the main task) in an {SSL} manner, and are jointly trained with the object detection model in an {MTL} way. Our approach is integrable with any region proposal based detection models. We empirically validate that our approach effectively improves detection performance on various architectures and datasets. We test two state-of-the-art region proposal object detectors, including Faster R-{CNN} [39] and R-{FCN} [10], with three {CNN} backbones of {ResNet}-101 [22], {InceptionResNet}-v2 [45], and {MobileNet} [23] on two benchmark datasets of {PASCAL} {VOC} [14] and {COCO} [30].},
-	eventtitle = {2019 {IEEE}/{CVF} Conference on Computer Vision and Pattern Recognition ({CVPR})},
-	pages = {4979--4988},
-	booktitle = {2019 {IEEE}/{CVF} Conference on Computer Vision and Pattern Recognition ({CVPR})},
-	publisher = {{IEEE}},
-	author = {Lee, Wonhee and Na, Joonil and Kim, Gunhee},
-	urldate = {2020-05-06},
-	date = {2019-06},
-	langid = {english},
-	file = {Lee et al. - 2019 - Multi-Task Self-Supervised Object Detection via Re.pdf:/Users/kokutvon/Zotero/storage/LZ3IF86I/Lee et al. - 2019 - Multi-Task Self-Supervised Object Detection via Re.pdf:application/pdf}
-}
-
-@article{cross_data,
-	title = {Cross-dataset Training for Class Increasing Object Detection},
-	url = {http://arxiv.org/abs/2001.04621},
-	abstract = {We present a conceptually simple, ﬂexible and general framework for cross-dataset training in object detection. Given two or more already labeled datasets that target for different object classes, cross-dataset training aims to detect the union of the different classes, so that we do not have to label all the classes for all the datasets. By crossdataset training, existing datasets can be utilized to detect the merged object classes with a single model. Further more, in industrial applications, the object classes usually increase on demand. So when adding new classes, it is quite time-consuming if we label the new classes on all the existing datasets. While using cross-dataset training, we only need to label the new classes on the new dataset. We experiment on {PASCAL} {VOC}, {COCO}, {WIDER} {FACE} and {WIDER} Pedestrian with both solo and cross-dataset settings. Results show that our cross-dataset pipeline can achieve similar impressive performance simultaneously on these datasets compared with training independently.},
-	journaltitle = {{arXiv}:2001.04621 [cs]},
-	author = {Yao, Yongqiang and Wang, Yan and Guo, Yu and Lin, Jiaojiao and Qin, Hongwei and Yan, Junjie},
-	langid = {english},
-	eprinttype = {arxiv},
-	year=2020,
-	eprint = {2001.04621},
-	keywords = {Computer Science - Computer Vision and Pattern Recognition},
-	file = {Yao et al. - 2020 - Cross-dataset Training for Class Increasing Object.pdf:/Users/kokutvon/Zotero/storage/V6YRDQ9B/Yao et al. - 2020 - Cross-dataset Training for Class Increasing Object.pdf:application/pdf}
-}
-
-@article{PVOC,
-	title = {The Pascal Visual Object Classes ({VOC}) Challenge},
-	volume = {88},
-	issn = {0920-5691, 1573-1405},
-	url = {http://link.springer.com/10.1007/s11263-009-0275-4},
-	doi = {10.1007/s11263-009-0275-4},
-	abstract = {The {PASCAL} Visual Object Classes ({VOC}) challenge is a benchmark in visual object category recognition and detection, providing the vision and machine learning communities with a standard dataset of images and annotation, and standard evaluation procedures. Organised annually from 2005 to present, the challenge and its associated dataset has become accepted as the benchmark for object detection.},
-	pages = {303--338},
-	number = {2},
-	journaltitle = {International Journal of Computer Vision},
-	shortjournal = {Int J Comput Vis},
-	author = {Everingham, Mark and Van Gool, Luc and Williams, Christopher K. I. and Winn, John and Zisserman, Andrew},
-	date = {2010-06},
-	langid = {english},
-	file = {Everingham et al. - 2010 - The Pascal Visual Object Classes (VOC) Challenge.pdf:/Users/kokutvon/Zotero/storage/PL9ZPYH8/Everingham et al. - 2010 - The Pascal Visual Object Classes (VOC) Challenge.pdf:application/pdf}
-}
-
-@online{COCO_SITE,
-	title = {{COCO} - Common Objects in Context},
-	url = {http://cocodataset.org/#detection-eval},
-	urldate = {2020-05-18},
-	file = {COCO - Common Objects in Context:/Users/kokutvon/Zotero/storage/2BRKN5AW/cocodataset.org.html:text/html}
-}
-
-@InProceedings{COCO,
-author = {Lin, Tsung-Yi and Maire, Michael and Belongie, Serge and Hays, James and Perona, Pietro and Ramanan, Deva and Dollar, Piotr and Zitnick, Larry},
-title = {Microsoft COCO: Common Objects in Context},
-booktitle = {ECCV},
-year = {2014},
-abstract = {We present a new dataset with the goal of advancing the state-of-the-art in object recognition by placing the question of object recognition in the context of the broader question of scene understanding. This is achieved by gathering images of complex everyday scenes containing common objects in their natural context. Objects are labeled using per-instance segmentations to aid in precise object localization. Our dataset contains photos of 91 objects types that would be easily recognizable by a 4 year old. With a total of 2.5 million labeled instances in 328k images, the creation of our dataset drew upon extensive crowd worker involvement via novel user interfaces for category detection, instance spotting and instance segmentation. We present a detailed statistical analysis of the dataset in comparison to PASCAL, ImageNet, and SUN. Finally, we provide baseline performance analysis for bounding box and segmentation detection results using a Deformable Parts Model.},
-publisher = {European Conference on Computer Vision},
-url = {https://www.microsoft.com/en-us/research/publication/microsoft-coco-common-objects-in-context/},
-edition = {ECCV},
-}
-
-@inproceedings{retinaNet,
-  author={T. {Lin} and P. {Goyal} and R. {Girshick} and K. {He} and P. {Dollár}},
-
-  booktitle={2017 IEEE International Conference on Computer Vision (ICCV)}, 
-
-  title={Focal Loss for Dense Object Detection}, 
-
-  year={2017},
-
-  volume={},
-
-  number={},
-
-  pages={2999-3007},}
-
-
-@article{SPP,
-  author={K. {He} and X. {Zhang} and S. {Ren} and J. {Sun}},
-
-  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence}, 
-
-  title={Spatial Pyramid Pooling in Deep Convolutional Networks for Visual Recognition}, 
-
-  year={2015},
-
-  volume={37},
-
-  number={9},
-
-  pages={1904-1916}
-  }
-
-
-@inproceedings{PANET,
- author={S. {Liu} and L. {Qi} and H. {Qin} and J. {Shi} and J. {Jia}},
-
-  booktitle={2018 IEEE/CVF Conference on Computer Vision and Pattern Recognition}, 
-
-  title={Path Aggregation Network for Instance Segmentation}, 
-
-  year={2018},
-
-  volume={},
-
-  number={},
-
-  pages={8759-8768}
-}
-
-
-@inproceedings{efficientDet,
-title	= {EfficientDet: Scalable and Efficient Object Detection},
-author	= {Mingxing Tan and Ruoming Pang and Quoc V. Le},
-year	= {2020},
-URL	= {https://arxiv.org/abs/1911.09070}
-}
-
-
-
-
-@inproceedings{FPN,
-  author = {Lin, Tsung-Yi and Dollár, Piotr and Girshick, Ross B. and He, Kaiming and Hariharan, Bharath and Belongie, Serge J.},
-  biburl = {https://www.bibsonomy.org/bibtex/2648eac01a787fc806e44efd5b5c617f9/slicside},
-  booktitle = {CVPR},
-  crossref = {conf/cvpr/2017},
-  ee = {http://doi.ieeecomputersociety.org/10.1109/CVPR.2017.106},
-  isbn = {978-1-5386-0457-1},
-  pages = {936-944},
-  publisher = {IEEE Computer Society},
-  title = {Feature Pyramid Networks for Object Detection.},
-  url = {http://dblp.uni-trier.de/db/conf/cvpr/cvpr2017.html#LinDGHHB17},
-  year = 2017
-}
-
-
-@book{deep-learning,
-    title={Deep Learning},
-    author={Ian Goodfellow and Yoshua Bengio and Aaron Courville},
-    publisher={MIT Press},
-    note={\url{http://www.deeplearningbook.org}},
-    year={2016}
-}
-
-@InProceedings{catsdogs,
-  author       = "Omkar M. Parkhi and Andrea Vedaldi and Andrew Zisserman and C. V. Jawahar",
-  title        = "Cats and Dogs",
-  booktitle    = "IEEE Conference on Computer Vision and Pattern Recognition",
-  year         = "2012",
-}
-@software{pytorch-efficientdet,
-	title = {zylo117/Yet-Another-{EfficientDet}-Pytorch},
-	rights = {{LGPL}-3.0},
-	url = {https://github.com/zylo117/Yet-Another-EfficientDet-Pytorch},
-	abstract = {The pytorch re-implement of the official efficientdet with {SOTA} performance in real time and pretrained weights.},
-	author = {zylo117},
-	urldate = {2020-05-26},
-	year = {2020},
-	keywords = {bifpn, detection, efficientdet, efficientnet, object-detection, pytorch}
-}
-
-@inproceedings{multinet,
-	title = {{MultiNet}: Real-time Joint Semantic Reasoning for Autonomous Driving},
-	doi = {10.1109/IVS.2018.8500504},
-	shorttitle = {{MultiNet}},
-	abstract = {While most approaches to semantic reasoning have focused on improving performance, in this paper we argue that computational times are very important in order to enable real time applications such as autonomous driving. Towards this goal, we present an approach to joint classification, detection and semantic segmentation using a unified architecture where the encoder is shared amongst the three tasks. Our approach is very simple, can be trained end-to-end and performs extremely well in the challenging {KITTI} dataset. Our approach is also very efficient, allowing us to perform inference at more then 23 frames per second. Training scripts and trained weights to reproduce our results can be found here: https://github.com/{MarvinTeichmann}/{MultiNet}.},
-	eventtitle = {2018 {IEEE} Intelligent Vehicles Symposium ({IV})},
-	pages = {1013--1020},
-	booktitle = {2018 {IEEE} Intelligent Vehicles Symposium ({IV})},
-	author = {Teichmann, Marvin and Weber, Michael and Zöllner, Marius and Cipolla, Roberto and Urtasun, Raquel},
-	date = {2018-06},
-	note = {{ISSN}: 1931-0587},
-	keywords = {autonomous driving, Computer architecture, Decoding, driver information systems, Feature extraction, image classification, image segmentation, inference mechanisms, joint classification, {KITTI} dataset, Microprocessors, {MultiNet}, object detection, Proposals, real-time joint semantic reasoning, semantic segmentation, Semantics, Task analysis, unified architecture},
-	file = {IEEE Xplore Abstract Record:/Users/kokutvon/Zotero/storage/HFMRMY8D/8500504.html:text/html;IEEE Xplore Full Text PDF:/Users/kokutvon/Zotero/storage/TJDD6225/Teichmann et al. - 2018 - MultiNet Real-time Joint Semantic Reasoning for A.pdf:application/pdf}
-}
-
-@inproceedings{bert,
-    title = "{BERT}: Pre-training of Deep Bidirectional Transformers for Language Understanding",
-    author = "Devlin, Jacob  and
-      Chang, Ming-Wei  and
-      Lee, Kenton  and
-      Toutanova, Kristina",
-    booktitle = "Proceedings of the 2019 Conference of the North {A}merican Chapter of the Association for Computational Linguistics: Human Language Technologies, Volume 1 (Long and Short Papers)",
-    year = "2019",
-    address = "Minneapolis, Minnesota",
-    publisher = "Association for Computational Linguistics",
-    url = "https://www.aclweb.org/anthology/N19-1423",
-    doi = "10.18653/v1/N19-1423",
-    pages = "4171--4186",
-    abstract = "We introduce a new language representation model called BERT, which stands for Bidirectional Encoder Representations from Transformers. Unlike recent language representation models (Peters et al., 2018a; Radford et al., 2018), BERT is designed to pre-train deep bidirectional representations from unlabeled text by jointly conditioning on both left and right context in all layers. As a result, the pre-trained BERT model can be fine-tuned with just one additional output layer to create state-of-the-art models for a wide range of tasks, such as question answering and language inference, without substantial task-specific architecture modifications. BERT is conceptually simple and empirically powerful. It obtains new state-of-the-art results on eleven natural language processing tasks, including pushing the GLUE score to 80.5 (7.7 point absolute improvement), MultiNLI accuracy to 86.7{\%} (4.6{\%} absolute improvement), SQuAD v1.1 question answering Test F1 to 93.2 (1.5 point absolute improvement) and SQuAD v2.0 Test F1 to 83.1 (5.1 point absolute improvement).",
-}
-
-
-@INPROCEEDINGS{nms,
-
-  author={N. {Bodla} and B. {Singh} and R. {Chellappa} and L. S. {Davis}},
-
-  booktitle={2017 IEEE International Conference on Computer Vision (ICCV)}, 
-
-  title={Soft-NMS — Improving Object Detection with One Line of Code}, 
-
-  year={2017},
-
-  volume={},
-
-  number={},
-
-  pages={5562-5570},}
-
-
-@InProceedings{Simonyan15,
-  author       = "Karen Simonyan and Andrew Zisserman",
-  title        = "Very Deep Convolutional Networks for Large-Scale Image Recognition",
-  booktitle    = "International Conference on Learning Representations",
-  year         = "2015",
-}
-
-@INPROCEEDINGS{vbow,
-
-  author={A. {Faheema} and S. {Rakshit}},
-
-  booktitle={2010 IEEE 2nd International Advance Computing Conference (IACC)}, 
-
-  title={Feature selection using bag-of-visual-words representation}, 
-
-  year={2010},
-
-  volume={},
-
-  number={},
-
-  pages={151-156},}
+\chapter{Experiments}
+As we have covered, the effect of a Multi-Task problem setting is challenging to quantify theoretically without experiments. 
+Here we will take various datasets for object recognition, object detection, and pose estimation and see what the effects of training them in a multi-task setting are. 
+The metrics we are mainly interested in are the reduction in model size, inference time, and model accuracy on the different tasks compared to the single-task counterparts.
+We will also address the difficulty of the multi-task training process when compared to the single-task problem.
+These issues will include trying different sharing architectures and searching for the new hyperparameters that provide the best possible results.
+The experiments will focus on utilizing the previously presented EfficientNet and ResNet in various multi-task experiments to see how they compare.
+The actual models will be EfficientNet-B3 and ResNet-101 since they require a roughly equivalent amount of memory to train.
+
+\section{Training setup}
+All the experiments use the same computer, and the model training is done using an Nvidia GeForce RTX 2070 GPU that has 8 GB of GDDR6 VRAM \citep{nvidiaRTX}. 
+Thus all the models will have to be small enough to train on this relatively small amount of memory. 
+The deep learning framework that is used to implement the models in all the experiments will be PyTorch \citep{pytorch} that is used inside Docker \citep{docker} containers. 
+Also, Nvidia Apex \citep{Apex} will be used to train models using mixed precision floating-point numbers to reduce the size of the models and to increase the speed of floating-point operations. 
+The model weights will be 16-bit floating-point numbers where it is safe to use the lower precision representation.
+Besides the performance improvement, using lower precision floating-points can act as a regularizer as the model can't overfit on the high precision values and thus improve model accuracy as well \citep{mixedTraining}.
+
+As a default for each task, we will use the following default procedures unless otherwise stated. 
+For the Multi-task training process, we will sample the data sets for each task with a probability respective to its size. 
+The loss function for every task has the same weight multiplier of one.
+The batch size for each task will be maximized to fit within the memory requirement, giving a batch size of 32.
+For weight optimizer, we will use SGD with a cyclic learning rate scheduler \citep{cycliclr}.
+
+\section{Training loop}
+The base training loop for a multi-task training problem is relatively similar to that of a single-task model.
+Algorithm 1 shows the alterations that are needed for the training loop.
+The main difference is that instead of a single data loader, batch size, and loss function, there needs to be one of each for each task that is trained.
+Besides these, some values for the sampling ratios and possibly some values for loss weights are needed.
+The loss weights can be omitted if there is no need to diverge from having a constant 1 factor for each of the losses.
+One completely new part of the loop is the sampling of the task according to the ratios provided.
+All the parts of the standard training loop can be chosen from the provided lists of parameters, and the training is as in a single-task model.
+
+\begin{figure}[ht]
+    \centering
+    \begin{minipage}{.95\linewidth}
+        \begin{algorithm}[H]
+            \caption{Basic multi-task training loop}
+            \KwIn{Epochs $e$, Data loaders $data\_loaders$, Sample probabilities $\alpha$, Batch sizes $B$, Training sets $X$, Model $model$, Loss functions $loss\_funcs$, Loss weights $w$}
+            $batches \leftarrow \sum_i{ \dfrac{|X_i| \alpha_i}{B_i}}$
+
+            \For{$epoch \in \{1,\dots,e\}$} {
+                \For{$i \in \{1,\dots,batches\}$}
+                {
+
+                    {task\_id $\leftarrow$ sample($\alpha$)}
+
+                        {(x, y) $\leftarrow$ next(data\_loaders[task\_id])}
+
+                        {y\_hat $\leftarrow$ {model(x, task\_id)}}
+
+                        {loss $\leftarrow$ loss\_funcs[task\_id](y, y\_hat) $\times$ $w[task\_id]$}
+
+                        {loss.backward()}
+                }
+            }
+        \end{algorithm}
+    \end{minipage}
+\end{figure}
+
+The provided algorithm assumes that at a time, we are interested only in the labels of a single task per image.
+If there is a need to train multiple tasks from a single input, then the minor adjustment that is needed is to sum the losses of multiple tasks that are backpropagated.
+Otherwise, the training loop remains the same, even if multiple tasks are optimized from a single batch.
+
+\section{Basic multiple object classification tasks}
+As we have previously covered, fine-tuning an ImageNet classifier often produces good results. 
+Here we will take a pre-trained ImageNet backbone and learn multiple object classification tasks using the shared image embedding.
+First, we will use two datasets that both contain images of healthy and unhealthy plants.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{imgs/citrus_beans_examples.png}
+    \caption{Example images from the citrus and ibean data sets.
+    The images in the top row are from ibean, and the bottom row is from the citrus data set.}
+\end{figure}
+
+The ibean dataset \citep{beansdata} contains 1296 images classified into three classes; Healthy, Angular Leaf Spot, and Bean Rust.
+The data set provides a split for the images that will be the split that is used for the experiments.
+The citrus leaves dataset \citep{citrusdata}, on the other hand, contains 759 examples of citrus fruits and leaves with six different classes; Black Spot, Canker, Greening, Scab, Melanose, and Healthy.
+This set is quite tricky as it contains 609 images of leaves and only 150 images of actual citrus fruits, and some of the classes have very few images.
+Some examples from the data sets are in Figure 7.1.
+For the training split, the data will be split in 65/10/25 ratio for the training, validation, and test sets, respectively.
+The goal of this kind of split is to have some relatively reliable test results by having proportionally larger than regular test set since there is so little data.
+Both of these datasets have a relatively small amount of images available for training, so it should serve as a good basis for trying to train multi-task classifiers and give a glimpse into the adjustments that need to be made when training multi-task classifiers.
+The goal for this experiment is to get familiar with the basics of how to create the multi-task models, and how to do the actual changes to the training loop in the Pytorch code to accommodate for the multi-task training.
+
+When the two closely related datasets are used to train the model, we could expect the model to generalize better on both of them, as hopefully similar features would benefit both tasks.
+But as the tasks are quite simple, the benefits can be relatively small as the likely accuracy for the single-task models should be quite high.
+In the case of the citrus data set, learning to classify the citrus fruits could prove quite difficult, and for that, the bean leaves likely won't be of much help.
+This model is depicted in figure 7.2.
+
+\begin{figure}[h!] 
+\centering 
+\includegraphics[width=0.8\textwidth]{imgs/object_classification_architecture.png}
+\caption{Network architecture for two image classification tasks.}
+\end{figure}
+
+To further extend the generalizability, we will try to add a third somewhat similar classification task using the Oxford flowers102 dataset \citep{flowers102}, which contains 102 different types of flowers for classification. 
+The assumption here would be that flowers could require similar features as the previous leaf classification tasks, thus when increasing the training data with a closely related task, we could increase the generalizability even further.
+
+Multi-task and single-task models were created and evaluated for both EfficientNet and ResNet backbones.
+For the single-task performance, in this case, the ResNet model did slightly better on both of the tasks achieving 96\% test accuracy on the beans dataset and 88\% test accuracy on the citrus dataset, and the EfficientNet model achieved 94\% and 84\% test accuracies on the tasks.
+In terms of training, the most significant parameter is the sampling ratio of the two tasks.
+
+The sampling was done with a random number to pick which data loader would be used for the current batch.
+If the sampling is done by going through each of the datasets entirely one at a time, the model ends up at a point where only one of the tasks has good accuracy.
+If the ratio is left as proportional to the data set size, the multi-task model ends up only learning to classify the ibean data set, and the accuracy for the citrus data will stay low.
+After some experimentation, the suitable probabilities for achieving good results with the EfficientNet multi-task classifier were 0.66 for the citrus and 0.33 for the ibean data.
+Interestingly, the same ratio does not directly transfer to the ResNet model. 
+When we used the same ratio as with the EfficientNet, the model still seems to converge only on a good result for the ibean data set.
+For the final results with the ResNet classifier, the sampling probability for the citrus dataset needed to be raised, and the value we ended up getting the best results with was 0.73.
+
+\begin{table}[]
+    \centering
+    \begin{tabular}{lccl}
+        \multicolumn{1}{l}{\textbf{}}    & \multicolumn{1}{l}{\textbf{ibeans}} & \multicolumn{1}{l}{\textbf{citrus}} & \multicolumn{1}{l}{\textbf{flowers}} \\ \cline{2-4}
+        \textbf{Single-task models}      & \multicolumn{1}{l}{}                & \multicolumn{1}{l}{}                & \multicolumn{1}{c}{-}                \\ \hline
+        \multicolumn{1}{l}{EfficientNet} & \multicolumn{1}{c}{94\%}            & \multicolumn{1}{c}{-}               & \multicolumn{1}{c}{-}                \\ \hline
+        \multicolumn{1}{l}{EfficientNet} & \multicolumn{1}{c}{-}               & \multicolumn{1}{c}{84\%}            & \multicolumn{1}{c}{-}                \\ \hline
+        \multicolumn{1}{l}{EfficientNet} & \multicolumn{1}{c}{-}               & \multicolumn{1}{c}{-}               & \multicolumn{1}{c}{97\%}             \\ \hline
+        \multicolumn{1}{l}{ResNet}       & \multicolumn{1}{c}{96\%}            & \multicolumn{1}{c}{-}               & \multicolumn{1}{c}{-}                \\ \hline
+        \multicolumn{1}{l}{ResNet}       & \multicolumn{1}{c}{-}               & \multicolumn{1}{c}{86\%}            & \multicolumn{1}{c}{-}                \\ \hline
+        \multicolumn{1}{l}{ResNet}       & \multicolumn{1}{c}{-}               & \multicolumn{1}{c}{-}               & \multicolumn{1}{c}{97\%}             \\ \hline
+        \textbf{Multi-task models}       & \multicolumn{1}{l}{}                & \multicolumn{1}{l}{}                & \multicolumn{1}{c}{-}                \\ \hline
+        \multicolumn{1}{l}{EfficientNet} & \multicolumn{1}{c}{94\%}            & \multicolumn{1}{c}{88\%}            & \multicolumn{1}{c}{-}                \\ \hline
+        \multicolumn{1}{l}{ResNet}       & \multicolumn{1}{c}{96\%}            & \multicolumn{1}{c}{89\%}            & \multicolumn{1}{c}{-}                \\ \hline
+        \multicolumn{1}{l}{ResNet}       & \multicolumn{1}{c}{96\%}            & \multicolumn{1}{c}{91\%}            & \multicolumn{1}{c}{97\%}             \\ \hline
+        \multicolumn{1}{l}{ResNet}       & \multicolumn{1}{c}{96\%}            & \multicolumn{1}{c}{-}               & \multicolumn{1}{c}{97\%}             \\ \hline
+        \multicolumn{1}{l}{ResNet}       & \multicolumn{1}{c}{-}               & \multicolumn{1}{c}{85\%}            & \multicolumn{1}{c}{95\%}             \\ \hline
+    \end{tabular}
+    \caption{Accuracies on the data sets for both single-task and multi-task models with ResNet and EfficientNet.}
+\end{table}
+
+Training both tasks in a multi-task setting, we found that the accuracy on the citrus data set was increased, and ibean accuracy stayed the same.
+Specifically, the accuracy for the EfficientNet classifier went up to 88\% and for ResNet up to 89\%.
+The final model evaluated on the test set was the model with the highest average validation accuracy over the two tasks when trained for 25 epochs.
+All the results are displayed in table 7.1.
+The results show that even though these tasks were relatively simple and the accuracies for the single-task models were high, there was a benefit to be gained from multi-task training.
+Here we mainly focused on getting good results on a fully shared backbone, and more experiments could be done by having fewer parameters shared between the tasks.
+As an introduction to multi-task learning, the experiments show that picking the correct sampling ratio is extremely important for achieving desired results.
+In that way, the sampling ratio seems quite unlike learning rate in that picking too small learning rate may lead to slow convergence but will most likely produce results in the end.
+With the sampling ratio, it seems that the correct value needs to be found by experimentation, as a too low ratio for the citrus data gives accuracies that can be as low as 60\%.
+
+Based on the results from the multi-task results on two tasks, we tried to add the third flower recognition task.
+The flower recognition task has about 10 000 images and 102 classes, whereas the other two tasks have significantly less data and fewer classes.
+On the two task experiment, it seemed that the sampling ratio should be relative to the task difficulty.
+Here it would seem that the 102 class flower recognition should be much more difficult than the other two tasks, and we tried using sampling ratios in the range of about 0.5 to 0.7 for the flower task.
+The best result achieved with these ratios was multiple percentage points below the single-task performance on all tasks.
+However, when the flower task ratio was 0.1, it was possible to surpass the single-task results on all the tasks.
+This training approach took significantly longer to converge to results.
+The original sampling ratios converged in about five epochs to the best model, and the low flower ratio took about 50 epochs.
+I started the training using the sampling ratio of 0.1 and decided to increase it up to 0.2 by the end of the training process.
+
+When the training the model using the lower flower sampling ratio, it quickly converges close to the single-task performance on the two smaller tasks and slowly learns the flower task.
+It is hard to say exactly why such low sampling ratios seemed to work.
+Perhaps it has something to do with the difficulty of overfitting on a single task in a multi-task setting even though the small training set is seen so many times.
+So the features for the smaller data sets are not just memorizing the pixels of the training set, but rather the features that generalize well.
+Since the model already has good features for the smaller tasks and it is forced to find only a relatively minor shift in the parameters to learn the flower classification.
+And seeing as the other tasks are improved as well, it shows that some of the features of the flower data are useful in the easier tasks.
+
+From the three task models, the final model was picked as the one having the best average validation accuracy on all the tasks.
+The final model wasn't just this model directly, though.
+To get the final model, we froze all the shared weights and then did fine-tuning similar to what one might do when training a transfer learning classifier.
+Having the model train on all the tasks using the frozen representations seemed to be useful.
+The fine-tuning may be a good idea since, while training, the shared features are constantly shifting, and when one task is trained, it shifts the weights according to its gradients.
+The other tasks won't have adjusted to the new, slightly shifted shared weights, which can lead to incorrect classifications.
+When the shared weights are frozen, each of the task heads gets to learn the exact mapping from the shared representation to the outputs without them shifting during training.
+
+All in all, these experiments validated the assumptions made about the multi-task training quite well.
+Still, finding the sampling ratio is very laborious and not very intuitive.
+This is why the results for the citrus and flower pair are worse since we spent less time finding the optimal ratios and mainly verified that it roughly works as expected.
+Perhaps it could be automated to get somewhat decent indications of what should be tried.
+The problem, in the end, is that even if some kind of grid search could be applied, it would take very long to predict the final metrics of the models, and as seen in the discrepancy of the flower ratios, it could take many epochs to get the final results.
+Perhaps some kind of dynamic sampling ratio, where the task lowest relative to the expected accuracy is sampled more, could be beneficial.
+
+\section{Multi-label classification}
+For multi-label prediction, there can exist a problem where not all classes are restricted to only their data sets.
+For example, a photo of a dog taken outdoors can contain other classes such as a person, sky, or sea.
+These may not be labeled for that set but could be classes of interest.
+If we train models on incorrect labels, it can lead to unlearning as the model may make correct predictions but is punished due to the absence of the labels for the images.
+However, if the problem is posed as a multi-task binary classification problem over several classes, each task can have its own distinct data set with labels for only the single task.
+Then upon training on an image containing other classes, there is no inverse learning as the image will not try to learn the other classes if there exists no certainty of that label.
+Still, the problem is not gone as often any dataset has at least some mislabeled examples.
+
+\begin{figure}[h!] 
+\centering 
+\includegraphics[width=0.8\textwidth]{imgs/image-labeling.png}
+\caption{Architectures for both single-and multi-task models. The model (a) is the single-task model, which is the same for all 14 tasks. Model (b) is the Multi-task model, which contains 14 heads for each of the classification tasks. For these classifiers we took both max and average pool to create the embedding.}
+\end{figure}
+
+We will run some experiments on a 14 class multi-label prediction with some overlap between the classes in the images.
+The 14 head multi-task model structure and the structure of the 14 identical single-task models are shown in Figure 6.3.
+The goal here would be to see how what kind of a difference there would be in training with a single-task and multi-task model over all of the labels.
+
+\begin{table}[]
+    \centering
+    \begin{tabular}{lccl}
+        \multicolumn{1}{l}{\textbf{}}    & \multicolumn{1}{l}{\textbf{Multi-task}} & \multicolumn{1}{l}{\textbf{Single-task}} \\ \cline{2-3}
+        \multicolumn{1}{l}{People} & \multicolumn{1}{c}{90\%}            & \multicolumn{1}{c}{89\%}                           \\ \hline
+        \multicolumn{1}{l}{Man} & \multicolumn{1}{c}{87\%}               & \multicolumn{1}{c}{84\%}                        \\ \hline
+        \multicolumn{1}{l}{Woman} & \multicolumn{1}{c}{86\%}               & \multicolumn{1}{c}{87\%}                           \\ \hline
+        \multicolumn{1}{l}{Baby}       & \multicolumn{1}{c}{87\%}            & \multicolumn{1}{c}{93\%}                           \\ \hline
+        \multicolumn{1}{l}{Sea}       & \multicolumn{1}{c}{89\%}               & \multicolumn{1}{c}{96\%}                        \\ \hline
+        \multicolumn{1}{l}{River}       & \multicolumn{1}{c}{89\%}               & \multicolumn{1}{c}{88\%}                           \\ \hline
+        \multicolumn{1}{l}{Bird} & \multicolumn{1}{c}{88\%}            & \multicolumn{1}{c}{89\%}                        \\ \hline
+        \multicolumn{1}{l}{Car}       & \multicolumn{1}{c}{85\%}            & \multicolumn{1}{c}{94\%}                        \\ \hline
+        \multicolumn{1}{l}{Clouds}       & \multicolumn{1}{c}{93\%}            & \multicolumn{1}{c}{93\%}                        \\ \hline
+        \multicolumn{1}{l}{Dog}       & \multicolumn{1}{c}{87\%}            & \multicolumn{1}{c}{93\%}                           \\ \hline
+        \multicolumn{1}{l}{Flower} & \multicolumn{1}{c}{85\%}            & \multicolumn{1}{c}{93\%}                        \\ \hline
+        \multicolumn{1}{l}{Night}       & \multicolumn{1}{c}{87\%}            & \multicolumn{1}{c}{92\%}                        \\ \hline
+        \multicolumn{1}{l}{Portrait}       & \multicolumn{1}{c}{89\%}            & \multicolumn{1}{c}{91\%}                        \\ \hline
+        \multicolumn{1}{l}{Tree}       & \multicolumn{1}{c}{87\%}            & \multicolumn{1}{c}{92\%}                           \\ \hline
+        \multicolumn{1}{l}{Average}       & \multicolumn{1}{c}{88\%}               & \multicolumn{1}{c}{91\%}                        \\ \hline
+    \end{tabular}
+    \caption{Accuracies on the data sets for both single-task and multi-task models. 
+    The accuracy is the proportion for correct labelings in the balance evaluation set, so pure guess would result in 50\% accuracy.}
+\end{table}
+
+The dataset is a collection of 15000 images that have labels for some of the classes.
+The number of labels for each task is highly varied.
+The smallest tasks have dozens of images, whereas the largest ones have thousands.
+From this dataset, we will take for each class a 15\% cut for validating the performance.
+In this case, we will pose our main problem as a binary classification problem.
+For each of the tasks, we will train a classifier telling if the label exists in the image or not.
+The classifier will use a ResNet-101 as a backbone, and the head will be a regular fully connected layer connected to a positive and negative class for each of the tasks.
+For the single-task models, we will have the same ResNet backbone as for the multi-task model.
+The main metric that we will compare will be the ratio of correct labelings per class.
+Since we pose this as a binary classification task, it is easy to guarantee that our test sets have an exact 50/50 split for positive and negative classes.
+Similarly, while training, we can oversample the positive classes in a way to guarantee that each batch will have half positive and half negative classes.
+This way, we won't learn classifiers that are biased toward predicting the absence of the label due to the small number of images for that class.
+The control over the sampling of the data is a very beneficial trait of the multi-task problem setting.
+
+To train the multi-task model, we experimented on various sampling ratios to find the best model.
+Manually giving a meaningful sampling ratio is quite difficult due to the relatively large number of tasks in this multi-task model.
+The various sampling ratios we tested for this data were equal sampling, data proportional sampling, and finally, some manual adjustments to the proportional sampling based on the results.
+The proportional sampling was the one that produced the final best model.
+It is quite an interesting result, considering just how small some of the classes are relative to the entire data set.
+We tried adjusting the proportional ratios based on the difference from the single-task accuracies but could not find ratios that would have improved the performance.
+Based on the previous results, we could say that there likely exists some ratios that could provide superior results, but finding them is too expensive.
+With the best model, which was chosen based on the average accuracy on the validation data, the model achieved an average of 88\% accuracy in labeling all the tasks.
+By average, we mean taking the accuracy of each task separately and averaging those averages and not the total ratio of correct classifications.
+
+One new thing that we noticed when training on this data set was that with too high learning rates, the experiments were not very repeatable.
+It seems that in a multi-task setting, it is not easy to tell that the learning rate is too high.
+In this case, when the learning process seemed to progress in a manner that we would call expected, the learning rate might actually be too high.
+With a slightly too high learning rate, it seemed like it is relatively random, whether the model reaches the best weights.
+Most likely, the sampling ratios matter here quite a lot, but with the same sampling ratios and a slightly too high learning rate, there didn't seem to be a guarantee that anything close to the best model would be reached.
+Maybe this has something to do with the large variance in the size of the datasets.
+With more dynamic sampling ratios, the problems might solve themselves, as then some tasks would hopefully not get stuck at low accuracies.
+We noticed here the same thing as in the leaves experiment that a long training process that slowly approaches the optimum seems to produce the best results in the end consistently.
+Maybe this means that finding the intersection that can solve all the tasks optimally is relatively small and easy to overshoot with too large learning rates.
+Similarly, with incorrect sampling ratios, the model would never be able to reach the weights needed for the shared optimal solution.
+
+The single-task model training was done similarly to the multi-task model and by using the same data loading techniques.
+This way, we reached an average accuracy of 91\%, beating the multi-task model slightly.
+All the task-specific results for both multi- and single-task models are collected in Table 6.2.
+Some part of the errors is due to the misclassification of the data, based on a random sample, around 2\% of the labels are wrong.
+These results yet again show that it is possible to learn different tasks using the same representations.
+Yes, in this case, the multi-task accuracy didn't match the single-task counterparts, but they are relatively close.
+And all this is not really a fair comparison as the single-task models account for a total of around 14 times as many parameters.
+If the single-task models were trained on significantly smaller backbones, the multi-task model could be more accurate, showing the benefit of using larger models over multiple tasks.
+And even picking the smallest ResNets, the number of parameters over 14 tasks would be larger than a single ResNet101.
+
+\section{Object detection}
+In this section, we will use multiple data sources and combine them into a single powerful object detector.
+To be specific, our goal is to create an object detector for 37 different cat and dog species.
+The two datasets that we will use are the COCO dataset \citep{COCO} from which we will take the cat and dog classes and the Oxford-IIT Pet Dataset \citep{catsdogs}, which comprises of images with labels for the 37 different cat and dog species that we will detect.
+In these experiments, the backbone used will be EfficientNet-0, which will be used in the EfficientDet architecture as well as an independent EfficientNet backbone.
+The base for the code of the detector uses this Pytorch implementation of EfficientDet \citep{pytorch-efficientdet}.
+The base model is then modified to meet the needs of our experiments.
+
+There are multiple ways to approach this problem.
+We will train two different models to see how the results differ.
+The first approach is to do a brute-force two-stage detector, where we share the common backbone.
+In this approach, the detector would try to learn to detect the dog and cat classes from the COCO dataset, while an object classifier is trained using the same backbone as the detector.
+The object classifier is then responsible for giving the actual class of interest.
+This way, the training is relatively simple, and the backbone would be used recursively.
+Specifically, the detector would generate the regions for the animals that would be cropped and pushed through the backbone, this time to the classifier head.
+This recursive use of the backbone is efficient in terms of the parameters, but running images through the same backbone twice could turn out to be too expensive as it would double the inference time.
+
+\begin{figure}[h!] 
+\centering 
+\includegraphics[width=0.8\textwidth]{imgs/object_detect_combine.png}
+\includegraphics[width=0.8\textwidth]{imgs/recursive.png}
+\caption{EfficientDet models for solving the object detection problem. In a), we have the basic object detector. We show how we train on the COCO data first and then transfer the weights to the model for the pets data with predicted bounding boxes. In red the additions needed to train on both the original data and artificially labeled are shown. Both tasks could share the weights for the detector but would need to have their own class head.  In b), we have the recursive object detector. In yellow, we describe the path to train on the pets data. With green, we describe the path to train the cat or dog object detector. In blue, we show the first cycle of a new prediction. With purple, we show the second cycle for the new detection.}
+\end{figure}
+
+The second way of approaching this problem is to first train a model on the COCO classes and to create a detector for the cat and dog classes.
+Using the high-level model, we can automatically create acceptable object detection labels for the 37 classes in the pets dataset.
+Then we can initialize a 37 class object detector using the weights of the two-class model.
+By having such a well-initialized model for the detection, the second part of the training focuses on learning the features to differentiate between the very similar classes.
+An interesting question here is just how well the object detector works when the classes are so similar.
+In an image classifier setting, it would make sense that the model could learn the subtle features that are unique to each of the classes.
+As we previously covered, the object detector is a multi-task problem. 
+It follows that the network has to both decide the anchors most likely containing an object and also determining the class of the object.
+If we look at the classes for the COCO dataset for object detection, for example, we can see that there are 80 classes, but they are relatively difficult to mix up due to being quite distinct from one another. 
+In Figure 6.6, we have an example of two images from the pets dataset showing two classes that would be relatively easy to mix up.
+
+\begin{figure}[h!] 
+\centering 
+\includegraphics[width=0.8\textwidth]{imgs/pets-example.png}
+\caption{Example of two very similar classes in the pets dataset. On the left is an American bulldog and on the right is an American pit bull terrier.}
+\end{figure}
+
+To evaluate the effects of both approaches, we will look at multiple metrics.
+Since the two approaches are quite different, we can't make an entirely fair direct comparison between them.
+To get somewhat of an idea for how well the models detect our 37 different classes, we will use a slightly arbitrary metric.
+We will measure the accuracy of the detector on our test set for the pets dataset.
+A positive example is one where the detector gives the highest confidence to the correct class.
+This is a somewhat simplified version of measuring the detector performance.
+The baseline scores for our EfficientNet-0 model are 92\% accuracy on the pets dataset and a 0.55 AP on detecting the cat and dog classes in the COCO dataset.
+We will calculate these same scores for the recursive model to see how close the multi-task model can get.
+To compare the two approaches, we will calculate the accuracy of correctly detected species in a set of the pets dataset.
+The labels are not going to be perfect as they are generated by the model automatically, but should show if there are major discrepancies in the performance between the two approaches.
+
+To train the single-stage model, we first created a new dataset in the COCO format from the dog and cat classes.
+Instead of having two classes, we combined both dog and cat into a single category as the goal is to detect them as well as possible, and we are not interested in identifying whether it is a dog or a cat.
+It is important to set the category id to be one instead of zero when training the object detector when there is only one class since otherwise, there will not be any predictions for the background.
+With this new dataset, we initialized the EfficientDet model and trained it to detect the single class from the COCO dataset.
+We first fine-tuned the head for ten epochs and then fine-tuned the entire network for 40 more epochs, and we picked the model with the lowest validation loss as the best one.
+The chosen model achieved 0.54 AP when tested.
+Then we created a new COCO style dataset out of the pets dataset.
+To get the annotations, we ran the images through our one-class object detector and labeled all found boxes with the class of the image from the pets dataset.
+The COCO format requires the labels as a tuple of four numbers signifying the x and y coordinates of the top left of the bounding box, followed by the bounding box width and the height.
+Since most of the images in the pets dataset contain only a single animal, we could tell that there were incorrect boxes as the number of annotations was about 10-15\% higher than the number of images.
+The bounding boxes were most likely not perfect, but good enough to get decent results.
+We initialized the model with the weights of the original object detector, which meant that the regression loss for the model was consistently low.
+So the training mostly focused on learning to minimize the classification loss with the new 37 classes.
+Since this was a much more difficult problem than the original, it took a bit longer to reach the best model.
+Evaluating the model on the artificial labels of the validation set gave an AP score of 0.55.
+
+There are a few ways this kind of training could be extended to possibly get even better results.
+We could attempt to train the largest possible model to get the best possible results on the original dataset so that the artificial labels for the unlabeled dataset would be the best possible.
+We could create two heads in the object detector to train the detector on both the original COCO images and the new images in a multi-task setting to hopefully get a more general detector.
+The training could get better if multiple cycles were completed, and the training would work in a semi-supervised way.
+So what we used here would be the first labels for the new dataset.
+The training would be done jointly on both datasets, as previously proposed.
+Every n epochs, we would generate new bounding boxes for the pets dataset, to finally reach the optimal bounding boxes for the classes in the pets dataset.
+Finally, we could do the label transfer also in the other direction.
+Since the COCO has the correct bounding boxes, we could run the image classifier trained on the pets dataset on those boxes to generate the actual animal species for them.
+
+The recursive model heavily relies on sharing the EfficientNet backbone in the detector between the classifier head and the detector head.
+The model is recursive because, on the first pass, we will find the cat or dog regions from the model using the detector head.
+Thus, the detector head is predicting only a single class as the distinction between the cat or dog class is of no interest in the detector.
+Given these detected objects, we can crop them from the original image and pass through the other head, which is concerned with classifying the image into the 37 classes of interest.
+
+For the recursive two-phase model, we trained it in a very similar fashion to the previous multi-task models.
+In this case, we ran the experiment with only a few sampling ratios, of which a 50/50 split produced the best results.
+The object detector only required adding the final classification head on top of the backbone, and then the model could be trained with a basic multi-task training loop since the EfficientNet backbone that we wanted to use is already a part of the EfficientDet model.
+
+
+\begin{table}[]
+    \centering
+    \begin{tabular}{lccl}
+        \multicolumn{1}{l}{\textbf{Pets classification}}    & \multicolumn{1}{l}{\textbf{}}  \\ \cline{1-2}
+        \multicolumn{1}{l}{EfficientNet-B0 baseline} & \multicolumn{1}{c}{93\%}                    \\ \hline
+        \multicolumn{1}{l}{Recursive detector task head}       & \multicolumn{1}{c}{89\%}                       \\ \hline
+        \\
+    \end{tabular}
+    \caption{
+    This table lists the accuracy for pets classification without localisation based on the baseline model and the classifier head in the recursive model.
+    }
+\end{table}
+
+
+\begin{table}
+    \centering
+    \begin{tabular}{lccl}
+        \multicolumn{1}{l}{\textbf{Cat or dog detection}}    & \multicolumn{1}{l}{\textbf{}}  \\ \cline{1-2}
+        \multicolumn{1}{l}{EfficientDet-D0 baseline} & \multicolumn{1}{c}{0.54}                       \\ \hline
+        \multicolumn{1}{l}{Recursive detector}       & \multicolumn{1}{c}{0.52}                    \\ \hline
+    \end{tabular}
+    \caption {
+        This contains the AP score for detecting the single cat or dog class for the baseline and the recursive detector.    
+    }
+\end{table}
+\begin{table}
+    \centering
+    \begin{tabular}{lccl}
+        \multicolumn{1}{l}{\textbf{Custom pets detection metric}}    & \multicolumn{1}{l}{\textbf{}}  \\ \cline{1-2}
+        \multicolumn{1}{l}{EfficientDet-D0 trained with artificial data} & \multicolumn{1}{c}{85\%}     \\ \hline 
+        \multicolumn{1}{l}{Recursive detector with separate heads}       & \multicolumn{1}{c}{91\%}                       \\ \hline
+    \end{tabular}
+    \caption {
+        This table compares the EfficientDet trained on artificial data and the recursive model in detecting the 37 pets classes.
+        Here the metric is the proportion of correct classifications in the most confidently detected box.
+    }
+\end{table}
+\begin{table}
+    \centering
+    \begin{tabular}{lccl}
+        \multicolumn{1}{l}{\textbf{37 class object detection}}    & \multicolumn{1}{l}{\textbf{}}  \\ \cline{1-2}
+        \multicolumn{1}{l}{EfficientDet-D0 artificial data 37 classes AP} & \multicolumn{1}{c}{0.55}                       \\ \hline
+    \end{tabular}
+    \caption {
+        The AP score on 37 class object detection for the model with artificial data.
+    }
+\end{table}
+
+To compare the models, we have collected the various metrics in Tables 6.3 to 6.5, grouped by the comparable metrics. 
+The pure object detector for 37 classes had a 0.55 AP score on the artificially labeled dataset of the pets, and this is mildly higher than the base AP for the cat or dog detector.
+While the number seems impressive given the number of highly similar classes, it is not exactly comparable to the baseline due to the fact that the pets dataset is not that varied in terms of having many or different sized animals.
+Furthermore, the bounding box labels are created by the initial state of the 37 object detector, which likely causes the accuracy for the bounding boxes is going to be very high.
+The regression loss of localizing the boxes stays very low and stable throughout all of the training, showing that likely the detection part does not change that much.
+In our artificial detection evaluation metric, this pure detector achieved an 85\% accuracy.
+The accuracy is relatively high, given the difficulty of detecting and classifying such similar classes.
+
+The recursive multi-task model reached again slightly lower accuracies than the single task counterparts.
+The AP score on the cat or dog detection task dropped by 0.02, and the accuracy on the pets classification dropped by 4\% to 89\%.
+Interestingly, the detector task had a higher accuracy than the classification head had on the pets test set.
+The better accuracy could result from the fact that classifying a cropped animal is easier than to classify it within a larger frame.
+And since the object detector is relatively decent at finding the cat or dog candidates as a combination, these achieve better results.
+
+Based on the numbers, we could say that the two-stage detector seems to be the better one.
+The main downside to doing the two-stage detection is the fact that it would have to work one frame behind the video.
+Since on the first loop, we would detect our objects in the first frame.
+On the second frame, we would pass the second frame and the cropped images that we found in the first frame.
+If the classification is done in this manner, the inference time cost won't be that much as it will be just the head to get the classification outputs.
+In the case that multiple videos would be run in parallel, this could possibly not be possible as at some point, the input could be too large to handle as a single batch.
+On the other hand, the pure detector doesn't need such considerations.
+The pure detector's problem is that it has some obvious downsides due to the artificial training set that was created for it.
+Whereas the recursive model does relatively as well on all kinds of data, the pure detector seems to have issues when there are multiple objects to detect, or the size varies.
+These issues likely stem from the fact that the pets dataset consists mostly of single relatively large animals, which is not always the case.
+Because the training and test sets are from the same source, they are relatively similar, so the performance is very transferable between those tasks.
+Some of the previously mentioned ways of training could alleviate this problem.
+Perhaps by having two classifier heads and doing auxiliary training on the COCO cats and dogs could make the detector detect the animals better, and hopefully, the classifier could solve the problem for all sizes from the single source.
+This modification is also pictured in Figure 6.4.
+
+\section{Detection, classification and segmentation}
+Thinkkers do it like it is done in \citep{multinet} but use efficientnet for all parts?
+
+\section{Recap}
+This will be an overview of all the challenges and things about multi-task training based on the experiments we have done.
