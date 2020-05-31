@@ -77,7 +77,7 @@ The ibean dataset \citep{beansdata} contains 1296 images classified into three c
 The data set provides a split for the images that will be the split that is used for the experiments.
 The citrus leaves dataset \citep{citrusdata}, on the other hand, contains 759 examples of citrus fruits and leaves with six different classes; Black Spot, Canker, Greening, Scab, Melanose, and Healthy.
 This set is quite tricky as it contains 609 images of leaves and only 150 images of actual citrus fruits, and some of the classes have very few images.
-Some examples from the data sets are in Figure 7.1.
+Some examples from the data sets are in Figure 6.1.
 For the training split, the data will be split in 65/10/25 ratio for the training, validation, and test sets, respectively.
 The goal of this kind of split is to have some relatively reliable test results by having proportionally larger than regular test set since there is so little data.
 Both of these datasets have a relatively small amount of images available for training, so it should serve as a good basis for trying to train multi-task classifiers and give a glimpse into the adjustments that need to be made when training multi-task classifiers.
@@ -86,7 +86,7 @@ The goal for this experiment is to get familiar with the basics of how to create
 When the two closely related datasets are used to train the model, we could expect the model to generalize better on both of them, as hopefully similar features would benefit both tasks.
 But as the tasks are quite simple, the benefits can be relatively small as the likely accuracy for the single-task models should be quite high.
 In the case of the citrus data set, learning to classify the citrus fruits could prove quite difficult, and for that, the bean leaves likely won't be of much help.
-This model is depicted in figure 7.2.
+This model is depicted in figure 6.2.
 
 \begin{figure}[h!] 
 \centering 
@@ -133,7 +133,7 @@ For the final results with the ResNet classifier, the sampling probability for t
 Training both tasks in a multi-task setting, we found that the accuracy on the citrus data set was increased, and ibean accuracy stayed the same.
 Specifically, the accuracy for the EfficientNet classifier went up to 88\% and for ResNet up to 89\%.
 The final model evaluated on the test set was the model with the highest average validation accuracy over the two tasks when trained for 25 epochs.
-All the results are displayed in table 7.1.
+All the results are displayed in table 6.1.
 The results show that even though these tasks were relatively simple and the accuracies for the single-task models were high, there was a benefit to be gained from multi-task training.
 Here we mainly focused on getting good results on a fully shared backbone, and more experiments could be done by having fewer parameters shared between the tasks.
 As an introduction to multi-task learning, the experiments show that picking the correct sampling ratio is extremely important for achieving desired results.
@@ -296,7 +296,7 @@ In an image classifier setting, it would make sense that the model could learn t
 As we previously covered, the object detector is a multi-task problem. 
 It follows that the network has to both decide the anchors most likely containing an object and also determining the class of the object.
 If we look at the classes for the COCO dataset for object detection, for example, we can see that there are 80 classes, but they are relatively difficult to mix up due to being quite distinct from one another. 
-In Figure 6.6, we have an example of two images from the pets dataset showing two classes that would be relatively easy to mix up.
+In Figure 6.5, we have an example of two images from the pets dataset showing two classes that would be relatively easy to mix up.
 
 \begin{figure}[h!] 
 \centering 
@@ -439,6 +439,7 @@ Image segmentation is also a very popular and important task with applications i
 The goal for an image segmentation model is to determine the meaning of an image on a per-pixel level.
 For example, in our case, we are going to train a model on the road segmentation data where the goal is to predict where the current lane goes, so we would like to know where the pixels that represent the current lane the car is on are.
 So the output is a mask telling what class each pixel in the image belongs to.
+An example image and its segmentation mask are shown in Figure 6.6.
 
 \begin{figure}[h!] 
 \centering 
