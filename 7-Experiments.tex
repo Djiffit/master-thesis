@@ -61,7 +61,7 @@ The provided algorithm assumes that at a time, we are interested only in the lab
 If there is a need to train multiple tasks from a single input, then the minor adjustment that is needed is to sum the losses of multiple tasks that are backpropagated.
 Otherwise, the training loop remains the same, even if multiple tasks are optimized from a single batch.
 
-\section{Basic multiple object classification tasks}
+\section{Multiple object classification tasks}
 As we have previously covered, fine-tuning an ImageNet classifier often produces good results. 
 Here we will take a pre-trained ImageNet backbone and learn multiple object classification tasks using the shared image embedding.
 First, we will use two datasets that both contain images of healthy and unhealthy plants.
@@ -263,7 +263,7 @@ And all this is not really a fair comparison as the single-task models account f
 If the single-task models were trained on significantly smaller backbones, the multi-task model could be more accurate, showing the benefit of using larger models over multiple tasks.
 And even picking the smallest ResNets, the number of parameters over 14 tasks would be larger than a single ResNet101.
 
-\section{Object detection}
+\section{Object detection and image classification}
 In this section, we will use multiple data sources and combine them into a single powerful object detector.
 To be specific, our goal is to create an object detector for 37 different cat and dog species.
 The two datasets that we will use are the COCO dataset \citep{COCO} from which we will take the cat and dog classes and the Oxford-IIT Pet Dataset \citep{catsdogs}, which comprises of images with labels for the 37 different cat and dog species that we will detect.
@@ -428,8 +428,50 @@ Some of the previously mentioned ways of training could alleviate this problem.
 Perhaps by having two classifier heads and doing auxiliary training on the COCO cats and dogs could make the detector detect the animals better, and hopefully, the classifier could solve the problem for all sizes from the single source.
 This modification is also pictured in Figure 6.4.
 
-\section{Detection, classification and segmentation}
-Thinkkers do it like it is done in \citep{multinet} but use efficientnet for all parts?
+\section{Detection and segmentation with EfficientDet}
+In the EfficientDet paper \citep{efficientDet}, the authors point out that it is relatively simple to use the same EfficientNet backbone and BiFPN neck to do image segmentation as well.
+Here we will attempt to train such a model but in a multi-task setting.
+Our goal is to use the Kitti \citep{kitti} road segmentation data set to train a segmentation model, and the COCO dataset to train an object detector.
+Since they both should be trainable on the same backbone and neck, we will see how good of a multi-task model we can create by sharing the entire detector.
+
+Since we have not talked about image segmentation, we will briefly cover what it is about.
+Image segmentation is also a very popular and important task with applications in many domains.
+The goal for an image segmentation model is to determine the meaning of an image on a per-pixel level.
+For example, in our case, we are going to train a model on the road segmentation data where the goal is to predict where the current lane goes, so we would like to know where the pixels that represent the current lane the car is on are.
+So the output is a mask telling what class each pixel in the image belongs to.
+
+\begin{figure}[h!] 
+\centering 
+\includegraphics[width=0.8\textwidth]{imgs/segmentation-example.png}
+\caption{An example of the annotations and an input image from the Kitti \citep{kitti} road segmentation data.}
+\end{figure}
+
+Here our goal is not to create a very accurate classifier but more to evaluate how difficult it is to take two very special problems and solve them by sharing as much as possible.
+To create the model, we could use a U-Net \citep{unet}, which is an architecture specially designed for image segmentation.
+We could adapt the U-Net architecture to EfficientNet and easily fit it with our backbone.
+However, by using the EfficientDet, we get a chance to share more, and it is a much more advanced way of doing image segmentation, producing better results \citep{efficientDet}.
+
+There is no complete implementation of the EfficientDet image segmentation head, and the authors don't really describe it too much in the paper.
+To create the model, we took the EfficientDet detector as a base and augmented it with a segmentation head.
+The segmentation head was based on the implementations of BiFPN segmentation from \citep{segment_pytorch}.
+After creating multiple multi-task models, the creation and modification of the training loop were no longer so difficult to adjust to the new task.
+Figuring out exactly how to add the new task into the existing model architecture took a while to find the exact values that the segmentation model needs for creating outputs.
+After configuring data loaders and the model, the training was pretty much along the lines of the previous models we have covered.
+Our modified EfficientDet architecture is shown in Figure 6.7.
+
+\begin{figure}[h!] 
+    \centering 
+    \includegraphics[width=0.8\textwidth]{imgs/efficientdet-multi.png}
+    \caption{EfficientDet model with segmentation and detection heads.}
+\end{figure}
+
+With the segmentation head and object detector head configured, it would now be easy to extend this model further.
+We could easily add a new image classification head using the same backbone, like \citep{multinet}, where a single model is used for road segmentation, car detection, and road type classification.
+Adding more classes to the segmentation or to the object classifier would be relatively easy to do.
+Of course, there is a lot of sharing optimization to be done as well.
+In our implementation, we naively shared everything, which was relatively detrimental to performance.
+It would make sense to at least have the BiFPN be task-specific.
+And since everything is now configured in the same model, it would be relatively easy to chop half of the backbone for each task and possibly get better results.
+As we have covered over and over again, the space for possible improvements is huge.
 
 \section{Recap}
-This will be an overview of all the challenges and things about multi-task training based on the experiments we have done.
