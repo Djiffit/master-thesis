@@ -38,5 +38,26 @@ This was most apparent in the case of object detectors.
 The supplied code is relatively pre-packaged to run on the specified training loop, and modifying these model definitions to add new tasks takes some effort.
 We saw some improvements and reductions in the model performance, but in general, the multi-task models were close to the single-task counterparts so that reducing the model size might be a good trade-off.
 
-In the end, what we learned is that the success of multi-task learning some tasks can't be pre-determined currently, and some expensive experimentation is needed to arrive at the best multi-task architecture.  
+In all of our experiments, we could have spent more time on them to do more trials trying over different parameters and combinations of parameters.
+Maybe by doing more thorough and systematic testing, it could be possible to evaluate exactly the effect of tuning a specific parameter.
+Doing all the experiments would take a long time, and it is questionable whether the results would generalize to all problems.
+The fact is that there are too many things that could be tuned, so it is difficult to determine which parameter should be tested.
+
+Multi-task learning is a significant paradigm for creating large machine learning systems.
+As it isn't really scalable, nor does it really make any sense to try to solve every task separately in a system that would be called intelligent.
+For example, Andrej Karpathy, the Director of AI at Tesla, has given multiple talks on how they apply multi-task learning and how it is an instrumental part of their convolutional models \citep{karpathy}.
+The problems he describes their teams tackle are the same problems that we have encountered and tried to solve in this thesis.
+Like deciding what tasks should share and picking the correct sampling ratios are some of the problems Karpathy brings up as some of the most significant issues in training their models.
+It does make sense that a camera-based self-driving car is one of the largest current multi-task learning applications as it is a problem that benefits from all the boons of multi-task learning we have covered.
+It is important to have small models for running inference in constrained environments faster than single-task counterparts.
+By sharing weights between tasks that have been specially picked in a way that they can augment each other makes it easier to learn new tasks and improve performance on the existing ones.
+Having separate datasets for each task allows for the easy creation of new tasks in the model irrespective of others.
+The ability to modify the loss weights and task sampling ratios allows for focusing on the critical tasks that are not allowed to fail.
+So, while it likely is more difficult to train a model that solves all the tasks together, it is most likely unavoidable.
+Single-task models that would solve the same tasks with the same real-time requirements would likely have to be so small that they would be unusable.
+These are the kinds of problems where it is impossible to avoid using multi-task learning. 
+With the correct techniques, it is possible to create systems that can reliably augment people's abilities.
+
+In the end, what we learned is that the success of creating multi-task models out of some tasks can't be pre-determined currently. 
+Some expensive experimentation is needed to arrive at the best multi-task architecture and to find the optimal parameters to train the model.  
 Thus, multi-task learning can be considered as a trade-off of training time complexity for inference-time benefits in accuracy and speed.
