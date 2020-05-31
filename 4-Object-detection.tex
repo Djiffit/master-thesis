@@ -10,6 +10,12 @@ An often-used family of these kinds of methods is the R-CNN classifiers, for exa
 In the one-stage detectors, features from various layers of the classifier are used to get the predictions.
 For example, the YOLOv4 \citep{yolov4} is the 4th iteration of the single-stage YOLO family of detectors that are very popular due to the good balance between fast speed and good accuracy.
 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{imgs/obj-det.png}
+    \caption{Object detection image labeled for people and cars.}
+\end{figure}
+
 \section{Metrics}
 The training of object detection models requires data sets that have been labeled for that purpose.
 Generally, the data sets contain bounding box annotations for each of the classes in the data set, such as seen in Figure 5.1.
@@ -17,7 +23,7 @@ For this reason, object detection models can't use a simple metric like the basi
 As the images are often manually labeled, the boxes are most likely not completely consistent.
 So most likely, the predictions are never going to align with the labeled boxes perfectly.
 Consequently, the method for evaluating object detection performance is Average Precision (AP) or mean Average Precision (mAP) or one of their variants.
-These metrics use intersection over union (IoU) score to evaluate how incorrect the predicted bounding box is when compared to the actual label. Intersection over union is visualized in Figure 5.1.
+These metrics use intersection over union (IoU) score to evaluate how incorrect the predicted bounding box is when compared to the actual label. Intersection over union is visualized in Figure 5.2.
 
 \begin{figure}[h!]
     \centering
@@ -57,7 +63,7 @@ The head comprises of a neck, which connects the intermediate features from the 
 The intermediate features are generally connections from some specific layers of the backbone.
 Earlier single-stage detectors used the extracted features directly, but the current state-of-the-art methods use special feature pyramids and path aggregation to get the best results \citep{efficientDet}.
 For example, the YOLO v4 uses spatial pyramid pooling \citep{SPP} over the DarkNet features and path aggregation net (PANet) \citep{PANET} to concatenate the parameters for the classifier head \citep{yolov4}.
-Different ways of combining the feature pyramids are described in Figure 5.2.
+Different ways of combining the feature pyramids are described in Figure 5.3.
 Like many other parts of the architecture, picking one is a trade-off of more parameters and inference time and accuracy.
 \begin{figure}[h!]
     \centering
@@ -109,7 +115,7 @@ The EfficientDet model also uses similar compound scaling as the EfficientNet mo
 The scaling factor is used for the BiFPN network, box and class predictor networks, and to find the optimal input resolution.
 The EfficinetDet shows that improving the backbone is quite useful for the entirety of the model.
 This can especially be seen when looking at the comparisons of using a ResNet vs an EfficientNet as the backbone in the same EfficientDet architecture \citep{efficientDet}.
-The EfficientDet model architecture is shown in Figure 5.3.
+The EfficientDet model architecture is shown in Figure 5.4.
 
 \begin{figure}[h!]
     \centering
@@ -121,7 +127,7 @@ The different feature maps in the BiFPN are combined using a weighted feature fu
 The feature maps can't be directly combined since they have different dimensionality, so they have to be up or downsampled depending on the direction of the connection.
 By weighing each feature map, the network can learn how important each feature map is.
 Since the dimensionalities differ from one another, they likely don't contribute equally to the output feature maps, which is signified by the learned weight.
-The BiFPN connection architecture is a simplified version of the PANet, as shown in Figure 5.2.
+The BiFPN connection architecture is a simplified version of the PANet, as shown in Figure 5.3.
 The goal of the changes from PANet is to have a more high-level fusion of features while dropping the nodes that have little feature fusion and then to stack multiple of these layers to get the final model \citep{efficientDet}.
 
 The efficient scaling of the parameters and the BiFPN architecture allow EfficientDet to produce impressive results at relatively high framerates.
@@ -150,7 +156,7 @@ Once the exact architecture has been chosen, an implementation of it is needed t
 Generally, all the popular architectures have open-source implementations on GitHub in both Tensorflow and Pytorch, which are the most popular deep learning frameworks, that can be used.
 Most of these implementations come quite readily wrapped in a way that given a correctly formatted data set, the models will be automatically initialized with the correct number of classes, and the training process is already specified by the input of a few necessary parameters.
 As mentioned in the case of image classification, it is extremely important to initialize with the pre-trained weights with an object detection model to achieve the best results instead of training from scratch.
-In an object detector, the problem-specific part is the number of classes in the classification head, which can be seen in Figure 5.3.
+In an object detector, the problem-specific part is the number of classes in the classification head, which can be seen in Figure 5.4.
 For the rest of the network, pre-trained weights should be used.
 
 Training the EfficientNet itself is a multi-task training problem. 
@@ -184,11 +190,11 @@ The anchors also have aspect ratios applied to them, which can be modified, the 
 \end{figure}
 
 Finally, once a model has been trained with a suitable dataset, architecture, and hyperparameters, it can output predictions for new images.
-If the model is used without any modifications, the output boxes will likely look like the predictions in Figure 5.4.
+If the model is used without any modifications, the output boxes will likely look like the predictions in Figure 5.5.
 To fix this issue in the predictions, non-max suppression (NMS) should be used \citep{nms}.
 With non-max suppression, we can achieve only a single bounding box that better represents what is most likely wanted.
 In some cases, using NMS can lead to not being able to predict heavily overlapping classes.
-Generally, though NMS should pretty much always be used to avoid the issue depicted in the Figure 5.4.
+Generally, though NMS should pretty much always be used to avoid the issue depicted in the Figure 5.5.
 
 The object detectors are a good example of multi-task learning and how using the same feature maps, it is possible to solve multiple problems.
 In this case, only a single annotation is needed to label for the two different tasks that can be optimized together.

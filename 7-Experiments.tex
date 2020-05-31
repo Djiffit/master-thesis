@@ -457,6 +457,8 @@ The segmentation head was based on the implementations of BiFPN segmentation fro
 After creating multiple multi-task models, the creation and modification of the training loop were no longer so difficult to adjust to the new task.
 Figuring out exactly how to add the new task into the existing model architecture took a while to find the exact values that the segmentation model needs for creating outputs.
 After configuring data loaders and the model, the training was pretty much along the lines of the previous models we have covered.
+The results for our models were along the lines that we have seen previously, the multi-task model being a few points below the single-task models.
+It could be possible here that the segmentation model could get better if it had its own BiFPN network and could only share the backbone with the detector, but we did not have enough time to run all possible experiments.
 Our modified EfficientDet architecture is shown in Figure 6.7.
 
 \begin{figure}[h!] 
@@ -469,9 +471,45 @@ With the segmentation head and object detector head configured, it would now be 
 We could easily add a new image classification head using the same backbone, like \citep{multinet}, where a single model is used for road segmentation, car detection, and road type classification.
 Adding more classes to the segmentation or to the object classifier would be relatively easy to do.
 Of course, there is a lot of sharing optimization to be done as well.
-In our implementation, we naively shared everything, which was relatively detrimental to performance.
+In our implementation, we naively shared everything, which was likely relatively detrimental to performance.
 It would make sense to at least have the BiFPN be task-specific.
 And since everything is now configured in the same model, it would be relatively easy to chop half of the backbone for each task and possibly get better results.
 As we have covered over and over again, the space for possible improvements is huge.
 
-\section{Recap}
+\section{Overview of the experiments}
+Based on our experiments, we can say that multi-task learning is hard when compared to training single-task models.
+Training multiple single-task models is easier and faster and requires less user input and parameter optimization.
+The effect of many parameters, like the learning rate, can be evaluated relatively easily based on a few epochs in a single task setting.
+Perhaps to find the very best model, more experimentation and exploration is needed, but just some default values can generally provide good results.
+
+For someone with little experience in training multi-task models, it can be difficult to get started.
+Whereas it is easy to find multiple examples of just how a training loop should be created, finding such examples for multi-task models is much more difficult.
+For experimenting with different ways of splitting the features into local and global features, it is important to have systems for easily doing experiments on different architectures.
+In our experiments, we created four points where it was possible to cut the last block in the ResNet, for example, so it was easy to create models that each had none to some local features.
+Devising ways to split on a more fine-grained level and grouping tasks when there are multiple would be extremely important when searching for the optimal architecture.
+Manually changing how the weights are shared would not be enough.
+In our experiments, this was also quite clear, as we did not experiment beyond having models that have some or none local features.
+We did not do any experiments where we would have grouped the features in a more well thought out way.
+Likely, most benefits are gained when multiple tasks share half of the networks instead of only having a head be local.
+This would make sense as the lower level features are more general and likely there would not be as many conflicts as in the deeper layers.
+The number of things to tune is also quite discouraging when the model does not train properly.
+Finding out which part of the modifications to the default process is wrong can be extremely difficult.
+Some of the mistakes we encountered were difficult and frustrating to solve. 
+For example, we forgot to do a deep copy of the local features and just passed the same features as references to all tasks and wondered why the training of a single task was impacting others so much.
+Or when we froze all local features except the head when we meant only to freeze all the global features.
+Or mixing up the order of the tasks in the model task heads, so the final inferences ended up being complete garbage.
+
+The impact of the various parameters that have to be picked seemed to be much larger.
+With an incorrect sampling ratio, the models could be extremely far from the good sampling ratios.
+It seems that finding the perfect sampling ratio might not be possible, and settling for a good enough one might be a good idea.
+It seems that it may be a good idea to pick a lower learning rate than normal to find the best intersection of features.
+
+Finally, the model structure's changes to create the various classifiers' heads can be difficult to add.
+While adding multiple image classifiers is relatively trivial to do if one is comfortable doing basic model definitions, it can be difficult to combine the various task heads for the more complex tasks.
+For example, object detector models are generally provided with very specific training loops, so getting an object detector that has a classifier head is much more difficult than just training the two separately.
+Without some easy way of abstracting the classifier heads and automatically injecting them into the training loop, it may not be possible for some to create multi-task models without extensive help.
+We considered relatively simple tasks that already had open-source implementations and mostly combined them into a single model.
+When dealing with some more advanced models like some of the ones presented in the multi-tasking chapter, it would be even more difficult to create the models.
+
+Despite all the challenges, we did manage to create models that came close or were equal to their single-task counterparts.
+The multi-task models were smaller and faster in those cases, confirming that using the shared representations can be an excellent idea.

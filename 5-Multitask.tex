@@ -81,7 +81,7 @@ The total loss function can be modified by adding an uncertainty weighting to ea
 Depending on the task, the benefit compared to an unweighted loss can be significant \citep{usingUncertaintyToWeighLosses} or, in some cases, only small \citep{lossWeighting}.
 
 \section{Hard parameter sharing}
-A hard parameter sharing setting is one where the same convolutional weights in the intermediate layers solve multiple tasks, like in Figure 3.1.
+A hard parameter sharing setting is one where the same convolutional weights in the intermediate layers solve multiple tasks, like in Figure 4.1.
 Hard parameter sharing is the primary way of reducing total model size and inference time when solving multiple tasks simultaneously.
 While sharing the weights can provide many benefits to the end model, as seen in the previous chapter, it comes at the cost of an increased number of tunable parameters when training the models. 
 As we have previously seen, multi-task models introduce new constant factors to the training process beyond the normal hyperparameters for learning rate, dropout rate, and others.
@@ -108,7 +108,7 @@ In the drink classification experiment, the auxiliary tasks were picked in a way
 Adding auxiliary tasks is an interesting way of forcing features into the model that the developer thinks could be useful for the model to find, in that sense, they are hand-crafted features that get augmented in the model.
 In practice, this means that if we are training a model e.g., to predict the steering angle given an image, we might want to add an auxiliary task that predicts the lane markers to make it easier to learn these features as they should be a significant feature for producing correct outputs.
 
-A similar multi-task model in \citep{visualPerson}, also partly visualized in Figure 3.1, solves 6 different tasks in a single model.
+A similar multi-task model in \citep{visualPerson}, also partly visualized in Figure 4.1, solves 6 different tasks in a single model.
 The tasks in that model are very different from one another, including person re-identification, pose estimation, and image segmentation.
 The interesting result in their search for related tasks is that while a pair of tasks don't work well together, they can work well when combined with other tasks.
 For example, they found that just pairing the pose estimation head with other tasks significantly reduces its accuracy, but when all tasks use the single shared backbone, it does just as well as if trained in a single-task setting.
@@ -126,7 +126,7 @@ Soft parameter sharing is quite similar to learning each task on its own since e
 Soft parameter sharing happens by picking some layers, where some metrics constrain the parameters to be similar, like ${l_2}$ distance \citep{ruderOverview}. 
 
 The sharing functionality can be more complicated than just basic regularization. 
-For example, the Cross-stitch units \citep{crossStitch} are a particular type of soft sharing, where the stitch units combine tasks A and B using a linear combination of the activations, visualized in Figure 3.2. 
+For example, the Cross-stitch units \citep{crossStitch} are a particular type of soft sharing, where the stitch units combine tasks A and B using a linear combination of the activations, visualized in Figure 4.3. 
 The benefit here is that the user does not need to specify how much should be shared between the tasks, but it is instead learned in the cross-stitch unit. 
 If nothing needs to be shared, then the network can learn to assign the weight for the other task to zero.
 
@@ -162,7 +162,7 @@ By sharing only a part of the network, it may be possible to strike the right ba
 \end{figure}
 
 An attempt to create a taxonomy of related tasks called Taskonomy to find out what tasks are beneficial for transfer learning exists in \citep{taskonomy}. 
-The Taskonomy experiments pre-trained networks on tasks and then evaluated whether the features would transfer well to other tasks to end up with a hierarchical categorization of related tasks, shown in Figure 3.2. 
+The Taskonomy experiments pre-trained networks on tasks and then evaluated whether the features would transfer well to other tasks to end up with a hierarchical categorization of related tasks, shown in Figure 4.4. 
 Still, the authors noted that, depending on model architecture and data set, the results could be different.
 
 It would make sense that the results of the Taskonomy would be easily transferable to the multi-task setting. 
