@@ -57,7 +57,7 @@ The ResNet block architecture allows for the blocks to learn the identity functi
 The residual block is shown in Figure 3.2.
 Normally a neural network layer learns the mapping between ${x}$ and ${y}$ using a function ${H(x)}$, but by the same token, we can learn a residual transformation.
 Learning these residuals using the identity mapping skip-connections is the revolutionary idea introduced by the ResNet.
-Since these residual connections are only connections, they do not require extra parameters to be learned and are free in terms of learnable parameters.
+Since these skip-connections are only connections and not extra layers, they do not require extra parameters that would need to be learned.
 The residual transformation is
 \[{F(x) = H(x) - x}\] \noindent where ${H}$ is the mapping of two or more network layers. Both of these approaches should approximate the same functions; the difference is in how easy it is for the network to learn. Learning a transformation of ${F(x) = 0}$ would intuitively seem easier for a neural network than learning ${F(x) = x}$. As can be seen from the success of the ResNets compared to non-residual networks, this is what allows for creating very deep networks. If the transformation changes the input size, a matrix ${W}$ is necessary to map the input to the same dimensions, generating the final formula for a residual block. \[y = F(x, \{W_i\}) + W_s x\] \noindent where $W_i$ and $W_s$ are the the weight matrices to be applied to x.
 

@@ -249,6 +249,9 @@ With more dynamic sampling ratios, the problems might solve themselves, as then 
 We noticed here the same thing as in the leaves experiment that a long training process that slowly approaches the optimum seems to produce the best results in the end consistently.
 Maybe this means that finding the intersection that can solve all the tasks optimally is relatively small and easy to overshoot with too large learning rates.
 Similarly, with incorrect sampling ratios, the model would never be able to reach the weights needed for the shared optimal solution.
+To deal with the imbalanced classes, we also tried to add an exponent to the loss like in the focal loss, though it is unsure if it was useful or not.
+But in theory, it should allow for the network to learn more from the cases where it is unsure.
+Also, it would be yet another parameter to tune, as it is hard to say what exactly the exponent should be for the best results.
 
 The single-task model training was done similarly to the multi-task model and by using the same data loading techniques.
 This way, we reached an average accuracy of 91\%, beating the multi-task model slightly.
